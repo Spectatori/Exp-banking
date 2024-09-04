@@ -21,12 +21,13 @@ public class TransactionType {
     private Long transactionTypeId;
 
     @Column(name = "transaction_type_name")
-    private String transactionTypeName;
+    @Enumerated()
+    private TransactionTypeEnum transactionTypeName;
 
     @OneToMany(mappedBy = "transactionType")
     private List<Transactions> transactions;
 
-    public TransactionType(Long transactionTypeId, String transactionTypeName){
+    public TransactionType(Long transactionTypeId, TransactionTypeEnum transactionTypeName){
         this.transactionTypeId = transactionTypeId;
         this.transactionTypeName = transactionTypeName;
     }

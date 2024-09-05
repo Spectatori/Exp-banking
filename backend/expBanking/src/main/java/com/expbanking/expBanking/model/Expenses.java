@@ -28,4 +28,12 @@ public class Expenses {
     @ManyToOne
     @JoinColumn(name = "userId")
     private User user;
+    public Expenses(){}
+    public Expenses( Double amount,
+                     Timestamp dateOfPayment,
+                     String description){
+        this.amount=amount;
+        this.dateOfPayment=dateOfPayment;
+        this.description=description;
+    }
 }

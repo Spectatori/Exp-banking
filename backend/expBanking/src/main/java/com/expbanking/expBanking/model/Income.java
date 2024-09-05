@@ -32,8 +32,9 @@ public class Income {
 
     public Income() {}
 
-
-
-
-
+    public Income(Double amount, Timestamp dateOfPayment, String description) {
+        this.amount = amount;
+        this.dateOfPayment = dateOfPayment;
+        this.description = description;
+    }
 }

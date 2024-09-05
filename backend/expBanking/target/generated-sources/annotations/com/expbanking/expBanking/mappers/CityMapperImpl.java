@@ -6,8 +6,8 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-09-05T12:08:31+0300",
-    comments = "version: 1.6.0.Beta1, compiler: javac, environment: Java 22.0.1 (Oracle Corporation)"
+    date = "2024-09-05T12:33:26+0300",
+    comments = "version: 1.6.0.Beta1, compiler: javac, environment: Java 22.0.2 (Amazon.com Inc.)"
 )
 public class CityMapperImpl implements CityMapper {
 
@@ -17,14 +17,12 @@ public class CityMapperImpl implements CityMapper {
             return null;
         }
 
-        String cityName = null;
-        Long cityId = null;
-        if ( dto != null ) {
-            cityName = dto.cityName();
-            cityId = dto.cityId();
-        }
+        City city = new City();
 
-        City city = new City( cityId, cityName );
+        if ( dto != null ) {
+            city.setCityName( dto.cityName() );
+            city.setCityId( dto.cityId() );
+        }
 
         return city;
     }

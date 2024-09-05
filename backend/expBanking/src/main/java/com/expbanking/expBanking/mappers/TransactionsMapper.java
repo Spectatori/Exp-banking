@@ -10,6 +10,6 @@ public interface TransactionsMapper {
     @Mapping(target = "dateOfTransaction", source = "dto.dateOfTransaction")
     @Mapping(target = "amount", source = "dto.amount")
     @Mapping(target = "details", source = "dto.details")
-    Transactions convertDtoToEntity(TransactionsDTO dto, Long id);
+    Transactions convertDtoToEntity(TransactionsDTO dto);
 
 }

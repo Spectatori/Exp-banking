@@ -14,28 +14,29 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/transactions")
 public class TransactionController {
-    private final TransactionService transactionService;
+    private final TransactionService transactionServiceImpl;
+
 
     @Autowired
-    public TransactionController(TransactionService transactionService){this.transactionService = transactionService;}
+    public TransactionController(TransactionService transactionService){this.transactionServiceImpl = transactionService;}
 
     @GetMapping("/{transactionId}")
     public ResponseEntity<Transactions> getTransactionById(@PathVariable Long transactionId){
-        Optional<Transactions> transactions = transactionService.getTransactionById(transactionId);
+        Optional<Transactions> transactions = transactionServiceImpl.getTransactionById(transactionId);
         return transactions.map(ResponseEntity::ok).orElseGet(()->ResponseEntity.notFound().build());
     }
     @GetMapping("/transactions")
-    public List<Transactions> getAllTransactions(){ return transactionService.getAllTransactions();}
+    public List<Transactions> getAllTransactions(){ return transactionServiceImpl.getAllTransactions();}
 
     @PostMapping("/createTransaction")
     public ResponseEntity<Transactions> createTransaction(@RequestBody Transactions transactions) {
-        Transactions transaction = transactionService.createTransaction(transactions);
+        Transactions transaction = transactionServiceImpl.createTransaction(transactions);
         return new ResponseEntity<> (transaction, HttpStatus.CREATED);
     }
 
     @GetMapping("/user/{userId}")
     public ResponseEntity<List<Transactions>> getTransactionsByUserId(@PathVariable Long userId) {
-        List<Transactions> transactions = transactionService.getTransactionByUserId(userId);
+        List<Transactions> transactions = transactionServiceImpl.getTransactionByUserId(userId);
         return  new ResponseEntity<>(transactions,HttpStatus.OK);
         //ResponseEntity.ok(transactions)
     }
@@ -46,7 +47,7 @@ public class TransactionController {
     @PutMapping("/{transactionId}")
     public ResponseEntity<Transactions> updateTransaction(@PathVariable Long transactionId,
                                                           @RequestBody Transactions transaction){
-        Transactions updatedTransaction = transactionService.updateTransaction(transactionId,transaction);
+        Transactions updatedTransaction = transactionServiceImpl.updateTransaction(transactionId,transaction);
         if(updatedTransaction != null){
             return ResponseEntity.ok(updatedTransaction);
         }else{
@@ -57,7 +58,7 @@ public class TransactionController {
 
     @DeleteMapping("/{transactionId}")
     public void deleteTransactions(@PathVariable Long transactionId){
-       transactionService.deleteTransaction(transactionId);
+       transactionServiceImpl.deleteTransaction(transactionId);
     }
 
 }

@@ -35,10 +35,10 @@ public class Address {
    @OneToMany(mappedBy = "address")
    private Set<User> users;
 
-    public Address(String postcode, String cityName, String street, City city) {
+    public Address(String postcode, String cityName, String street) {
         this.postcode = postcode;
         this.cityName = cityName;
         this.street = street;
-        this.city = city;
+
     }
 }

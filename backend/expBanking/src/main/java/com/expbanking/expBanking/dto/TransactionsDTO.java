@@ -5,7 +5,7 @@ import lombok.Value;
 
 import java.beans.ConstructorProperties;
 import java.sql.Timestamp;
-@Value
+
 public record TransactionsDTO(
         Long transactionId,
         Timestamp dateOfTransaction,

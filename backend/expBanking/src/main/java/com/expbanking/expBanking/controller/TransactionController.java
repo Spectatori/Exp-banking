@@ -3,6 +3,7 @@ package com.expbanking.expBanking.controller;
 
 import com.expbanking.expBanking.model.Transactions;
 import com.expbanking.expBanking.service.Impl.TransactionService;
+import com.expbanking.expBanking.service.Impl.TransactionServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,11 +15,13 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/transactions")
 public class TransactionController {
-    private final TransactionService transactionServiceImpl;
+    private final TransactionServiceImpl transactionServiceImpl;
 
 
     @Autowired
-    public TransactionController(TransactionService transactionService){this.transactionServiceImpl = transactionService;}
+    public TransactionController(TransactionServiceImpl transactionServiceImpl){
+        this.transactionServiceImpl = transactionServiceImpl;
+    }
 
     @GetMapping("/{transactionId}")
     public ResponseEntity<Transactions> getTransactionById(@PathVariable Long transactionId){
@@ -34,12 +37,12 @@ public class TransactionController {
         return new ResponseEntity<> (transaction, HttpStatus.CREATED);
     }
 
-    @GetMapping("/user/{userId}")
-    public ResponseEntity<List<Transactions>> getTransactionsByUserId(@PathVariable Long userId) {
-        List<Transactions> transactions = transactionServiceImpl.getTransactionByUserId(userId);
-        return  new ResponseEntity<>(transactions,HttpStatus.OK);
-        //ResponseEntity.ok(transactions)
-    }
+//    @GetMapping("/user/{userId}")
+//    public ResponseEntity<List<Transactions>> getTransactionsByUserId(@PathVariable Long userId) {
+//        List<Transactions> transactions = transactionServiceImpl.getTransactionByUserId(userId);
+//        return  new ResponseEntity<>(transactions,HttpStatus.OK);
+//        //ResponseEntity.ok(transactions)
+//    }
 
 
 

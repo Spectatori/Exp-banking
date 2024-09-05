@@ -21,7 +21,7 @@ public class TransactionType {
     private Long transactionTypeId;
 
     @Column(name = "transaction_type_name")
-    @Enumerated()
+    @Enumerated(EnumType.ORDINAL)
     private TransactionTypeEnum transactionTypeName;
 
     @OneToMany(mappedBy = "transactionType")

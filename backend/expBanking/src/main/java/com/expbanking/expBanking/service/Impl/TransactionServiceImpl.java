@@ -31,10 +31,10 @@ public class TransactionServiceImpl implements TransactionService{
         return transactionsRepo.findById(transactionId);
     }
 
-    @Override
-    public List<Transactions> getTransactionByUserId(Long userId) {
-        return transactionsRepo.findByUserId(userId);
-    }
+//    @Override
+//    public List<Transactions> getTransactionByUserId(Long userId) {
+//        return transactionsRepo.findByUserId(userId);
+//    }
 
     @Override
     public List<Transactions> getAllTransactions() {

@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.List;
 
 @Entity
@@ -52,8 +53,11 @@ public class User {
     private Address address;
 
     @OneToMany(mappedBy = "user")
-    private List<Transactions> transactions;
+    private HashSet<Transactions> transactions;
 
+    @OneToOne
+    @JoinColumn(name = "employment_type_id")
+    private EmploymentType employmentType;
     public User() {
     }
 

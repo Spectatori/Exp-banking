@@ -7,6 +7,6 @@ import org.mapstruct.Mapping;
 
 @Mapper
 public interface CityMapper {
-    @Mapping(target = "city", source = "dto.city")
+    @Mapping(target = "cityName", source = "dto.cityName")
     City convertDtoToEntity(CityDTO dto, long id);
 }

@@ -1,8 +1,0 @@
-com\expbanking\expBanking\repository\TransactionTypeRepository.class
-com\expbanking\expBanking\repository\AddressRepository.class
-com\expbanking\expBanking\repository\TransactionsRepository.class
-com\expbanking\expBanking\repository\ExpensesRepository.class
-com\expbanking\expBanking\repository\ProvinceRepository.class
-com\expbanking\expBanking\repository\UserRepository.class
-com\expbanking\expBanking\repository\IncomeRepository.class
-com\expbanking\expBanking\repository\CityRepository.class

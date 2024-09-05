@@ -10,7 +10,7 @@ public class EmploymentType {
     private Long id;
 
     @Column(name = "type")
-    @Enumerated()
+    @Enumerated
     private EmploymentEnum anEnum;
 
 }

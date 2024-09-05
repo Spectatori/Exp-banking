@@ -16,6 +16,7 @@ public class Provinces {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "province_id", nullable = false, updatable = false)
     private Long provinceId;
+
     @Column(name = "name")
     private String name;
 

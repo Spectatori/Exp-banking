@@ -1,5 +1,4 @@
-// src/pages/AccessPage.jsx
-import React, from 'react';
+import React from 'react';
 import Footer from '../components/Footer.jsx';
 import background from '../assets/piggy-background.jpg';
 import RegisterForm from "../components/RegisterForm.jsx";
@@ -16,7 +15,10 @@ const AccessPage = () => {
 
             <div
                 className="relative flex-grow bg-cover bg-bottom flex justify-center items-center"
-                style={{ backgroundImage: `url(${background})` }}
+                style={{
+                    backgroundImage: `url(${background})`,
+                    boxShadow: 'rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px'
+                }}
             >
 
                 <div className="absolute inset-0 backdrop-blur-sm"></div>

@@ -14,7 +14,7 @@ public interface UserService {
 
     String createIban();
     List<Transactions> getTransactions(Long userId);
-    //void deleteUser(User user);
+    void deleteUser(Long userId);
 
 
 }

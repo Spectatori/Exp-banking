@@ -7,8 +7,8 @@ import org.mapstruct.Mapping;
 
 @Mapper
 public interface ExpensesMapper {
-    //@Mapping(target = "amount", source = "dto.amount")
-    //@Mapping(target = "dateOfPayment", source = "dto.dateOfPayment")
-    //@Mapping(target = "description", source = "dto.description")
+    @Mapping(target = "amount", source = "dto.amount")
+    @Mapping(target = "dateOfPayment", source = "dto.dateOfPayment")
+    @Mapping(target = "description", source = "dto.description")
     Expenses convertDtoToEntity(ExpensesDTO dto, long id);
 }

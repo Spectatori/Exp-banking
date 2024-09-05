@@ -29,7 +29,17 @@ public class UserServiceImpl implements UserService{
     @Override
     public void transfer(UserDTO userDTO, BigDecimal amount) {
 
-        userDTO.balance().add(amount);
+        if (amount == null) {
+            throw new IllegalArgumentException("Amount cannot be null");
+        }
+
+
+        if (amount.compareTo(BigDecimal.ZERO) > 0) {
+            userDTO.balance().add(amount);
+        } else if (amount.compareTo(BigDecimal.ZERO) < 0) {
+            userDTO.balance().subtract(amount);
+        }
+
     }
 
     @Override
@@ -64,5 +74,10 @@ public class UserServiceImpl implements UserService{
     @Override
     public List<Transactions> getTransactions(Long userId) {
         return userRepo.getAllByTransactionsUserId(userId);
+    }
+
+    @Override
+    public void deleteUser(Long theId) {
+        userRepo.deleteById(theId);
     }
 }

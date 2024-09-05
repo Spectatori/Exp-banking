@@ -8,7 +8,6 @@ public record TransactionsDTO(
         Long transactionId,
         Timestamp dateOfTransaction,
         Double amount,
-        String details,
-        User user
+        String details
 ) {
 }

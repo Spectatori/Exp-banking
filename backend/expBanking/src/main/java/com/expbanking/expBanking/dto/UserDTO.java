@@ -1,5 +1,6 @@
 package com.expbanking.expBanking.dto;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public record UserDTO(
@@ -9,6 +10,8 @@ public record UserDTO(
         String email,
         String phoneNumber,
         LocalDate dateOfBirth,
-        Long addressId
+        BigDecimal balance,
+        String currenciesName
+
 ) {
 }

@@ -14,5 +14,6 @@ public interface UserMapper {
     @Mapping(target = "dateOfBirth", source = "dto.dateOfBirth")
     @Mapping(target = "balance", source = "dto.balance")
     @Mapping(target = "currency", source = "dto.currency")
+    @Mapping(target = "typeOfEmployment", source = "dto.typeOfEmployment")
     User convertDtoToEntity(UserDTO dto, long id);
 }

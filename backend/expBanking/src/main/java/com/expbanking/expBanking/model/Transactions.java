@@ -41,12 +41,12 @@ public class Transactions {
     public Transactions(){
 
     }
-    public Transactions(Long transactionId, Timestamp dateOfTransaction,Double amount,String details, User user){
-        this.transactionId = transactionId;
+    public Transactions(Timestamp dateOfTransaction,Double amount,String details){
+        //this.transactionId = transactionId;
         this.dateOfTransaction = dateOfTransaction;
         this.amount = amount;
         this.details = details;
-        this.user = user;
+        //this.user = user;
         //this.transactionTypeId = transactionTypeId;
     }
 }

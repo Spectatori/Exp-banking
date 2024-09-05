@@ -7,14 +7,14 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-09-05T01:15:44+0300",
+    date = "2024-09-05T12:08:31+0300",
     comments = "version: 1.6.0.Beta1, compiler: javac, environment: Java 22.0.1 (Oracle Corporation)"
 )
 public class TransactionTypeMapperImpl implements TransactionTypeMapper {
 
     @Override
-    public TransactionType convertDtoToEntity(TransactionTypeDTO dto, long id) {
-        if ( dto == null ) {
+    public TransactionType convertDtoToEntity(TransactionTypeDTO dto, Long id) {
+        if ( dto == null && id == null ) {
             return null;
         }
 

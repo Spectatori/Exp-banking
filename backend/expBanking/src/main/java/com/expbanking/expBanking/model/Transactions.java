@@ -31,7 +31,7 @@ public class Transactions {
     private String details;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "userId")
+    @JoinColumn(name = "user_id",referencedColumnName = "userId",nullable = false)
     private User user;
 
     @ManyToOne

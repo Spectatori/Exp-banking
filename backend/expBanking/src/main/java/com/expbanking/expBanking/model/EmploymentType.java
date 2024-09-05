@@ -10,7 +10,11 @@ public class EmploymentType {
     private Long id;
 
     @Column(name = "type")
-    @Enumerated
-    private EmploymentEnum anEnum;
+    @Enumerated(EnumType.STRING) // EnumType.STRING ensures the enum is persisted as a string
+    private EmploymentEnum type;
+
+    @OneToOne(mappedBy = "employmentType", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private User user;
+
 
 }

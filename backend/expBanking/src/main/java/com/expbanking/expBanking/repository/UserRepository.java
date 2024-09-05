@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 @Repository
 public interface UserRepository extends JpaRepository<User,Long> {
-    //List<Transactions> getAllByTransactionsUserId(Long theId);
+    List<Transactions> getAllTransactionsByUserId(Long theId);
     User getUserByEmail(String email);
 
 

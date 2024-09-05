@@ -28,10 +28,10 @@ public class UserController {
         return new ResponseEntity<>(savedInDb, HttpStatus.CREATED);
     }
 
-//    @GetMapping("/transactions")
-//    public List<Transactions> findAllTransactions(Long userid) {
-//        return userServiceImpl.getTransactions(userid);
-//    }
+    @GetMapping("/transactions")
+    public List<Transactions> findAllTransactions(Long userid) {
+        return userServiceImpl.getTransactions(userid);
+    }
 
 
 }

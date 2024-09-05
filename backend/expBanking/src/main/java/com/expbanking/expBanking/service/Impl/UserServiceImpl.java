@@ -71,10 +71,10 @@ public class UserServiceImpl implements UserService{
         return iban.toString();
     }
 
-//    @Override
-//    public List<Transactions> getTransactions(Long userId) {
-//        return userRepo.getAllByTransactionsUserId(userId);
-//    }
+    @Override
+    public List<Transactions> getTransactions(Long userId) {
+        return userRepo.getAllTransactionsByUserId(userId);
+    }
 
     @Override
     public void deleteUser(Long theId) {

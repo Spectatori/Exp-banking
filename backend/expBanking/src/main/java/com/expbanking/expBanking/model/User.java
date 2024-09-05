@@ -38,6 +38,15 @@ public class User {
     @Column(name = "balance")
     private BigDecimal balance;
 
+    @Column(name = "iban")
+    private String iban;
+
+    @Column(name = "currency")
+    private String currency;
+
+    @Column(name = "type_of_employment")
+    private EmploymentEnum typeOfEmployment;
+
     @ManyToOne
     @JoinColumn(name = "address_id", referencedColumnName = "address_id")
     private Address address;
@@ -48,7 +57,7 @@ public class User {
     public User() {
     }
 
-    public User(String firstName, String lastName, String email, String password, String phoneNumber, LocalDate dateOfBirth, BigDecimal balance) {
+    public User(String firstName, String lastName, String email, String password, String phoneNumber, LocalDate dateOfBirth, BigDecimal balance, String currency, EmploymentEnum typeOfEmployment) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -56,6 +65,8 @@ public class User {
         this.phoneNumber = phoneNumber;
         this.dateOfBirth = dateOfBirth;
         this.balance = balance;
+        this.currency = currency;
+        this.typeOfEmployment = typeOfEmployment;
     }
 
 }

@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.footer-text{
+    font-family: serif;
+    opacity: 0.6;
+    width: 13rem; /* 52 * 0.25rem */
+    text-align: start;
+    padding-top: 0.25rem; /* 1 * 0.25rem */
+    font-size: 0.875rem; /* text-sm equivalent */
+}

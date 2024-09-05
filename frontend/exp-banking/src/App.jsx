@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import RegisterPage from "./pages/RegisterPage";
+import AccessPage from "./pages/AccessPage.jsx";
 
 function App() {
     return (
         <Router>
             <Routes>
-                <Route path="" element={<RegisterPage />} />
+                <Route path="" element={<AccessPage />} />
                 {/* Add other routes here */}
             </Routes>
         </Router>

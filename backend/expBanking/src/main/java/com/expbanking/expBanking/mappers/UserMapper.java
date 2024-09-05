@@ -13,6 +13,6 @@ public interface UserMapper {
     @Mapping(target = "phoneNumber", source = "dto.phoneNumber")
     @Mapping(target = "dateOfBirth", source = "dto.dateOfBirth")
     @Mapping(target = "balance", source = "dto.balance")
-    @Mapping(target = "currenciesName", source = "dto.currenciesName")
+    @Mapping(target = "currency", source = "dto.currency")
     User convertDtoToEntity(UserDTO dto, long id);
 }

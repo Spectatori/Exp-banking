@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.sql.Timestamp;
+
 @Entity
 @Table(name = "expenses")
 @Getter
@@ -13,6 +15,15 @@ public class Expenses {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "expenses_id", nullable = false, updatable = false)
     private Long expensesId;
+
+    @Column(name = "amount", nullable = false)
+    private Double amount;
+
+    @Column(name = "date_of_payment")
+    private Timestamp dateOfPayment;
+
+    @Column(name = "description")
+    private String description;
 
     @ManyToOne
     @JoinColumn(name = "userId")

@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import InputField from '../InputField';
 import Button from '../Button';
+import { Link } from 'react-router-dom';
 
 const LoginForm = () => {
     const [formData, setFormData] = useState({
@@ -42,6 +43,11 @@ const LoginForm = () => {
                 onChange={handleInputChange}
             />
             <Button label="Вход" type="submit" />
+            <p className='mt-3 text-sm'>
+                Нямате акаунт? Регистрирай се 
+                <Link to='/auth/register' className='m-1 text-lime-600'>тук</Link>
+                !
+            </p>
         </form>
     )
 }

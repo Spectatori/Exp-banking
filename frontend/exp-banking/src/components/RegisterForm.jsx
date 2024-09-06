@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
-import InputField from "./InputField.jsx";
-import Button from "./Button.jsx";
+import RegisterFormInputField from "./RegisterFormInputField.jsx";
+import RegisterFormButton from "./RegisterFormButton.jsx";
 
 const RegisterForm = () => {
     const [formData, setFormData] = useState({
@@ -30,49 +30,49 @@ const RegisterForm = () => {
           className="relative flex flex-col justify-center items-center bg-white bg-opacity-40 rounded-2xl px-24 h-[90%]">
           <h2 className="text-3xl">Регистрация</h2>
           <form onSubmit={handleSubmit}>
-              <InputField
+              <RegisterFormInputField
                   label="Име"
                   type="text"
                   name="name"
                   value={formData.name}
                   onChange={handleInputChange}
               />
-              <InputField
+              <RegisterFormInputField
                   label="Презиме"
                   type="text"
                   name="surname"
                   value={formData.surname}
                   onChange={handleInputChange}
               />
-              <InputField
+              <RegisterFormInputField
                   label="Парола"
                   type="password"
                   name="password"
                   value={formData.password}
                   onChange={handleInputChange}
               />
-              <InputField
+              <RegisterFormInputField
                   label="Повтори Парола"
                   type="password"
                   name="confirmPassword"
                   value={formData.confirmPassword}
                   onChange={handleInputChange}
               />
-              <InputField
+              <RegisterFormInputField
                   label="Дата на раждане"
                   type="date"
                   name="DateOfBirth"
                   value={formData.dateOfBirth}
                   onChange={handleInputChange}
               />
-              <InputField
+              <RegisterFormInputField
                   label="Мобилен Номер"
                   type="number"
                   name="email"
                   value={formData.mobileNumber}
                   onChange={handleInputChange}
               />
-              <InputField
+              <RegisterFormInputField
                   label="Имейл"
                   type="text"
                   name="email"
@@ -80,7 +80,7 @@ const RegisterForm = () => {
                   onChange={handleInputChange}
               />
 
-              <Button label="Регистрация" type="submit"/>
+              <RegisterFormButton label="Регистрация" type="submit"/>
           </form>
       </div>
   )

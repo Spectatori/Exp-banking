@@ -5,8 +5,8 @@ function App() {
     return (
         <Router>
             <Routes>
-                <Route path="" element={<AccessPage />} />
-                {/* Add other routes here */}
+                <Route path="/auth/register" element={<AccessPage />} />
+                <Route path="/auth/login" element={<AccessPage />} />
             </Routes>
         </Router>
     );

@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
-import InputField from "./InputField.jsx";
-import Button from "./Button.jsx";
+import InputField from "../InputField.jsx";
+import Button from "../Button.jsx";
 
 const RegisterForm = () => {
     const [formData, setFormData] = useState({
@@ -68,7 +68,7 @@ const RegisterForm = () => {
               <InputField
                   label="Мобилен Номер"
                   type="number"
-                  name="email"
+                  name="phoneNumber"
                   value={formData.mobileNumber}
                   onChange={handleInputChange}
               />

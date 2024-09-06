@@ -1,32 +1,30 @@
 import React from 'react';
 import Footer from '../components/Footer.jsx';
-import background from '../assets/piggy-background.jpg';
-import RegisterForm from "../components/RegisterForm.jsx";
+import background from '../assets/piggy-background.png';
+import RegisterForm from "../components/auth-forms/RegisterForm.jsx";
+import LoginForm from '../components/auth-forms/LoginForm.jsx';
+import Navbar from '../components/nav-bar/NavBar.jsx';
+import { useLocation } from 'react-router-dom';
 
 const AccessPage = () => {
+    const location = useLocation();
+    const isRegister = location.pathname === '/auth/register';
 
     return (
-        <div className="flex flex-col h-screen">
-            <header className="bg-black h-20 flex-shrink-0">
-                <div className="text-white text-center py-6">
-                    heyo
-                </div>
-            </header>
-
-            <div
-                className="relative flex-grow bg-cover bg-bottom flex justify-center items-center"
-                style={{
-                    backgroundImage: `url(${background})`,
-                    boxShadow: 'rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px'
-                }}
-            >
-
-                <div className="absolute inset-0 backdrop-blur-sm"></div>
-
-                <RegisterForm/>
+        <>
+            <Navbar />
+            <div className="flex flex-col h-screen">
+                <div
+                    className="relative flex-grow bg-cover bg-bottom flex justify-center items-center"
+                    style={{
+                        backgroundImage: `url(${background})`,           
+                    }}
+                >
+                    {!isRegister ? <LoginForm /> : <RegisterForm />}
+                </div> 
+                <Footer />
             </div>
-            <Footer/>
-        </div>
+        </>
     );
 };
 

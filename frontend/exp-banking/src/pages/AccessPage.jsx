@@ -25,7 +25,6 @@ const AccessPage = () => {
 
                 <RegisterForm/>
             </div>
-            <Footer/>
         </div>
     );
 };

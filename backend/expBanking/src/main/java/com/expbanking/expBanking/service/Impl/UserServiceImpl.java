@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService{
         }
 
     }
-
+    /*
     @Override
     public User saveUser(UserDTO userDto) {
         Optional<User> dbObject = Optional.ofNullable(findByEmail(userDto.email()));
@@ -56,6 +56,54 @@ public class UserServiceImpl implements UserService{
         theUser.setIban(createIban());
         return userRepo.saveAndFlush(theUser);
     }
+
+     */
+    @Override
+    public UserDTO saveUser(UserDTO userDto) {
+
+        Optional<User> existingUser = Optional.ofNullable(findByEmail(userDto.email()));
+
+        Long id = existingUser.map(User::getUserId).orElse(null);
+
+        User userEntity = userMapper.convertDtoToEntity(userDto, id);
+
+
+        if (id == null) {
+            userEntity.setIban(createIban());
+        }
+
+        User savedUser = userRepo.saveAndFlush(userEntity);
+
+        return userMapper.convertEntityToDto(savedUser);
+    }
+
+    @Override
+    public void updateUser(Long userId, UserDTO userDto) {
+
+        Optional<User> existingUser = userRepo.findById(userId);
+
+        if(existingUser.isPresent()) {
+
+            User updatedUser = existingUser.get();
+
+
+            updatedUser.setFirstName(userDto.firstName());
+            updatedUser.setLastName(userDto.lastName());
+            updatedUser.setEmail(userDto.email());
+            updatedUser.setPhoneNumber(userDto.phoneNumber());
+            updatedUser.setDateOfBirth(userDto.dateOfBirth());
+            updatedUser.setBalance(userDto.balance());
+            updatedUser.setCurrency(userDto.currency());
+            updatedUser.setTypeOfEmployment(userDto.typeOfEmployment());
+
+
+
+            userRepo.save(updatedUser);
+        } else {
+            throw new RuntimeException("User not found with ID: " + userId);
+        }
+    }
+
 
     @Override
     public String createIban() {

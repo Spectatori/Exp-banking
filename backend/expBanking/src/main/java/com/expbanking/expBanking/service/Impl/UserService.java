@@ -19,5 +19,7 @@ public interface UserService {
     List<Transactions> getTransactions(Long userId);
     void deleteUser(Long userId);
 
+    void updateUser(Long userId, UserDTO userDto);
+
 
 }

@@ -16,4 +16,5 @@ public interface UserMapper {
     @Mapping(target = "currency", source = "dto.currency")
     @Mapping(target = "typeOfEmployment", source = "dto.typeOfEmployment")
     User convertDtoToEntity(UserDTO dto, long id);
+    UserDTO convertEntityToDto(User user);
 }

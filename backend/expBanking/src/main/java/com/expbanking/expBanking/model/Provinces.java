@@ -25,7 +25,6 @@ public class Provinces {
 
     public Provinces(){}
 
-
     public Provinces(String name) {
         this.name = name;
     }

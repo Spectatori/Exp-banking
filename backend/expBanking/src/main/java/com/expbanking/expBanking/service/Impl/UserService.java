@@ -8,18 +8,19 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.List;
 
-
+@Service
 public interface UserService {
     User findByEmail(String email);
     void transfer(UserDTO userDto, BigDecimal amount);
-    User saveUser(UserDTO userDto);
+    UserDTO saveUser(UserDTO userDto);
 
     String createIban();
 
     List<Transactions> getTransactions(Long userId);
     void deleteUser(Long userId);
 
-    void updateUser(Long userId, UserDTO userDto);
+    UserDTO updateUser(Long userId, UserDTO userDto);
+
 
 
 }

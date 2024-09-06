@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
@@ -78,7 +77,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public void updateUser(Long userId, UserDTO userDto) {
+    public UserDTO updateUser(Long userId, UserDTO userDto) {
 
         Optional<User> existingUser = userRepo.findById(userId);
 
@@ -102,6 +101,7 @@ public class UserServiceImpl implements UserService{
         } else {
             throw new RuntimeException("User not found with ID: " + userId);
         }
+        return userDto;
     }
 
 

@@ -9,7 +9,7 @@ const data = [
 ];
 
 const categoryColors = {
-  Food: "#FF6347",
+  Food: "#3ACDEA",
   Groceries: "#32CD32",
   Entertainment: "#FFD700",
   Travel: "#1E90FF",

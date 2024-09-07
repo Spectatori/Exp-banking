@@ -53,8 +53,8 @@ const ProfilePieChart = () => (
         nameKey="name"
         cx="50%"
         cy="50%"
-        outerRadius={100}
-        innerRadius={70}
+        outerRadius={140}
+        innerRadius={110}
         fill="#8884d8"
         labelLine={false}
         label={renderCustomLabel}

@@ -5,7 +5,9 @@ import Footer from './components/Footer.jsx'
 
 function App() {
     return (
-        <div className="flex flex-col h-screen">
+        <div className="flex flex-col h-screen" style={{
+            backgroundColor:'#F9F9F9'
+        }}>
             <Router>
                 <Routes>
                     <Route path="/" element={<AccessPage />} />

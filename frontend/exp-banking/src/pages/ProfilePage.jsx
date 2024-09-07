@@ -90,7 +90,7 @@ const ProfilePage = () => {
       <Navbar />
       <div className="flex flex-col p-12 gap-8">
         <p className="text-2xl font-bold">Добре дошли в exp banking</p>
-        <div className='flex flex-row max-md:flex-col gap-16' style={{ maxHeight: '38rem' }}>
+        <div className='flex flex-row max-md:flex-col gap-40' style={{ maxHeight: '38rem' }}>
           <div className='flex flex-col w-3/6 gap-12'>
 
             {mainAccount.map((account) => (
@@ -141,7 +141,7 @@ const ProfilePage = () => {
               })}
             </div>
           </div>
-          <div className='flex flex-col rounded-xl h-90 w-3/6' style={{
+          <div className='flex flex-col rounded-xl h-90' style={{
             boxShadow: 'rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px',
             maxHeight: '38rem'
           }}>
@@ -184,13 +184,13 @@ const ProfilePage = () => {
                     <option value="monthly">Месечно</option>
                   </select>
                 </div>
-                <div className='pl-20'>
+                <div className='pl-20 '>
                   <ProfilePieChart />
                 </div>
               </div>
-              <div className='flex flex-col pr-32 justify-center gap-6'>
+              <div className='flex flex-col pr-44 justify-center gap-8 pl-20 '>
                 {Object.keys(categoryColors).map((category) => (
-                  <div key={category} className='text-xl '>
+                  <div key={category} className='text-2xl font-bold'>
                     <p style={{
                       color: categoryColors[category].Color 
                     }}>

@@ -2,25 +2,23 @@ import React from 'react'
 import { useState } from 'react';
 import InputField from '../InputField';
 import Button from '../Button';
-import { Link } from 'react-router-dom';
+import { Link, useFormAction } from 'react-router-dom';
+import { useFormik } from 'formik';
+import { loginSchema } from '../../schemas/loginSchema';
 
 const LoginForm = () => {
-    const [formData, setFormData] = useState({
-        email: '',
-        password: '',
-    });
+    const onSubmit = () => {
+        //   
+    }
 
-    const handleInputChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        });
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();        
-        //
-    };
+    const { values, handleChange, handleBlur, handleSubmit, errors, touched } = useFormik({
+        initialValues: {
+            email: '',
+            password: '',
+        },
+        validationSchema: loginSchema,
+        onSubmit
+    })
 
     return (
         <form 
@@ -32,19 +30,25 @@ const LoginForm = () => {
                 label="Имейл"
                 type="text"
                 name="email"
-                value={formData.email}
-                onChange={handleInputChange}
+                value={values.email}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                error={errors.email}
+                touched={touched.email}
             />
             <InputField
                 label="Парола"
                 type="password"
                 name="password"
-                value={formData.password}
-                onChange={handleInputChange}
+                value={values.password}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                error={errors.password}
+                touched={touched.password}
             />
-            <Button label="Вход" type="submit" />
+            <Button label="Вход" type="submit"/>
             <p className='mt-3 text-sm'>
-                Нямате акаунт? Регистрирай се 
+                Нямате акаунт? Регистрирайте се 
                 <Link to='/auth/register' className='m-1 text-lime-600'>тук</Link>
                 !
             </p>

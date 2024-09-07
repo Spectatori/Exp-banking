@@ -1,6 +1,6 @@
 import React from 'react';
 
-const vRegisterFormInputField = ({ label, type, value, onChange }) => {
+const RegisterFormInputField = ({ label, type, value, onChange }) => {
     return (
         <div className="input-field pt-8 ">
             <input className="rounded-lg pl-4 h-10 w-80 border-lime-600 border "

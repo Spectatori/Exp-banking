@@ -1,9 +1,9 @@
 import React from 'react'
 import ProfilePieChart from '../components/ProfilePieChart'
 import Navbar from "../components/nav-bar/Navbar.jsx";
-import Footer from "../components/Footer.jsx"
 import TransactionIcon from "../assets/TransactionIcon.png"
 import TransactionDetailBlue from '../assets/TransactionDetailBlue.png'
+import { useState } from 'react';
 
 const mainAccount =[
   {
@@ -11,6 +11,13 @@ const mainAccount =[
     IBAN: "BG67STSA93000000000012345"
   }
 ]
+const categoryColors = {
+  Food: "#FF6347", // Tomato
+  Groceries: "#32CD32", // LimeGreen
+  Entertainment: "#FFD700", // Gold
+  Travel: "#1E90FF", // DodgerBlue
+};
+const categoryDefault = "#D3D3D3";
 
 const transactions = [
   {
@@ -57,14 +64,21 @@ const transactions = [
   },
 ]
 const ProfilePage = () => {
+  const[selectedTimeSpan, setSelectedTimeSpan] = useState ('daily');
+  
+  const handleTimeSpanChange = (e) => {
+    setSelectedTimeSpan (e.target.value);
+
+  }
   return (
     <div className="flex flex-col h-screen">
       <Navbar />
       <div className="flex flex-col p-12 gap-8">
         <p className="text-2xl font-bold">Добре дошли в exp banking</p>
-        <div className='flex flex-row max-md:flex-col gap-16'>
+        <div className='flex flex-row max-md:flex-col gap-16' style={{
+          maxHeight:'38rem'
+        }}>
           <div className='flex flex-col w-3/6 gap-12'>
-
 
             {mainAccount.map((account) => (
               <div className='flex flex-row justify-between rounded-xl p-3 h-28 w-full' style={{
@@ -111,7 +125,8 @@ const ProfilePage = () => {
             </div>
           </div>
           <div className='flex flex-col rounded-xl h-90 w-3/6' style={{
-            boxShadow: 'rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px'
+            boxShadow: 'rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px',
+            maxHeight: '38rem'
           }}>
             <div className='flex flex-row pt-8 pl-6 justify-between'>
               <p className='text-2xl font-bold '>Всички разходи</p>
@@ -131,7 +146,36 @@ const ProfilePage = () => {
                 <p className='pt-3 text-xl font-bold font-mono'>8.200,00 ЛВ</p>
               </div>
             </div>
-            <ProfilePieChart />
+            <hr className='border-t border-gray-300 pl-10 w-5/6 self-center' />
+            <div className='flex flex-row justify-between'>
+              <div className='flex flex-col'>
+                <div className='flex pt-6 pl-8'>
+                <select
+                  value={selectedTimeSpan}
+                  onChange={handleTimeSpanChange}
+                  className="border-gray-300 p-2 text-lg font-bold border-none outline-none"
+                >
+                  <option value="daily">Дневно</option>
+                  <option value="weekly">Седмично</option>
+                  <option value="monthly">Месечно</option>
+                </select>
+                </div>
+                <div className='pl-20'>
+                  <ProfilePieChart />
+                </div>
+              </div>
+              <div className='flex flex-col pr-32 justify-center gap-6'>
+                {Object.keys(categoryColors).map((category) => (
+                  <div key={category} className='text-xl '>
+                    <p style={{
+                      color: categoryColors[category] 
+                    }}>
+                      {category}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>

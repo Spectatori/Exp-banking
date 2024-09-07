@@ -33,8 +33,8 @@ const LoginForm = () => {
                 value={values.email}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                error={errors.email}
-                touched={touched.email}
+                errors={errors}
+                touched={touched}
             />
             <InputField
                 label="Парола"
@@ -43,8 +43,8 @@ const LoginForm = () => {
                 value={values.password}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                error={errors.password}
-                touched={touched.password}
+                errors={errors}
+                touched={touched}
             />
             <Button label="Вход" type="submit"/>
             <p className='mt-3 text-sm'>

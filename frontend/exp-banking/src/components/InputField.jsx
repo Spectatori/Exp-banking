@@ -1,11 +1,13 @@
 import React from 'react';
 
-const InputField = ({ label, type, name, value, onChange, onBlur, error, touched }) => {
+const InputField = ({ label, type, name, value, onChange, onBlur, errors, touched }) => {
+    const error = errors[name];
+
     return (
-        <div className="input-field pt-8 ">
-            <input className={`rounded-lg pl-4 h-10 w-80 border text-sm outline-none ${error
-                    ? 'border-2 border-red-500 ring-red-500'
-                    : 'border-lime-600 focus:ring-1 focus:ring-lime-600'
+        <div className="relative input-field pt-8 ">
+            <input className={`rounded-lg pl-4 h-10 w-80 border text-sm outline-none ${error && touched[name]
+                ? 'border-2 border-black ring-black '
+                : 'border-lime-600 focus:ring-1 focus:ring-lime-600'
                 }`}
                 placeholder={label}
                 type={type}
@@ -14,8 +16,8 @@ const InputField = ({ label, type, name, value, onChange, onBlur, error, touched
                 onChange={onChange}
                 onBlur={onBlur}
             />
-             { error && touched && (
-                <div className='text-xs text-red-500 font-medium'>
+            {error && touched[name] && (
+                <div className='text-sm font-medium text-wrap'>
                     {error}
                 </div>
             )}

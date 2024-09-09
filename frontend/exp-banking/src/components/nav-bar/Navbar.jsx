@@ -6,9 +6,9 @@ const Navbar = () => {
     return (
         <nav className="flex gap-12 bg-ghost-white p-1 items-center">
             <Link
-                to='/'
+                to=''
             >
-                <img src="/logo.png" className="size-12 ml-2" alt="" />
+                <img src="/logo.png" className="w-16 h-14 ml-2" alt="" />
             </Link>
             
             <ul className="flex gap-8 text-dark-blue font-semibold [&>*]:px-3">

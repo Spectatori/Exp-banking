@@ -10,3 +10,7 @@
     padding-top: 0.25rem; /* 1 * 0.25rem */
     font-size: 0.875rem; /* text-sm equivalent */
 }
+
+:root {
+    background-color: #F9F9F9;
+}

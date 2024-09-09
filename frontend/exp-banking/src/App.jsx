@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import AccessPage from "./pages/AccessPage.jsx";
 import ProfilePage from "./pages/ProfilePage.jsx";
 import Footer from './components/Footer.jsx'
+import MainPage from './pages/MainPage.jsx'
 
 function App() {
     return (
@@ -10,9 +11,9 @@ function App() {
         }}>
             <Router>
                 <Routes>
-                    <Route path="/" element={<AccessPage />} />
+                    <Route path="/" element={<MainPage />} />
                     <Route path="/profile" element={<ProfilePage />} />
-                    {/* Add other routes here */}
+                    <Route path="/access" element={<AccessPage />} />
                 </Routes>
             </Router>
             <Footer/>

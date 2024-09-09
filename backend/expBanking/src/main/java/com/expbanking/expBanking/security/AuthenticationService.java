@@ -3,6 +3,7 @@ package com.expbanking.expBanking.security;
 import com.expbanking.expBanking.model.Role;
 import com.expbanking.expBanking.model.User;
 import com.expbanking.expBanking.repository.UserRepository;
+import com.expbanking.expBanking.service.Impl.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 public class AuthenticationService {
 
     private final UserRepository userRepository;
+    private final UserServiceImpl userService;
 
     private final PasswordEncoder passwordEncoder;
 
@@ -33,6 +35,7 @@ public class AuthenticationService {
                 .currency(request.getCurrency())
                 .typeOfEmployment(request.getEmployment())
                 .address(request.getAddress())
+                .iban(userService.createIban())
                 .role(Role.USER)
                 .build();
         userRepository.save(user);

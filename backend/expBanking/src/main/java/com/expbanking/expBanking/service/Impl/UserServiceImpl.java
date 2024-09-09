@@ -77,9 +77,8 @@ public class UserServiceImpl implements UserService{
         user.setBalance(userDTO.balance());
         user.setCurrency(userDTO.currency());
         user.setTypeOfEmployment(userDTO.typeOfEmployment());
-        if (user.getUserId() == null) {
-            user.setIban(createIban());
-        }
+        user.setIban(createIban());
+
         Address address = user.getAddress();
         if (address != null) {
             addressRepository.save(address); // Persist Address first
@@ -89,6 +88,7 @@ public class UserServiceImpl implements UserService{
         // Return converted DTO
         return userMapper.convertEntityToDto(savedUser);
     }
+
 
 
 

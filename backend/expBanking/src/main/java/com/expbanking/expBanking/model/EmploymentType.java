@@ -14,7 +14,7 @@ public class EmploymentType {
     private Long id;
 
     @Column(name = "type")
-    @Enumerated(EnumType.STRING) // EnumType.STRING ensures the enum is persisted as a string
+    @Enumerated(EnumType.ORDINAL) // EnumType.STRING ensures the enum is persisted as a string
     private EmploymentEnum type;
 
     @OneToOne(mappedBy = "employmentType", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

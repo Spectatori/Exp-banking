@@ -29,6 +29,9 @@ public class AuthenticationService {
                 .password(passwordEncoder.encode(request.getPassword()))
                 .phoneNumber(request.getPhoneNumber())
                 .dateOfBirth(request.getDateOfBirth())
+                .balance(request.getBalance())
+                .currency(request.getCurrency())
+                .employmentType(request.getEmployment())
                 .address(request.getAddress())
                 .role(Role.USER)
                 .build();

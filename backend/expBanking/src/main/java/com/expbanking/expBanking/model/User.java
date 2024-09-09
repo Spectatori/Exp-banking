@@ -50,6 +50,7 @@ public class User implements UserDetails {
     @Column(name = "currency")
     private String currency;
 
+    @Enumerated(EnumType.ORDINAL)
     @Column(name = "type_of_employment")
     private EmploymentEnum typeOfEmployment;
 

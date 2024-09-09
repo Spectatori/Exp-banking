@@ -11,6 +11,8 @@ export default {
       },
       colors: {
         'dark-green': '#25600B',
+        'ghost-white': '#F9F9F9',
+        'blue-whale': '#15303B',
       },
     },
   },

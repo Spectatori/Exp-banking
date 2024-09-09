@@ -1,6 +1,6 @@
 import React from 'react';
 import Footer from '../components/Footer.jsx';
-import background from '../assets/piggy-background.png';
+import background from '../assets/piggy_background_blue.png';
 import RegisterForm from "../components/auth-forms/RegisterForm.jsx";
 import LoginForm from '../components/auth-forms/LoginForm.jsx';
 import Navbar from '../components/nav-bar/NavBar.jsx';

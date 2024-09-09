@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.expbanking.expBanking.ExpBankingApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.397 s -- in com.expbanking.expBanking.ExpBankingApplicationTests

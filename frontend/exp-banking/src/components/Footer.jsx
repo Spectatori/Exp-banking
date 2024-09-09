@@ -1,12 +1,12 @@
 // src/components/Footer.jsx
 import React from 'react';
-import logo from '../assets/logo-black.svg';
+import logo from '../assets/logo_header.svg';
 
 const Footer = () => {
     return (
-        <footer className="flex flex-row bg-registerBackgroundColor w-full h-36 flex-shrink-0">
-            <img src={logo} alt="logo" className="h-full pl-5" />
-            <div className="flex flex-col pt-5 pl-10">
+        <footer className="flex flex-row bg-registerBackgroundColor w-full h-36 flex-shrink-0 gap-10">
+            <img src={logo} alt="logo" className="h-32 pt-5 px-10 pr-12" />
+            <div className="flex flex-col pt-5">
                 <div className="font-mono text-gray-400 text-sm">
                     <p className="text-xl text-gray-500">Полезни Връзки</p>
                     <p>Валутна информация</p>

@@ -33,6 +33,7 @@ public class User implements UserDetails {
     @Column(name = "email")
     @Email
     private String email;
+
     @Column(name = "password")
     @NotBlank
     private String password;
@@ -41,6 +42,7 @@ public class User implements UserDetails {
 
     @Column(name = "date_of_birth")
     private LocalDate dateOfBirth;
+
     @Column(name = "balance")
     private BigDecimal balance;
 
@@ -84,7 +86,7 @@ public class User implements UserDetails {
     public User() {
     }
 
-    public User(String firstName, String lastName, String email, String password, String phoneNumber, LocalDate dateOfBirth, BigDecimal balance, String currency, EmploymentEnum typeOfEmployment) {
+    public User(String firstName, String lastName, String email, String password, String phoneNumber, LocalDate dateOfBirth, BigDecimal balance, String currency, EmploymentType employmentType) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -93,7 +95,7 @@ public class User implements UserDetails {
         this.dateOfBirth = dateOfBirth;
         this.balance = balance;
         this.currency = currency;
-        this.typeOfEmployment = typeOfEmployment;
+        this.employmentType = employmentType;
     }
 
     @Override

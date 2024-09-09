@@ -22,7 +22,7 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
 
     public AuthenticationResponse register(RegisterRequest request) {
-        var user = User.builder()
+        User user = User.builder()
                 .firstName(request.getFirstname())
                 .lastName(request.getLastname())
                 .email(request.getEmail())
@@ -31,7 +31,7 @@ public class AuthenticationService {
                 .dateOfBirth(request.getDateOfBirth())
                 .balance(request.getBalance())
                 .currency(request.getCurrency())
-                .employmentType(request.getEmployment())
+                .typeOfEmployment(request.getEmployment())
                 .address(request.getAddress())
                 .role(Role.USER)
                 .build();

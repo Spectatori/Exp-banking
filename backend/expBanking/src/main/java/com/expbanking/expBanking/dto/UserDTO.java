@@ -1,6 +1,7 @@
 package com.expbanking.expBanking.dto;
 
 import com.expbanking.expBanking.model.EmploymentEnum;
+import com.expbanking.expBanking.model.EmploymentType;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

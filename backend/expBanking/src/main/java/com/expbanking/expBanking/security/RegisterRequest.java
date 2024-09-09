@@ -25,6 +25,7 @@ public class RegisterRequest {
     private LocalDate dateOfBirth;
     private BigDecimal balance;
     private String currency;
-    private EmploymentType employment;
+    private EmploymentEnum employment;
     private Address address;
+    private String iban;
 }

@@ -11,7 +11,7 @@ const Navbar = () => {
                 <img src="/logo.png" className="size-12 ml-2" alt="" />
             </Link>
             
-            <ul className="flex gap-8 text-blue-whale [&>*]:px-3">
+            <ul className="flex gap-8 text-dark-blue font-semibold [&>*]:px-3">
                 <CustomNavLink url='/za-teb' title='За теб'/>
                 <CustomNavLink url='/za-tvoya-biznes' title='За твоя бизнес'/>
                 <CustomNavLink url='/za-exp-bank' title='За Exp Bank'/>

@@ -27,9 +27,9 @@ const RegisterForm = () => {
 
     return (
         <form
-            className="relative flex flex-col justify-center items-center w-96 bg-white bg-opacity-40 rounded-2xl my-8 py-5 px-10 h-fit"
+            className="relative flex flex-col justify-center items-center w-96 bg-white bg-opacity-70 rounded-2xl my-8 py-5 px-10 h-fit"
             onSubmit={handleSubmit}>
-            <h2 className="text-4xl">Регистрация</h2>
+            <h2 className="text-4xl text-blue-whale">Регистрация</h2>
 
             <InputField
                 label="Име"
@@ -116,7 +116,7 @@ const RegisterForm = () => {
 
             <p className='mt-3 text-sm'>
                 Вече имате акаунт? Влезте
-                <Link to='/auth/login' className='m-1 text-dark-green'>тук</Link>
+                <Link to='/auth/login' className='m-1 text-dark-blue'>тук</Link>
                 .
             </p>
         </form>

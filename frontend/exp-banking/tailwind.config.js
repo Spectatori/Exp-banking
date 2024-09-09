@@ -6,8 +6,11 @@ export default {
   ],
   theme: {
     extend: {
-      fontFamily:{
-        sans:['Inter', 'sans-serif'],
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+      },
+      colors: {
+        'dark-green': '#25600B',
       },
     },
   },

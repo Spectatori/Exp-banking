@@ -1,6 +1,4 @@
 import React, { useState } from 'react'
-import InputField from "../InputField.jsx";
-import Button from "../Button.jsx";
 import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { registerSchema } from '../../schemas/registerSchema.js';

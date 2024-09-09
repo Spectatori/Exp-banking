@@ -1,7 +1,5 @@
 import React from 'react'
 import { useState } from 'react';
-import InputField from '../InputField';
-import Button from '../Button';
 import { Link, useFormAction } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { loginSchema } from '../../schemas/loginSchema';

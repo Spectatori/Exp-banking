@@ -1,5 +1,5 @@
 import React from 'react'
-import Navbar from '../components/nav-bar/Navbar'
+import Navbar from '../components/nav-bar/NavBar.jsx';
 import BankIcon from '../assets/logo_header.svg'
 import Footer from '../components/Footer'
 

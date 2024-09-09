@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
-import InputField from '../InputField';
-import Button from '../Button';
+import AuthInputField from './AuthInputField';
+import AuthButton from './AuthButton';
 import { Link, useFormAction } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { loginSchema } from '../../schemas/loginSchema';
@@ -26,7 +26,7 @@ const LoginForm = () => {
             onSubmit={handleSubmit}
         >
             <h1 className="text-4xl text-blue-whale">Вход</h1>
-            <InputField
+            <AuthInputField
                 label="Имейл"
                 type="text"
                 name="email"
@@ -36,7 +36,7 @@ const LoginForm = () => {
                 errors={errors}
                 touched={touched}
             />
-            <InputField
+            <AuthInputField
                 label="Парола"
                 type="password"
                 name="password"
@@ -46,7 +46,7 @@ const LoginForm = () => {
                 errors={errors}
                 touched={touched}
             />
-            <Button label="Вход" type="submit"/>
+            <AuthButton label="Вход" type="submit"/>
             <p className='mt-3 text-sm'>
                 Нямате акаунт? Регистрирайте се 
                 <Link to='/auth/register' className='m-1 text-dark-blue'>тук</Link>

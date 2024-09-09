@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import InputField from "../InputField.jsx";
-import Button from "../Button.jsx";
+import AuthButton from './AuthButton.jsx';
+import AuthInputField from './AuthInputField.jsx';
 import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { registerSchema } from '../../schemas/registerSchema.js';
@@ -31,7 +31,7 @@ const RegisterForm = () => {
             onSubmit={handleSubmit}>
             <h2 className="text-4xl text-blue-whale">Регистрация</h2>
 
-            <InputField
+            <AuthInputField
                 label="Име"
                 type="text"
                 name="firstName"
@@ -41,7 +41,7 @@ const RegisterForm = () => {
                 errors={errors}
                 touched={touched}
             />
-            <InputField
+            <AuthInputField
                 label="Презиме"
                 type="text"
                 name="middleName"
@@ -51,7 +51,7 @@ const RegisterForm = () => {
                 errors={errors}
                 touched={touched}
             />
-            <InputField
+            <AuthInputField
                 label="Фамилия"
                 type="text"
                 name="lastName"
@@ -61,7 +61,7 @@ const RegisterForm = () => {
                 errors={errors}
                 touched={touched}
             />
-            <InputField
+            <AuthInputField
                 label="Парола"
                 type="password"
                 name="password"
@@ -71,7 +71,7 @@ const RegisterForm = () => {
                 errors={errors}
                 touched={touched}
             />
-            <InputField
+            <AuthInputField
                 label="Повтори Парола"
                 type="password"
                 name="confirmPassword"
@@ -81,7 +81,7 @@ const RegisterForm = () => {
                 errors={errors}
                 touched={touched}
             />
-            <InputField
+            <AuthInputField
                 label="Дата на раждане"
                 type="date"
                 name="dateOfBirth"
@@ -91,7 +91,7 @@ const RegisterForm = () => {
                 errors={errors}
                 touched={touched}
             />
-            <InputField
+            <AuthInputField
                 label="Мобилен Номер"
                 type="text"
                 name="phoneNumber"
@@ -101,7 +101,7 @@ const RegisterForm = () => {
                 errors={errors}
                 touched={touched}
             />
-            <InputField
+            <AuthInputField
                 label="Имейл"
                 type="text"
                 name="email"
@@ -112,7 +112,7 @@ const RegisterForm = () => {
                 touched={touched}
             />
 
-            <Button label="Регистрация" type="submit" />
+            <AuthButton label="Регистрация" type="submit" />
 
             <p className='mt-3 text-sm'>
                 Вече имате акаунт? Влезте

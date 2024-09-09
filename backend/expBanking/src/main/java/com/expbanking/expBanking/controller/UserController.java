@@ -20,8 +20,8 @@ public class UserController {
     public UserController(UserServiceImpl userServiceImpl) {this.userServiceImpl = userServiceImpl;}
 
     @PostMapping("/saveUser")
-    public ResponseEntity<UserDTO> saveUser(@RequestBody UserDTO userDto) {
-        UserDTO savedInDb = userServiceImpl.saveUser(userDto);
+    public ResponseEntity<UserDTO> saveUser(@RequestBody UserDTO userDTO) {
+        UserDTO savedInDb = userServiceImpl.saveUser(userDTO);
         return new ResponseEntity<>(savedInDb, HttpStatus.CREATED);
     }
     @PutMapping("/{userId}")

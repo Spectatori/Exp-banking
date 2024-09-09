@@ -9,6 +9,7 @@ public record UserDTO(
         String firstName,
         String lastName,
         String email,
+        String password,
         String phoneNumber,
         LocalDate dateOfBirth,
         BigDecimal balance,
@@ -16,4 +17,5 @@ public record UserDTO(
         EmploymentEnum typeOfEmployment
 
 ) {
+
 }

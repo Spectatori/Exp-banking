@@ -7,12 +7,13 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public interface UserService {
-    User findByEmail(String email);
+    Optional<User> findByEmail(String email);
     void transfer(UserDTO userDto, BigDecimal amount);
-    UserDTO saveUser(UserDTO userDto);
+    UserDTO saveUser(UserDTO userDTO);
 
     String createIban();
 

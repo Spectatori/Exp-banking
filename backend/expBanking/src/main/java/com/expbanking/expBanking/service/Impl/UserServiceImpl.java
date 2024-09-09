@@ -2,9 +2,12 @@ package com.expbanking.expBanking.service.Impl;
 
 import com.expbanking.expBanking.dto.UserDTO;
 import com.expbanking.expBanking.mappers.UserMapper;
+import com.expbanking.expBanking.model.Address;
 import com.expbanking.expBanking.model.Transactions;
 import com.expbanking.expBanking.model.User;
+import com.expbanking.expBanking.repository.AddressRepository;
 import com.expbanking.expBanking.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,10 +21,12 @@ public class UserServiceImpl implements UserService{
 
     @Autowired
     private UserRepository userRepo;
+    @Autowired
+    private AddressRepository addressRepository;
     private UserMapper userMapper;
 
     @Override
-    public User findByEmail(String email) {
+    public Optional<User> findByEmail(String email) {
         return userRepo.getUserByEmail(email);
     }
 
@@ -57,24 +62,35 @@ public class UserServiceImpl implements UserService{
     }
 
      */
+
+
+    @Transactional
     @Override
-    public UserDTO saveUser(UserDTO userDto) {
-
-        Optional<User> existingUser = Optional.ofNullable(findByEmail(userDto.email()));
-
-        Long id = existingUser.map(User::getUserId).orElse(null);
-
-        User userEntity = userMapper.convertDtoToEntity(userDto, id);
-
-
-        if (id == null) {
-            userEntity.setIban(createIban());
+    public UserDTO saveUser(UserDTO userDTO) {
+        User user = new User();
+        user.setFirstName(userDTO.firstName());
+        user.setLastName(userDTO.lastName());
+        user.setEmail(userDTO.email());
+        user.setPassword(userDTO.password());
+        user.setPhoneNumber(userDTO.phoneNumber());
+        user.setDateOfBirth(userDTO.dateOfBirth());
+        user.setBalance(userDTO.balance());
+        user.setCurrency(userDTO.currency());
+        user.setTypeOfEmployment(userDTO.typeOfEmployment());
+        if (user.getUserId() == null) {
+            user.setIban(createIban());
         }
+        Address address = user.getAddress();
+        if (address != null) {
+            addressRepository.save(address); // Persist Address first
+        }
+        User savedUser = userRepo.save(user);
 
-        User savedUser = userRepo.saveAndFlush(userEntity);
-
+        // Return converted DTO
         return userMapper.convertEntityToDto(savedUser);
     }
+
+
 
     @Override
     public UserDTO updateUser(Long userId, UserDTO userDto) {

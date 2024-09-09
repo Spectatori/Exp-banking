@@ -7,6 +7,7 @@ import org.mapstruct.Mapping;
 
 @Mapper
 public interface UserMapper {
+
     @Mapping(target = "firstName", source = "dto.firstName")
     @Mapping(target = "lastName", source = "dto.lastName")
     @Mapping(target = "email", source = "dto.email")

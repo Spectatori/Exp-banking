@@ -7,19 +7,18 @@ import MainPage from './pages/MainPage.jsx'
 function App() {
     return (
         <div className="flex flex-col h-screen" style={{
-            backgroundColor:'#F9F9F9'
+            backgroundColor: '#F9F9F9'
         }}>
             <Router>
                 <Routes>
                     <Route path="/" element={<MainPage />} />
                     <Route path="/profile" element={<ProfilePage />} />
-                    <Route path="/access" element={<AccessPage />} />
+                    <Route path="/auth/register" element={<AccessPage />} />
+                    <Route path="/auth/login" element={<AccessPage />} />
                 </Routes>
             </Router>
-            <Footer/>
+            <Footer />
         </div>
-        
-
     );
 }
 

@@ -3,16 +3,16 @@ import AccessPage from "./pages/AccessPage.jsx";
 import ProfilePage from "./pages/ProfilePage.jsx";
 import Footer from './components/Footer.jsx'
 import MainPage from './pages/MainPage.jsx'
+import ProfileDetailsPage from "./pages/ProfileDetailsPage.jsx";
 
 function App() {
     return (
-        <div className="flex flex-col h-screen" style={{
-            backgroundColor: '#F9F9F9'
-        }}>
+        <div className="flex flex-col h-screen justify-between">
             <Router>
                 <Routes>
                     <Route path="/" element={<MainPage />} />
                     <Route path="/profile" element={<ProfilePage />} />
+                    <Route path="/profile/details" element={<ProfileDetailsPage />} />
                     <Route path="/auth/register" element={<AccessPage />} />
                     <Route path="/auth/login" element={<AccessPage />} />
                 </Routes>

@@ -25,15 +25,15 @@ public class AuthenticationService {
 
     public AuthenticationResponse register(RegisterRequest request) {
         User user = User.builder()
-                .firstName(request.getFirstname())
-                .lastName(request.getLastname())
+                .firstname(request.getFirstname())
+                .lastname(request.getLastname())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .phoneNumber(request.getPhoneNumber())
                 .dateOfBirth(request.getDateOfBirth())
                 .balance(request.getBalance())
                 .currency(request.getCurrency())
-                .typeOfEmployment(request.getEmployment())
+                .employmentType(employmentType)
                 .address(request.getAddress())
                 .iban(userService.createIban())
                 .role(Role.USER)

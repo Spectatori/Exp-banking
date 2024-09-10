@@ -68,15 +68,15 @@ public class UserServiceImpl implements UserService{
     @Override
     public UserDTO saveUser(UserDTO userDTO) {
         User user = new User();
-        user.setFirstName(userDTO.firstName());
-        user.setLastName(userDTO.lastName());
+        user.setFirstname(userDTO.firstname());
+        user.setLastname(userDTO.lastname());
         user.setEmail(userDTO.email());
         user.setPassword(userDTO.password());
         user.setPhoneNumber(userDTO.phoneNumber());
         user.setDateOfBirth(userDTO.dateOfBirth());
         user.setBalance(userDTO.balance());
         user.setCurrency(userDTO.currency());
-        user.setTypeOfEmployment(userDTO.typeOfEmployment());
+        user.setEmploymentType(userDTO.employmentType());
         user.setIban(createIban());
 
         Address address = user.getAddress();
@@ -102,14 +102,14 @@ public class UserServiceImpl implements UserService{
             User updatedUser = existingUser.get();
 
 
-            updatedUser.setFirstName(userDto.firstName());
-            updatedUser.setLastName(userDto.lastName());
+            updatedUser.setFirstname(userDto.firstname());
+            updatedUser.setLastname(userDto.lastname());
             updatedUser.setEmail(userDto.email());
             updatedUser.setPhoneNumber(userDto.phoneNumber());
             updatedUser.setDateOfBirth(userDto.dateOfBirth());
             updatedUser.setBalance(userDto.balance());
             updatedUser.setCurrency(userDto.currency());
-            updatedUser.setTypeOfEmployment(userDto.typeOfEmployment());
+            updatedUser.setEmploymentType(userDto.employmentType());
 
 
 

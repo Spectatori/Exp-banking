@@ -8,14 +8,14 @@ import org.mapstruct.Mapping;
 @Mapper
 public interface UserMapper {
 
-    @Mapping(target = "firstName", source = "dto.firstName")
-    @Mapping(target = "lastName", source = "dto.lastName")
+    @Mapping(target = "firstname", source = "dto.firstname")
+    @Mapping(target = "lastname", source = "dto.lastname")
     @Mapping(target = "email", source = "dto.email")
     @Mapping(target = "phoneNumber", source = "dto.phoneNumber")
     @Mapping(target = "dateOfBirth", source = "dto.dateOfBirth")
     @Mapping(target = "balance", source = "dto.balance")
     @Mapping(target = "currency", source = "dto.currency")
-    @Mapping(target = "typeOfEmployment", source = "dto.typeOfEmployment")
-    User convertDtoToEntity(UserDTO dto, long id);
+    @Mapping(target = "employmentType", source = "dto.employmentType")
+    User convertDtoToEntity(UserDTO dto, Long id);
     UserDTO convertEntityToDto(User user);
 }

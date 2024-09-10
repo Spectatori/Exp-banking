@@ -2,9 +2,7 @@ package com.expbanking.expBanking.service.Impl;
 
 import com.expbanking.expBanking.dto.UserDTO;
 import com.expbanking.expBanking.mappers.UserMapper;
-import com.expbanking.expBanking.model.Address;
-import com.expbanking.expBanking.model.Transactions;
-import com.expbanking.expBanking.model.User;
+import com.expbanking.expBanking.model.*;
 import com.expbanking.expBanking.repository.AddressRepository;
 import com.expbanking.expBanking.repository.UserRepository;
 import jakarta.transaction.Transactional;

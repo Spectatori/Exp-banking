@@ -6,8 +6,8 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-09-09T17:16:32+0300",
-    comments = "version: 1.6.0.Beta1, compiler: javac, environment: Java 22.0.1 (Oracle Corporation)"
+    date = "2024-09-10T13:44:24+0300",
+    comments = "version: 1.6.0.Beta1, compiler: javac, environment: Java 22.0.2 (Amazon.com Inc.)"
 )
 public class EmploymentTypeMapperImpl implements EmploymentTypeMapper {
 
@@ -20,7 +20,7 @@ public class EmploymentTypeMapperImpl implements EmploymentTypeMapper {
         EmploymentType employmentType = new EmploymentType();
 
         if ( dto != null ) {
-            employmentType.setType( dto.type() );
+            employmentType.setEmploymentType( dto.employmentType() );
             employmentType.setId( dto.id() );
         }
 

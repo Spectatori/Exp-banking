@@ -1,7 +1,9 @@
 package com.expbanking.expBanking.security;
 
+import com.expbanking.expBanking.model.EmploymentType;
 import com.expbanking.expBanking.model.Role;
 import com.expbanking.expBanking.model.User;
+import com.expbanking.expBanking.repository.EmploymentTypeRepository;
 import com.expbanking.expBanking.repository.UserRepository;
 import com.expbanking.expBanking.service.Impl.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +18,7 @@ public class AuthenticationService {
 
     private final UserRepository userRepository;
     private final UserServiceImpl userService;
+    private final EmploymentTypeRepository typeRepository;
 
     private final PasswordEncoder passwordEncoder;
 
@@ -24,6 +27,13 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
 
     public AuthenticationResponse register(RegisterRequest request) {
+
+        EmploymentType employmentType = new EmploymentType();
+        employmentType.setEmploymentType(request.getEmploymentType());
+
+        // First save EmploymentType
+        employmentType = typeRepository.save(employmentType);
+
         User user = User.builder()
                 .firstname(request.getFirstname())
                 .lastname(request.getLastname())

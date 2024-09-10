@@ -51,10 +51,10 @@ public class User implements UserDetails {
 
     @Column(name = "currency")
     private String currency;
-
-    @Enumerated(EnumType.ORDINAL)
-    @Column(name = "type_of_employment")
-    private EmploymentEnum typeOfEmployment;
+//
+//    @Enumerated(EnumType.STRING)
+//    @Column(name = "type_of_employment")
+//    private EmploymentEnum typeOfEmployment;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "role")
@@ -80,7 +80,7 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user")
     private HashSet<Transactions> transactions;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "employment_type_id")
     private EmploymentType employmentType;
     public User() {

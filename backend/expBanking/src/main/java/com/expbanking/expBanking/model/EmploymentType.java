@@ -13,9 +13,8 @@ public class EmploymentType {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "type")
-    @Enumerated(EnumType.ORDINAL) // EnumType.STRING ensures the enum is persisted as a string
-    private EmploymentEnum type;
+    @Column(name = "type")// EnumType.STRING ensures the enum is persisted as a string
+    private String employmentType;
 
     @OneToOne(mappedBy = "employmentType", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private User user;

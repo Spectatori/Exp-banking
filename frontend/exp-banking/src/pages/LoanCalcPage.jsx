@@ -1,22 +1,29 @@
-import React, {useRef} from 'react'
+import React, {useRef, useState} from 'react'
 import Navbar from '../components/nav-bar/NavBar.jsx';
+import Table from '../components/Table.jsx'
 
 const LoanCalcPage = () => {
     const calcValue = useRef(null);
+    const [resultsArray, setResultsArray] = useState([]);  
 
-    const handleCalculation = (event) =>{
+    const handleCalculation = (event) => {
         event.preventDefault();
-        const principal = parseFloat(calcValue.current.value)
+        const principal = parseFloat(calcValue.current.value);
         const interestRate = 15.5;
         const years = 5;
         let result = principal;
-        
-        for(let year = 1; year <= years; year++){
-            result *= (1 + interestRate / 100);
-            alert(`Year ${year}: ${result.toFixed(2)} BGN`)
+        const resultsArray = [];
+      
+        for (let year = 1; year <= years; year++) {
+          result *= (1 + interestRate / 100);
+          resultsArray.push({ year, result: result.toFixed(2) });
+          console.log(`Year ${year}: ${result.toFixed(2)} BGN`);
         }
+        setResultsArray(resultsArray);
+      
+        // Export the results array to your table component
         
-    };
+      };
 
   return (
     <div className='flex flex-col'>
@@ -41,7 +48,9 @@ const LoanCalcPage = () => {
                     </form>
                 </div>
             </div>
-            <div></div>
+            <div>
+                <Table resultsArray={resultsArray}/>
+            </div>
         </div>
     </div>
   )

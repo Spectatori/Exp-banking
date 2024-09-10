@@ -22,6 +22,7 @@ public interface UserService {
 
     UserDTO updateUser(Long userId, UserDTO userDto);
 
+    List<User> findAllUsers() ;
 
 
 }

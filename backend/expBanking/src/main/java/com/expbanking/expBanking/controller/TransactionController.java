@@ -3,9 +3,11 @@ package com.expbanking.expBanking.controller;
 
 import com.expbanking.expBanking.model.Transactions;
 import com.expbanking.expBanking.service.Impl.TransactionServiceImpl;
+import com.expbanking.expBanking.service.Impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,11 +19,13 @@ import java.util.Optional;
 @RequestMapping("/api/transactions")
 public class TransactionController {
     private final TransactionServiceImpl transactionServiceImpl;
+    private final UserServiceImpl userServiceImpl;
 
 
     @Autowired
-    public TransactionController(TransactionServiceImpl transactionServiceImpl){
+    public TransactionController(TransactionServiceImpl transactionServiceImpl,UserServiceImpl userServiceImpl){
         this.transactionServiceImpl = transactionServiceImpl;
+        this.userServiceImpl=userServiceImpl;
     }
 
     @GetMapping("/{transactionId}")
@@ -32,9 +36,10 @@ public class TransactionController {
     @GetMapping("/transactions")
     public List<Transactions> getAllTransactions(){ return transactionServiceImpl.getAllTransactions();}
 
-    @PostMapping("/createTransaction")
-    public ResponseEntity<Transactions> createTransaction(@RequestBody Transactions transactions) {
-        Transactions transaction = transactionServiceImpl.createTransaction(transactions);
+    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
+    @PostMapping("/createTransaction/{userId}")
+    public ResponseEntity<Transactions> createTransaction(@RequestBody TransactionsDTO transactionsDto,@PathVariable Long userId) {
+        Transactions transaction = transactionServiceImpl.createTransaction(transactionsDto,userId);
         return new ResponseEntity<> (transaction, HttpStatus.CREATED);
     }
 

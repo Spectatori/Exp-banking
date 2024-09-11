@@ -1,7 +1,11 @@
 package com.expbanking.expBanking.service.Impl;
 
+import com.expbanking.expBanking.dto.TransactionsDTO;
+import com.expbanking.expBanking.mappers.TransactionsMapper;
 import com.expbanking.expBanking.model.Transactions;
+import com.expbanking.expBanking.model.User;
 import com.expbanking.expBanking.repository.TransactionsRepository;
+import com.expbanking.expBanking.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
@@ -16,14 +20,21 @@ public class TransactionServiceImpl implements TransactionService{
     private final TransactionsRepository transactionsRepo;
 
     @Autowired
-    public TransactionServiceImpl(TransactionsRepository transactionsRepo) {
+    public TransactionServiceImpl(TransactionsRepository transactionsRepo,UserRepository userRepo) {
         this.transactionsRepo = transactionsRepo;
+        this.userRepo=userRepo;
     }
 
 
     @Override
-    public Transactions createTransaction(Transactions transaction) {
-        return transactionsRepo.save(transaction);
+    public Transactions createTransaction(TransactionsDTO transactionDTO,Long userId) {
+        Transactions transaction = new Transactions();
+        transaction.setDateOfTransaction(transactionDTO.dateOfTransaction());
+        transaction.setAmount(transactionDTO.amount());
+        transaction.setDetails(transactionDTO.details());
+        transaction.setTransactionType(transactionDTO.tType());
+        Transactions savedTransaction =transactionsRepo.save(transaction);
+        return  savedTransaction;
     }
 
     @Override

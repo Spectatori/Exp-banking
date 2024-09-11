@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Service
 public interface TransactionService {
-    Transactions createTransaction(Transactions transaction);
+    Transactions createTransaction(TransactionsDTO transactionDTO,Long userId);
     Optional<Transactions> getTransactionById(Long transactionId);
 
     List<Transactions> getTransactionByUserId (Long userId);

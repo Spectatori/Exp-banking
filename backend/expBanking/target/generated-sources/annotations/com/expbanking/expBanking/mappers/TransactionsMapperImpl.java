@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-09-10T12:54:45+0300",
+    date = "2024-09-11T13:19:37+0300",
     comments = "version: 1.6.0.Beta1, compiler: javac, environment: Java 22.0.2 (Amazon.com Inc.)"
 )
 @Component
@@ -24,7 +24,7 @@ public class TransactionsMapperImpl implements TransactionsMapper {
         transactions.setDateOfTransaction( dto.dateOfTransaction() );
         transactions.setAmount( dto.amount() );
         transactions.setDetails( dto.details() );
-        transactions.setTransactionId( dto.transactionId() );
+        transactions.setTransactionType( dto.tType() );
 
         return transactions;
     }

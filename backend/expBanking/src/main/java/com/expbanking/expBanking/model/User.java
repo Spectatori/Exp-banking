@@ -13,6 +13,7 @@ import java.time.LocalDate;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -78,7 +79,7 @@ public class User implements UserDetails {
     private Address address;
 
     @OneToMany(mappedBy = "user")
-    private HashSet<Transactions> transactions;
+    private Set<Transactions> transactions;
 
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "employment_type_id")
@@ -115,25 +116,26 @@ public class User implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return this.accountNonExpired;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return this.accountNonLocked;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return this.credentialsNonExpired;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return this.enabled;
+        return true;
     }
 
     public Long getId() {
         return userId;
     }
+
 }

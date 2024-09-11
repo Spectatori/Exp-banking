@@ -1,8 +1,5 @@
 import { React, useMemo } from 'react';
-import {
-  useMaterialReactTable,
-  MRT_Table,
-} from 'material-react-table';
+import { useMaterialReactTable, MRT_Table } from 'material-react-table';
 
 export const LoanTable = ({ resultsArray }) => {
   const columns = useMemo(
@@ -26,29 +23,17 @@ export const LoanTable = ({ resultsArray }) => {
   const table = useMaterialReactTable({
     columns,
     data: resultsArray,
-    mrtTheme: (theme) => ({
-      baseBackgroundColor: theme.palette.background.default,
-    }),
-    muiTableBodyRowProps: { hover: false },
-    muiTableProps: {
-      sx: {
-        border: '1px solid rgba(81, 81, 81, .5)',
-        caption: {
-          captionSide: 'top',
-        },
-      },
-    },
-    muiTableHeadCellProps: {
-      sx: {
-        border: '1px solid rgba(81, 81, 81, .5)',
-        fontStyle: 'italic',
-        fontWeight: 'normal',
-      },
-    },
+    enableBottomToolbar: false,
+    enableStickyHeader: true,
+    enableStickyFooter: true,
+    enablePagination: false,
     muiTableBodyCellProps: {
-      sx: {
-        border: '1px solid rgba(81, 81, 81, .5)',
-      },
+      sx: (theme) => ({
+        backgroundColor:
+          theme.palette.mode === 'dark'
+            ? theme.palette.grey[900]
+            : theme.palette.grey[50],
+      }),
     },
   });
 

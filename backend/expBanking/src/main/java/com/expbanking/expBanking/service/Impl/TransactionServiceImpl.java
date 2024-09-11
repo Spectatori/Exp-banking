@@ -18,6 +18,8 @@ import java.util.Optional;
 @Service
 public class TransactionServiceImpl implements TransactionService{
     private final TransactionsRepository transactionsRepo;
+    private final UserRepository userRepo;
+    private TransactionsMapper transactionsMapper;
 
     @Autowired
     public TransactionServiceImpl(TransactionsRepository transactionsRepo,UserRepository userRepo) {

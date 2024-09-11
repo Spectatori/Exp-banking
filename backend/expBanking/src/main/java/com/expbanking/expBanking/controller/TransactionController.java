@@ -1,6 +1,7 @@
 package com.expbanking.expBanking.controller;
 
 
+import com.expbanking.expBanking.dto.TransactionsDTO;
 import com.expbanking.expBanking.model.Transactions;
 import com.expbanking.expBanking.service.Impl.TransactionServiceImpl;
 import com.expbanking.expBanking.service.Impl.UserServiceImpl;
@@ -16,7 +17,7 @@ import java.util.Optional;
 
 
 @RestController
-@RequestMapping("/api/transactions")
+@RequestMapping("/api/user/transactions")
 public class TransactionController {
     private final TransactionServiceImpl transactionServiceImpl;
     private final UserServiceImpl userServiceImpl;

@@ -4,7 +4,7 @@ import {
   MRT_Table,
 } from 'material-react-table';
 
-export const Table = ({ resultsArray }) => {
+export const LoanTable = ({ resultsArray }) => {
   const columns = useMemo(
     () => [
       {
@@ -55,4 +55,4 @@ export const Table = ({ resultsArray }) => {
   return <MRT_Table table={table} />;
 };
 
-export default Table;
+export default LoanTable;

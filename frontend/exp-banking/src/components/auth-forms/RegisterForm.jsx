@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { registerSchema } from '../../schemas/registerSchema.js';
+import InputField from './AuthInputField.jsx'
+import Button from './AuthButton.jsx'
 
 const RegisterForm = () => {
     const onSubmit = () => {

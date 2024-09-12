@@ -2,7 +2,7 @@ import React from 'react';
 import Navbar from '../components/nav-bar/Navbar.jsx';
 import BankIcon from '../assets/logo_header.svg';
 import Footer from '../components/Footer';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 import HappyClient from '../assets/MainPageImages/happy_debit.jpg';
 import OnlineBanking from '../assets/MainPageImages/online_banking.png';
@@ -29,7 +29,7 @@ const MainPage = () => {
                 <div className="flex flex-col pl-10 bg-white rounded-b-3xl">
                     <div className="flex flex-row pt-8 items-start">
                         <img src={BankIcon} className='h-40' alt="Bank Logo"/>
-                        <div className='pl-16 flex gap-10 h-full'>
+                        <div className='pl-16 flex gap-10 '>
                             <select 
                                 className='text-3xl font-bold justify-center text-gray-600'
                                 onChange={handleNavigation}
@@ -45,7 +45,7 @@ const MainPage = () => {
                     <div className="flex flex-row pt-32 pl-60 justify-between">
                         <div className="flex flex-col w-1/4 items-start gap-14">
                             <h2 className='text-5xl font-bold'>Живей без такси, безплатно откриване и поддръжка на сметки, неограничени безплатни преводи</h2>
-                            <button className='bg-sky-950 rounded-lg h-14 w-80 text-white text-3xl'>Започнете сега!</button>
+                            <Link to='/auth/register'className='bg-sky-950 rounded-lg h-14 w-80 text-white text-3xl flex items-center justify-center'>Започнете сега!</Link>
                         </div>
                         <img src={HappyClient} className='pr-80 pb-24' alt="Happy Client"/>
                     </div>

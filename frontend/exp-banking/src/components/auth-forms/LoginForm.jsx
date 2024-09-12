@@ -1,7 +1,5 @@
 import React from 'react'
 import { useState } from 'react';
-import AuthInputField from './AuthInputField';
-import AuthButton from './AuthButton';
 import { Link, useFormAction } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { loginSchema } from '../../schemas/loginSchema';
@@ -22,11 +20,11 @@ const LoginForm = () => {
 
     return (
         <form 
-            className="relative flex flex-col justify-center items-center bg-white bg-opacity-70 rounded-2xl py-5 px-10 h-fit"
+            className="relative flex flex-col justify-center items-center bg-white bg-opacity-40 rounded-2xl py-5 px-10 h-fit"
             onSubmit={handleSubmit}
         >
-            <h1 className="text-4xl text-blue-whale">Вход</h1>
-            <AuthInputField
+            <h1 className="text-4xl">Вход</h1>
+            <InputField
                 label="Имейл"
                 type="text"
                 name="email"
@@ -36,7 +34,7 @@ const LoginForm = () => {
                 errors={errors}
                 touched={touched}
             />
-            <AuthInputField
+            <InputField
                 label="Парола"
                 type="password"
                 name="password"
@@ -46,10 +44,10 @@ const LoginForm = () => {
                 errors={errors}
                 touched={touched}
             />
-            <AuthButton label="Вход" type="submit"/>
+            <Button label="Вход" type="submit"/>
             <p className='mt-3 text-sm'>
                 Нямате акаунт? Регистрирайте се 
-                <Link to='/auth/register' className='m-1 text-dark-blue'>тук</Link>
+                <Link to='/auth/register' className='m-1 text-lime-600'>тук</Link>
                 !
             </p>
         </form>

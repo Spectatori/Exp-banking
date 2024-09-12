@@ -4,6 +4,7 @@ import ProfilePage from "./pages/ProfilePage.jsx";
 import Footer from './components/Footer.jsx'
 import MainPage from './pages/MainPage.jsx'
 import ProfileDetailsPage from "./pages/ProfileDetailsPage.jsx";
+import AccountOverviewPage from "./pages/AccountOverviewPage.jsx";
 
 function App() {
     return (
@@ -15,6 +16,7 @@ function App() {
                     <Route path="/profile/details" element={<ProfileDetailsPage />} />
                     <Route path="/auth/register" element={<AccessPage />} />
                     <Route path="/auth/login" element={<AccessPage />} />
+                    <Route path="/account-overview" element={<AccountOverviewPage />} />
                 </Routes>
             </Router>
             <Footer />

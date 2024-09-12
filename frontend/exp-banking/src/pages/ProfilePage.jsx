@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ProfilePieChart from '../components/ProfilePieChart';
-import Navbar from "../components/nav-bar/Navbar.jsx";
+import Navbar from '../components/nav-bar/Navbar.jsx'
 import TransactionIcon from "../assets/TransactionIcon.png";
 import TransactionDetailBlue from '../assets/TransactionDetailBlue.png';
 import TransactionDetailPurple from '../assets/TransactionDetailPurple.png';

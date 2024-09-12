@@ -6,15 +6,15 @@ export const LoanTable = ({ resultsArray }) => {
     () => [
       {
         accessorKey: 'year',
-        header: 'Years',
+        header: 'Години',
       },
       {
         accessorKey: 'monthlyPayment',
-        header: 'Monthly',
+        header: 'Месечна такса',
       },
       {
         accessorKey: 'overallPayment',
-        header: 'Overall Payment',
+        header: 'Крайна сума',
       },
     ],
     []

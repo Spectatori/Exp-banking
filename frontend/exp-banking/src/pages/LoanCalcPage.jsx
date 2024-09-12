@@ -2,7 +2,6 @@
 import Navbar from '../components/nav-bar/Navbar.jsx'
 import LoanTable from '../components/Table.jsx'
 import calculateLoan from '../utils/LoanMortgageCalc.jsx'
-import Stack from '@mui/material/Stack'
 
 import Switch from 'react-switch';
 
@@ -44,37 +43,32 @@ const LoanCalcPage = () => {
                 <div className='flex flex-col w-2/6 pl-28'>
                     <h1 className='text-5xl font-bold font-mono pt-16'
                     >Калкулатор за заеми</h1>
-                    <h2 className='text-2xl pt-10 font-mono pb-36'
+                    <h2 className='text-2xl pt-10 font-mono pb-16'
                     >Изчислете лесно месечните си вноски с нашия удобен калкулатор, като просто въведете сумата на заема.
                     Независимо дали обмисляте ипотека, автомобилен заем или потребителски заем, този инструмент ви 
                     помага да разберете финансовия ангажимент, преди да вземете назаем. Използвайте калкулатора за заеми,
                     за да планирате бюджета си и да вземате информирани финансови решения.
                     </h2>
-                    
-                    <Stack direction="row" spacing={4}>
 
-                    </Stack>
-
-
-                    <label htmlFor="small-radius-switch">
+                    <label htmlFor="small-radius-switch" className='pl-10 pb-5'>
                         <Switch
                             checked={isChecked}
                             onChange={handleChange}
                             handleDiameter={28}
-                            offColor="#08f"
-                            onColor="#0ff"
-                            offHandleColor="#08f"
-                            onHandleColor="#0ff"
-                            height={40}
-                            width={70}
+                            offColor="#0284c7"
+                            onColor="#083344"
+                            offHandleColor="#0284c7"
+                            onHandleColor="#083344"
+                            height={50}
+                            width={100}
                             activeBoxShadow="0px 0px 0px 0px"
                             uncheckedIcon={
-                            <div className='flex justify-center items-center h-full text-xl pr-2 rounded-xl'>
+                            <div className='flex justify-center items-center h-full text-3xl rounded-xl'>
                                 🏚
                             </div>
                             }
                             checkedIcon={
-                            <div className='flex h-full w-full justify-center items-center'>
+                            <div className=' text-white flex h-full w-full justify-center items-center text-3xl'>
                                 $
                             </div>
                             }
@@ -84,7 +78,7 @@ const LoanCalcPage = () => {
                             </div>
                             }
                             checkedHandleIcon={
-                            <div className='flex justify-center items-center text-xl rounded-xl'>
+                            <div className='text-white flex justify-center items-center text-xl rounded-xl'>
                                 •
                             </div>
                             }
@@ -116,7 +110,7 @@ const LoanCalcPage = () => {
                         </>) : (<>
                             <div className='flex flex-row w-full justify-between '>
                             <h2 className='text-3xl pb-5'>Ипотека</h2>
-                            <h3>Лихва: 6%</h3>
+                            <h3>Лихва: 3%</h3>
                         </div>
                         <h2>Стойност на ипотеката</h2>
                         <form onSubmit={handleMortgageCalculation} className='flex flex-col gap-4'>

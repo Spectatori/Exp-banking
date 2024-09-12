@@ -4,7 +4,7 @@ const InputField = ({ label, type, name, value, onChange, onBlur, errors, touche
     const error = errors[name];
 
     return (
-        <div className="relative input-field pt-8 ">
+        <div className="relative input-field pt-8 max-h-16">
             <input className={`rounded-lg pl-4 h-10 w-80 border text-sm outline-none ${error && touched[name]
                 ? 'border-2 border-black ring-black '
                 : 'border-lime-600 focus:ring-1 focus:ring-lime-600'

@@ -5,9 +5,9 @@ const InputField = ({ label, type, name, value, onChange, onBlur, errors, touche
 
     return (
         <div className="relative input-field pt-8 max-h-16  ">
-            <input className={`max-xl:w-72 rounded-lg pl-4 h-10 w-80 border text-sm outline-none ${error && touched[name]
-                ? 'border-2 border-red-700 ring-red-700'
-                : 'border-lime-600 focus:ring-1 focus:ring-lime-600'
+            <input className={`max-xl:w-72 rounded-lg pl-4 h-10 w-80 border text-sm outline-none focus:ring-1 ${error && touched[name]
+                ? 'border-red-500 focus:ring-red-400'
+                : 'border-blue-whale focus:ring-1 focus:ring-blue-whale'
                 }`}
                 placeholder={label}
                 type={type}
@@ -17,7 +17,7 @@ const InputField = ({ label, type, name, value, onChange, onBlur, errors, touche
                 onBlur={onBlur}
             />
             {error && touched[name] && (
-                <div className='text-sm font-medium text-wrap text-red-700'>
+                <div className='text-sm font-medium text-wrap text-red-600'>
                     {error}
                 </div>
             )}

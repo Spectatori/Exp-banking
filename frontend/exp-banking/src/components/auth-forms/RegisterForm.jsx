@@ -30,7 +30,7 @@ const RegisterForm = () => {
 
     return (
         <form
-            className="relative flex flex-col justify-center items-center w-96 bg-white bg-opacity-40 rounded-2xl my-8 py-5 px-10 h-fit max-h-full max-xl:px-3 max-xl:w-80"
+            className="relative flex flex-col justify-center items-center w-96 bg-white bg-opacity-70 rounded-2xl my-8 py-5 px-10 h-fit max-h-full max-xl:px-3 max-xl:w-80"
             onSubmit={handleSubmit}>
             <h2 className="text-4xl">Регистрация</h2>
             <p>Моля въвеждайте данните на кирилица </p>
@@ -150,7 +150,7 @@ const RegisterForm = () => {
 
             <p className='mt-3 text-sm'>
                 Вече имате акаунт? Влезте
-                <Link to='/auth/login' className='m-1 text-dark-green'>тук</Link>
+                <Link to='/auth/login' className='m-1 text-dark-blue font-semibold'>тук</Link>
                 .
             </p>
         </form>

@@ -22,7 +22,7 @@ const LoginForm = () => {
 
     return (
         <form 
-            className=" relative flex flex-col justify-center items-center bg-white bg-opacity-40 rounded-2xl py-5 px-10 max-xl:px-4"
+            className=" relative flex flex-col justify-center items-center bg-white bg-opacity-70 rounded-2xl py-5 px-10 max-xl:px-4"
             onSubmit={handleSubmit}
         >
             <h1 className="text-4xl">Вход</h1>
@@ -49,7 +49,7 @@ const LoginForm = () => {
             <Button label="Вход" type="submit"/>
             <p className='mt-3 text-sm'>
                 Нямате акаунт? Регистрирайте се 
-                <Link to='/auth/register' className='m-1 text-lime-600'>тук</Link>
+                <Link to='/auth/register' className='m-1 text-dark-blue font-semibold'>тук</Link>
                 !
             </p>
         </form>

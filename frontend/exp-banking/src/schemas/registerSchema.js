@@ -45,4 +45,14 @@ export const registerSchema = yup.object().shape({
     email: yup.string()
         .email('Моля, въведете валиден имейл.')
         .required('Имейлът е задължителен!'),
+    egn: yup.string()
+        .matches(/^\d{10}$/, 'Моля, въведете валиден ЕГН с 10 цифри.')
+        .required('ЕГН е задължително!'),
+    expDate: yup.string()
+        .matches(/^\d{4}-\d{2}$/, 'Моля, въведете валидна дата във формат YYYY-MM.')
+        .required('Валидността на личната карта е задължителна!'),
+    iDNum: yup.string()
+        .matches(/^\d{9}$/, 'Моля, въведете валиден номер на лична карта.')
+        .required('Номерът на личната карта е задължителен!'),
+
 }) 

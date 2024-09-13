@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ProfilePieChart from '../components/ProfilePieChart';
-import Navbar from "../components/nav-bar/Navbar.jsx";
+import Navbar from '../components/nav-bar/Navbar.jsx'
 import TransactionIcon from "../assets/TransactionIcon.png";
 import TransactionDetailBlue from '../assets/TransactionDetailBlue.png';
 import TransactionDetailPurple from '../assets/TransactionDetailPurple.png';
@@ -90,7 +90,7 @@ const ProfilePage = () => {
       <Navbar />
       <div className="flex flex-col p-12 gap-8">
         <p className="text-2xl font-bold">Добре дошли в exp banking</p>
-        <div className='flex flex-row max-md:flex-col gap-40' style={{ maxHeight: '38rem' }}>
+        <div className='flex flex-row max-md:flex-col gap-20' style={{ maxHeight: '38rem' }}>
           <div className='flex flex-col w-3/6 gap-12'>
 
             {mainAccount.map((account) => (

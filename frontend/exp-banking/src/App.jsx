@@ -5,7 +5,9 @@ import Footer from './components/Footer.jsx'
 import MainPage from './pages/MainPage.jsx'
 import LoanCalcPage from "./pages/LoanCalcPage.jsx";
 import ProfileDetailsPage from "./pages/ProfileDetailsPage.jsx";
+import AccountOverviewPage from "./pages/AccountOverviewPage.jsx";
 import AIChat from "./components/AIChat.jsx";
+
 
 function App() {
     
@@ -18,6 +20,7 @@ function App() {
                     <Route path="/profile/details" element={<ProfileDetailsPage />} />
                     <Route path="/auth/register" element={<AccessPage />} />
                     <Route path="/auth/login" element={<AccessPage />} />
+                    <Route path="/account-overview" element={<AccountOverviewPage />} />
                     <Route path="/calculator" element={<LoanCalcPage />} />
                 </Routes>
             </Router>

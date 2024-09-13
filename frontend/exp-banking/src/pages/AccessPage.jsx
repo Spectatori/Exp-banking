@@ -12,9 +12,9 @@ const AccessPage = () => {
     return (
         <>
             <Navbar />
-            <div className="flex flex-col ">
+            <div className="flex flex-col">
                 <div
-                    className="relative flex-grow bg-cover bg-bottom flex justify-center items-center h-screen"
+                    className={`relative flex-grow bg-cover bg-bottom flex justify-center items-center ${!isRegister ? 'h-screen' : ''}`}
                     style={{
                         backgroundImage: `url(${background})`,           
                     }}

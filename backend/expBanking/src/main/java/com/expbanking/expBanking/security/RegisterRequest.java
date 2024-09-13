@@ -23,9 +23,9 @@ public class RegisterRequest {
     private String password;
     private String phoneNumber;
     private LocalDate dateOfBirth;
-    private BigDecimal balance;
-    private String currency;
     private String employmentType;
+    private String egn;
+    private Long idCardNumber;
+    private LocalDate expDate;
     private Address address;
-    private String iban;
 }

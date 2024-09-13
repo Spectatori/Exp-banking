@@ -34,18 +34,18 @@ public class AuthenticationService {
         // First save EmploymentType
         employmentType = typeRepository.save(employmentType);
 
-        User user = User.builder()
+        var user = User.builder()
                 .firstname(request.getFirstname())
                 .lastname(request.getLastname())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .phoneNumber(request.getPhoneNumber())
                 .dateOfBirth(request.getDateOfBirth())
-                .balance(request.getBalance())
-                .currency(request.getCurrency())
                 .employmentType(employmentType)
+                .egn(request.getEgn())
+                .idCardNumber(request.getIdCardNumber())
+                .expDate(request.getExpDate())
                 .address(request.getAddress())
-                .iban(userService.createIban())
                 .role(Role.USER)
                 .build();
         userRepository.save(user);

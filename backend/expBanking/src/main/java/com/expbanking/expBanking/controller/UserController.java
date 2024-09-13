@@ -24,7 +24,7 @@ public class UserController {
         UserDTO savedInDb = userServiceImpl.saveUser(userDTO);
         return new ResponseEntity<>(savedInDb, HttpStatus.CREATED);
     }
-    @PutMapping("/{userId}")
+    @PutMapping("/update/{userId}")
     public ResponseEntity<UserDTO> updateUser(@PathVariable Long userId,
                                               @RequestBody UserDTO userDTO){
         UserDTO updatedUser = userServiceImpl.updateUser(userId, userDTO);
@@ -34,11 +34,6 @@ public class UserController {
             return ResponseEntity.notFound().build();
         }
 
-    }
-
-    @GetMapping("/transactions")
-    public List<Transactions> findAllTransactions(Long userid) {
-        return userServiceImpl.getTransactions(userid);
     }
 
 

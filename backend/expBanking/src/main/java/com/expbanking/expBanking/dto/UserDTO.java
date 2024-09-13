@@ -13,9 +13,11 @@ public record UserDTO(
         String password,
         String phoneNumber,
         LocalDate dateOfBirth,
-        BigDecimal balance,
-        String currency,
-        EmploymentType employmentType
+        EmploymentType employmentType,
+        String egn,
+        Long idCardNumber,
+        LocalDate expDate
+
 ) {
 
 }

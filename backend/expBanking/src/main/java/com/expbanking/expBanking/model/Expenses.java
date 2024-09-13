@@ -26,8 +26,8 @@ public class Expenses {
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "userId")
-    private User user;
+    @JoinColumn(name = "transactions_id")
+    private Transactions transactions;
     public Expenses(){}
     public Expenses( Double amount,
                      Timestamp dateOfPayment,

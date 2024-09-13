@@ -29,21 +29,6 @@ public class UserServiceImpl implements UserService{
         return userRepo.getUserByEmail(email);
     }
 
-    @Override
-    public void transfer(UserDTO userDTO, BigDecimal amount) {
-
-        if (amount == null) {
-            throw new IllegalArgumentException("Amount cannot be null");
-        }
-
-
-        if (amount.compareTo(BigDecimal.ZERO) > 0) {
-            userDTO.balance().add(amount);
-        } else if (amount.compareTo(BigDecimal.ZERO) < 0) {
-            userDTO.balance().subtract(amount);
-        }
-
-    }
     /*
     @Override
     public User saveUser(UserDTO userDto) {
@@ -73,10 +58,10 @@ public class UserServiceImpl implements UserService{
         user.setPassword(userDTO.password());
         user.setPhoneNumber(userDTO.phoneNumber());
         user.setDateOfBirth(userDTO.dateOfBirth());
-        user.setBalance(userDTO.balance());
-        user.setCurrency(userDTO.currency());
         user.setEmploymentType(userDTO.employmentType());
-        user.setIban(createIban());
+        user.setEgn(userDTO.egn());
+        user.setIdCardNumber(userDTO.idCardNumber());
+        user.setExpDate(userDTO.expDate());
 
         Address address = user.getAddress();
         if (address != null) {
@@ -90,7 +75,7 @@ public class UserServiceImpl implements UserService{
 
 
 
-
+    @Transactional
     @Override
     public UserDTO updateUser(Long userId, UserDTO userDto) {
 
@@ -106,9 +91,11 @@ public class UserServiceImpl implements UserService{
             updatedUser.setEmail(userDto.email());
             updatedUser.setPhoneNumber(userDto.phoneNumber());
             updatedUser.setDateOfBirth(userDto.dateOfBirth());
-            updatedUser.setBalance(userDto.balance());
-            updatedUser.setCurrency(userDto.currency());
             updatedUser.setEmploymentType(userDto.employmentType());
+            updatedUser.setEgn(userDto.egn());
+            updatedUser.setIdCardNumber(userDto.idCardNumber());
+            updatedUser.setExpDate(userDto.expDate());
+
 
 
 
@@ -134,10 +121,10 @@ public class UserServiceImpl implements UserService{
         return iban.toString();
     }
 
-    @Override
-    public List<Transactions> getTransactions(Long userId) {
-        return userRepo.getAllTransactionsByUserId(userId);
-    }
+//    @Override
+//    public List<Transactions> getTransactions(Long userId) {
+//        return userRepo.getAllTransactionsByUserId(userId);
+//    }
 
     @Override
     public void deleteUser(Long theId) {

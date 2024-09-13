@@ -4,6 +4,7 @@ import com.expbanking.expBanking.dto.TransactionsDTO;
 import com.expbanking.expBanking.mappers.TransactionsMapper;
 import com.expbanking.expBanking.model.Transactions;
 import com.expbanking.expBanking.model.User;
+import com.expbanking.expBanking.repository.AccountsRepository;
 import com.expbanking.expBanking.repository.TransactionsRepository;
 import com.expbanking.expBanking.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,18 +19,18 @@ import java.util.Optional;
 @Service
 public class TransactionServiceImpl implements TransactionService{
     private final TransactionsRepository transactionsRepo;
-    private final UserRepository userRepo;
+    private final AccountsRepository accountsRepository;
     private TransactionsMapper transactionsMapper;
 
     @Autowired
-    public TransactionServiceImpl(TransactionsRepository transactionsRepo,UserRepository userRepo) {
+    public TransactionServiceImpl(TransactionsRepository transactionsRepo, AccountsRepository accountsRepository) {
         this.transactionsRepo = transactionsRepo;
-        this.userRepo=userRepo;
+        this.accountsRepository = accountsRepository;
     }
 
 
     @Override
-    public Transactions createTransaction(TransactionsDTO transactionDTO,Long userId) {
+    public Transactions createTransaction(TransactionsDTO transactionDTO,Long accountId) {
         Transactions transaction = new Transactions();
         transaction.setDateOfTransaction(transactionDTO.dateOfTransaction());
         transaction.setAmount(transactionDTO.amount());
@@ -45,8 +46,8 @@ public class TransactionServiceImpl implements TransactionService{
     }
 
     @Override
-    public List<Transactions> getTransactionByUserId(Long userId) {
-        return transactionsRepo.findByUserId(userId);
+    public List<Transactions> getTransactionByUserId(Long accountId) {
+        return transactionsRepo.findByAccountId(accountId);
     }
 
     @Override
@@ -60,7 +61,6 @@ public class TransactionServiceImpl implements TransactionService{
         Optional<Transactions> existingTransaction = transactionsRepo.findById(transactionId);
         if(existingTransaction.isPresent()){
             Transactions updatedTransaction = existingTransaction.get();
-            updatedTransaction.setUser(transaction.getUser());
             updatedTransaction.setDetails(transaction.getDetails());
             updatedTransaction.setAmount(transaction.getAmount());
             updatedTransaction.setTransactionType(transaction.getTransactionType());

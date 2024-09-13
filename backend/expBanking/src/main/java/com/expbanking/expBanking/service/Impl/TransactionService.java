@@ -11,10 +11,10 @@ import java.util.Optional;
 
 @Service
 public interface TransactionService {
-    Transactions createTransaction(TransactionsDTO transactionDTO,Long userId);
+    Transactions createTransaction(TransactionsDTO transactionDTO,Long accountId);
     Optional<Transactions> getTransactionById(Long transactionId);
 
-    List<Transactions> getTransactionByUserId (Long userId);
+    List<Transactions> getTransactionByUserId (Long accountId);
 
     List<Transactions> getAllTransactions();
 

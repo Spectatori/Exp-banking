@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Repository
 public interface UserRepository extends JpaRepository<User,Long> {
-    List<Transactions> getAllTransactionsByUserId(Long theId);
+//    List<Transactions> getAllTransactionsByUserId(Long theId);
     Optional<User> getUserByEmail(String email);
 
 

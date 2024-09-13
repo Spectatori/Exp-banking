@@ -39,15 +39,16 @@ public class TransactionController {
 
     @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
     @PostMapping("/createTransaction/{userId}")
-    public ResponseEntity<Transactions> createTransaction(@RequestBody TransactionsDTO transactionsDto,@PathVariable Long userId) {
+    public ResponseEntity<Transactions> createTransaction(@RequestBody TransactionsDTO transactionsDto,
+                                                          @PathVariable Long userId) {
         Transactions transaction = transactionServiceImpl.createTransaction(transactionsDto,userId);
         return new ResponseEntity<> (transaction, HttpStatus.CREATED);
     }
 
 
-    @GetMapping("/user/{userId}")
-    public ResponseEntity<List<Transactions>> getTransactionsByUserId(@PathVariable Long userId) {
-        List<Transactions> transactions = transactionServiceImpl.getTransactionByUserId(userId);
+    @GetMapping("/accounts/{accountsId}")
+    public ResponseEntity<List<Transactions>> getTransactionsByAccountId(@PathVariable Long accountsId) {
+        List<Transactions> transactions = transactionServiceImpl.getTransactionByUserId(accountsId);
         return  new ResponseEntity<>(transactions,HttpStatus.OK);
 
     }

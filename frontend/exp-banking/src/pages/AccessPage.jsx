@@ -12,7 +12,7 @@ const AccessPage = () => {
     return (
         <>
             <Navbar />
-            <div className="flex flex-col h-screen">
+            <div className="flex flex-col ">
                 <div
                     className="relative flex-grow bg-cover bg-bottom flex justify-center items-center"
                     style={{

@@ -10,7 +10,7 @@ import AIChat from "./components/AIChat.jsx";
 function App() {
     
     return (
-        <div className="flex flex-col h-screen w-full justify-between">
+        <div className="flex flex-col h-full ">
             <Router>
                 <Routes>
                     <Route path="/" element={<MainPage />} />

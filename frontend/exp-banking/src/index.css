@@ -14,3 +14,6 @@
 :root {
     background-color: #F9F9F9;
 }
+* {
+    outline: 1px solid red;
+  }

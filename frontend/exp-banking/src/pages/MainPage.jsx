@@ -23,8 +23,8 @@ const MainPage = () => {
     };
 
     return (
-        <div className=''>
-            <div className='flex flex-col h-full bg-sky-950 rounded-3xl'>
+        <div className='flex flex-col w-screen'>
+            <div className='flex flex-col h-full bg-sky-950 rounded-3xl w-full'>
                 <Navbar />
                 <div className="flex flex-col pl-10 bg-white rounded-b-3xl">
                     <div className="flex flex-row pt-8 items-start">
@@ -47,13 +47,13 @@ const MainPage = () => {
                             <h2 className='text-5xl font-bold'>Живей без такси, безплатно откриване и поддръжка на сметки, неограничени безплатни преводи</h2>
                             <Link to='/auth/register'className='bg-sky-950 rounded-lg h-14 w-80 text-white text-3xl flex items-center justify-center'>Започнете сега!</Link>
                         </div>
-                        <img src={HappyClient} className='pr-80 pb-24' alt="Happy Client"/>
+                        
                     </div>
                 </div>
 
                 <div className='flex flex-col pl-60 pb-32'>
                     <h1 className='text-gray-100 text-5xl pt-14 pl-20'>Нашите услуги:</h1>
-                    <div className='flex pt-20 pl-20 gap-96'>
+                    <div className='flex pt-20 pl-20 gap-96 max-xl:flex-col'>
                         <div className='flex items-start w-1/3'>
                             <img src={OnlineBanking} alt="Online Banking"/>
                             <div className='flex flex-col text-gray-100 pl-6'>
@@ -70,7 +70,7 @@ const MainPage = () => {
                         </div>
                     </div>
 
-                    <div className='flex pt-20 pl-20 gap-96'>
+                    <div className='flex pt-20 pl-20 gap-96 max-xl:flex-col'>
                         <div className='flex items-start w-1/3'>
                             <img src={OnlineLoans} alt="Online Loans"/>
                             <div className='flex flex-col text-gray-100 pl-6'>
@@ -87,7 +87,7 @@ const MainPage = () => {
                         </div>
                     </div>
 
-                    <div className='flex pt-20 pl-20 gap-96'>
+                    <div className='flex pt-20 pl-20 gap-96 max-xl:flex-col'>
                         <div className='flex items-start w-1/3'>
                             <img src={Mortgages} alt="Mortgages"/>
                             <div className='flex flex-col text-gray-100 pl-6'>

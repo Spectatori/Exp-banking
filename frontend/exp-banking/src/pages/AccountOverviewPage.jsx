@@ -1,4 +1,5 @@
 import React from 'react'
+import { useState } from 'react'
 import InnerHeader from '../components/nav-bar/authenticated/InnerHeader'
 import AuthNavbar from '../components/nav-bar/authenticated/AuthNavbar'
 import PrimaryButton from '../components/PrimaryButton'
@@ -11,6 +12,16 @@ import loanIcon from '../assets/account-overview/loan.png'
 import mortgageIcon from '../assets/account-overview/mortgage.png'
 
 const AccountOverviewPage = () => {
+    const [isAddAccountButtonClicked, setIsAddAccountButtonClicked] = useState(false);
+
+    const handleAddAccountButtonClick = (e) => {
+        setIsAddAccountButtonClicked(!isAddAccountButtonClicked);
+    }
+
+    const closeForm = () => {
+        setIsAddAccountButtonClicked(false);
+    }
+
     return (
         <div>
             <header>
@@ -23,9 +34,13 @@ const AccountOverviewPage = () => {
 
                 <div className='flex flex-col lg:flex-row justify-between'>
                     <section className='w-fit'>
-                        <div className='flex flex-row justify-between items-center mt-10'>
+                        <div className='flex flex-row justify-between items-center mt-10 relative'>
                             <h2 className='text-xl font-semibold text-blue-whale'>Наличност по сметки</h2>
-                            <PrimaryButton label='Добави сметка' className='bg-kelly-green' />
+                            <PrimaryButton label='Добави сметка' className='bg-kelly-green' onClick={handleAddAccountButtonClick} />
+
+                            {isAddAccountButtonClicked && (
+                                <AddAccountForm closeForm={closeForm}/>
+                            )}
                         </div>
 
                         <div className='mt-5 space-y-7'>
@@ -87,8 +102,6 @@ const AccountOverviewPage = () => {
                             </ShadowBox>
                         </div>
                     </section>
-
-                    <AddAccountForm />
                 </div>
             </div>
 

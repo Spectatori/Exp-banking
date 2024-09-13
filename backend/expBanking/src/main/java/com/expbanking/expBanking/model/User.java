@@ -28,6 +28,7 @@ public class User implements UserDetails {
 
     @Column(name = "first_name")
     private String firstname;
+
     @Column(name = "last_name")
     private String lastname;
 
@@ -38,24 +39,21 @@ public class User implements UserDetails {
     @Column(name = "password")
     @NotBlank
     private String password;
+
     @Column(name = "phone_number")
     private String phoneNumber;
 
     @Column(name = "date_of_birth")
     private LocalDate dateOfBirth;
 
-    @Column(name = "balance")
-    private BigDecimal balance;
+    @Column(name = "egn")
+    private String egn;
 
-    @Column(name = "iban")
-    private String iban;
+    @Column(name = "Id_card_number")
+    private Long idCardNumber;
 
-    @Column(name = "currency")
-    private String currency;
-//
-//    @Enumerated(EnumType.STRING)
-//    @Column(name = "type_of_employment")
-//    private EmploymentEnum typeOfEmployment;
+    @Column(name = "exp_date")
+    private LocalDate expDate;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "role")
@@ -73,30 +71,31 @@ public class User implements UserDetails {
     @Column(name = "enabled")
     private boolean enabled = true;
 
-
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "address_id", referencedColumnName = "address_id")
     private Address address;
 
-    @OneToMany(mappedBy = "user")
-    private Set<Transactions> transactions;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Accounts> accounts;
 
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "employment_type_id")
     private EmploymentType employmentType;
+
     public User() {
     }
 
-    public User(String firstname, String lastname, String email, String password, String phoneNumber, LocalDate dateOfBirth, BigDecimal balance, String currency, EmploymentType employmentType) {
+    public User(String firstname, String lastname, String email, String password, String phoneNumber, LocalDate dateOfBirth, EmploymentType employmentType, String egn, Long idCardNumber, LocalDate expDate) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
         this.password = password;
         this.phoneNumber = phoneNumber;
         this.dateOfBirth = dateOfBirth;
-        this.balance = balance;
-        this.currency = currency;
         this.employmentType = employmentType;
+        this.egn = egn;
+        this.idCardNumber = idCardNumber;
+        this.expDate = expDate;
     }
 
     @Override
@@ -137,5 +136,4 @@ public class User implements UserDetails {
     public Long getId() {
         return userId;
     }
-
 }

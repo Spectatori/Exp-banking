@@ -27,13 +27,8 @@ public class Address {
     @Column (name = "street")
     private String street;
 
-
-   @ManyToOne
-   @JoinColumn(name = "cityid")
-   private City city;
-
-   @OneToMany(mappedBy = "address")
-   private Set<User> users;
+    @OneToMany(mappedBy = "address")
+    private Set<User> users;
 
     public Address(String postcode, String cityName, String street) {
         this.postcode = postcode;

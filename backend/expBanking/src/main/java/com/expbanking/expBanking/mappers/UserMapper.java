@@ -13,8 +13,6 @@ public interface UserMapper {
     @Mapping(target = "email", source = "dto.email")
     @Mapping(target = "phoneNumber", source = "dto.phoneNumber")
     @Mapping(target = "dateOfBirth", source = "dto.dateOfBirth")
-    @Mapping(target = "balance", source = "dto.balance")
-    @Mapping(target = "currency", source = "dto.currency")
     @Mapping(target = "employmentType", source = "dto.employmentType")
     User convertDtoToEntity(UserDTO dto, Long id);
     UserDTO convertEntityToDto(User user);

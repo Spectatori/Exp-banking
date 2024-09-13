@@ -22,7 +22,7 @@ const LoginForm = () => {
 
     return (
         <form 
-            className="relative flex flex-col justify-center items-center bg-white bg-opacity-40 rounded-2xl py-5 px-10 h-fit"
+            className=" relative flex flex-col justify-center items-center bg-white bg-opacity-40 rounded-2xl py-5 px-10 max-xl:px-4"
             onSubmit={handleSubmit}
         >
             <h1 className="text-4xl">Вход</h1>

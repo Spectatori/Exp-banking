@@ -14,7 +14,7 @@ const AccessPage = () => {
             <Navbar />
             <div className="flex flex-col ">
                 <div
-                    className="relative flex-grow bg-cover bg-bottom flex justify-center items-center"
+                    className="relative flex-grow bg-cover bg-bottom flex justify-center items-center h-screen"
                     style={{
                         backgroundImage: `url(${background})`,           
                     }}

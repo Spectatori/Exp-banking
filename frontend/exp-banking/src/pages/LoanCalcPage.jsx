@@ -37,20 +37,20 @@ const LoanCalcPage = () => {
     };
 
   return (
-        <div className='flex flex-col'>
+        <div className='flex flex-col '>
             <Navbar/>
-            <div className="flex flex-row justify-between">
-                <div className='flex flex-col w-2/6 pl-28'>
-                    <h1 className='text-5xl font-bold font-mono pt-16'
+            <div className="flex flex-row justify-between max-2xl:flex-col max-2xl:items-center">
+                <div className='flex flex-col w-2/6 pl-28 max-2xl:w-full max-2xl:pl-0'>
+                    <h1 className='text-5xl font-bold font-mono pt-16 max-2xl:text-3xl max-2xl:text-center'
                     >Калкулатор за заеми</h1>
-                    <h2 className='text-2xl pt-10 font-mono pb-16'
+                    <h2 className='text-2xl pt-10 font-mono pb-16 max-2xl:text-center max-2xl:text-xl'
                     >Изчислете лесно месечните си вноски с нашия удобен калкулатор, като просто въведете сумата на заема.
                     Независимо дали обмисляте ипотека, автомобилен заем или потребителски заем, този инструмент ви 
                     помага да разберете финансовия ангажимент, преди да вземете назаем. Използвайте калкулатора за заеми,
                     за да планирате бюджета си и да вземате информирани финансови решения.
                     </h2>
 
-                    <label htmlFor="small-radius-switch" className='pl-10 pb-5'>
+                    <label htmlFor="small-radius-switch" className='pl-10 pb-5 max-2xl:text-center max-2xl:pl-0'>
                         <Switch
                             checked={isChecked}
                             onChange={handleChange}
@@ -86,7 +86,7 @@ const LoanCalcPage = () => {
                             id="small-radius-switch"
                         />
                     </label>
-                    <div className='flex flex-col bg-sky-950 w-96 max-w-96 h-96 max-h-96 px-7 rounded-3xl text-gray-100 justify-center gap-6'>
+                    <div className='flex flex-col bg-sky-950 w-96 max-w-96 h-96 max-h-96 px-7 rounded-3xl text-gray-100 justify-center gap-6 max-2xl:w-80 max-2xl:self-center'>
                         {isChecked ? (
                         <>
                         <div className='flex flex-row w-full justify-between '>
@@ -96,7 +96,7 @@ const LoanCalcPage = () => {
                         <h2>Стойност на заема</h2>
                         <form onSubmit={handleLoanCalculation} className='flex flex-col gap-4'>
                             <input
-                            className='w-48 h-12 rounded-xl text-black'
+                            className='w-48 h-12 rounded-xl text-black max-2xl:w-60'
                             type='number'
                             name='value'
                             ref={calcValue}
@@ -115,7 +115,7 @@ const LoanCalcPage = () => {
                         <h2>Стойност на ипотеката</h2>
                         <form onSubmit={handleMortgageCalculation} className='flex flex-col gap-4'>
                             <input
-                            className='w-48 h-12 rounded-xl text-black'
+                            className='w-48 h-12 rounded-xl text-black max-2xl:w-60'
                             type='number'
                             name='value'
                             ref={calcValue}
@@ -130,8 +130,8 @@ const LoanCalcPage = () => {
                         
                     </div>
                 </div>
-                <div className='pt-40 pr-60'>
-                    <div className='overflow-scroll max-h-96'>
+                <div className="pt-40 pr-60 w-2/5 max-2xl:pr-0 max-2xl:pt-10 max-2xl:w-full  ">
+                    <div className="overflow-y-auto max-h-96 w-full">
                         <LoanTable resultsArray={resultsArray} />
                     </div>
                 </div>

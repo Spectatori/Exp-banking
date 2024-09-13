@@ -7,14 +7,17 @@ export const LoanTable = ({ resultsArray }) => {
       {
         accessorKey: 'year',
         header: 'Години',
+        size: 80, // Adjust size as needed
       },
       {
         accessorKey: 'monthlyPayment',
         header: 'Месечна такса',
+        size: 100, // Adjust size as needed
       },
       {
         accessorKey: 'overallPayment',
         header: 'Крайна сума',
+        size: 100, // Adjust size as needed
       },
     ],
     []
@@ -25,7 +28,6 @@ export const LoanTable = ({ resultsArray }) => {
     data: resultsArray,
     enableBottomToolbar: false,
     enableStickyHeader: true,
-    enableStickyFooter: true,
     enablePagination: false,
     muiTableBodyCellProps: {
       sx: (theme) => ({
@@ -33,11 +35,19 @@ export const LoanTable = ({ resultsArray }) => {
           theme.palette.mode === 'dark'
             ? theme.palette.grey[900]
             : theme.palette.grey[50],
+
       }),
+    },
+    muiTableHeadCellProps: {
+      sx: {
+        fontSize: '0.75rem',
+        padding: '4px',
+      },
     },
   });
 
-  return <MRT_Table table={table} />;
+  return  <MRT_Table table={table} />
+
 };
 
 export default LoanTable;

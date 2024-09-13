@@ -20,6 +20,9 @@ const RegisterForm = () => {
             dateOfBirth: '',
             phoneNumber: '',
             email: '',
+            egn:'',
+            expDate:'',
+            iDNum:'',
         },
         validationSchema: registerSchema,
         onSubmit
@@ -30,6 +33,7 @@ const RegisterForm = () => {
             className="relative flex flex-col justify-center items-center w-96 bg-white bg-opacity-40 rounded-2xl my-8 py-5 px-10 h-fit"
             onSubmit={handleSubmit}>
             <h2 className="text-4xl">Регистрация</h2>
+            <p>Моля въвеждайте данните на кирилица </p>
 
             <InputField
                 label="Име"
@@ -106,6 +110,36 @@ const RegisterForm = () => {
                 type="text"
                 name="email"
                 value={values.email}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                errors={errors}
+                touched={touched}
+            />
+            <InputField
+                label="ЕГН"
+                type="text"
+                name="egn"
+                value={values.egn}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                errors={errors}
+                touched={touched}
+            />
+            <InputField
+                label="Валидност на лична карта"
+                type="month"
+                name="expDate"
+                value={values.expDate}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                errors={errors}
+                touched={touched}
+            />
+            <InputField
+                label="Номер на лична карта"
+                type="number"
+                name="iDNum"
+                value={values.iDNum}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 errors={errors}

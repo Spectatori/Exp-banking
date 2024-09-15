@@ -88,10 +88,10 @@ const ProfilePage = () => {
   return (
     <div className="flex flex-col h-screen">
       <Navbar />
-      <div className="flex flex-col p-12 gap-8">
+      <div className="flex flex-col p-12 gap-8  max-xl:gap-0">
         <p className="text-2xl font-bold">Добре дошли в exp banking</p>
-        <div className='flex flex-row max-md:flex-col gap-20' style={{ maxHeight: '38rem' }}>
-          <div className='flex flex-col w-3/6 gap-12'>
+        <div className='flex flex-row gap-20 max-2xl:flex-col max-2xl:max-h-fit max-xl:gap-0' style={{ maxHeight: '38rem' }}>
+          <div className='flex flex-col  gap-12 max-xl:gap-0'>
 
             {mainAccount.map((account) => (
               <div className='flex flex-row justify-between rounded-xl p-3 h-28 w-full' style={{
@@ -118,7 +118,7 @@ const ProfilePage = () => {
                 const categoryCircle = categoryColors[transaction.category]?.Circle || null;
 
                 return (
-                  <div key={index} className='flex flex-row gap-40 pt-5'>
+                  <div key={index} className='flex flex-row gap-40 pt-5 max-xl:gap-10'>
                     <div className='flex flex-row'>
                       <img src={TransactionIcon} alt="Transaction Icon" />
                       <div className='flex flex-col pl-6 justify-center'>
@@ -145,7 +145,7 @@ const ProfilePage = () => {
             boxShadow: 'rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px',
             maxHeight: '38rem'
           }}>
-            <div className='flex flex-row pt-8 px-6 justify-between '>
+            <div className='flex flex-row pt-8 px-6 justify-between max-xl:pt-0 '>
               <p className='text-2xl font-bold '>Всички разходи</p>
               <button className='bg-teal-700 w-10 h-10 items-center justify-center flex rounded-lg hover:scale-110 ease-in 
               duration-300'>
@@ -184,7 +184,7 @@ const ProfilePage = () => {
                     <option value="monthly">Месечно</option>
                   </select>
                 </div>
-                <div className='pl-20 '>
+                <div className='pl-20 max-xl:pl-0'>
                   <ProfilePieChart />
                 </div>
               </div>

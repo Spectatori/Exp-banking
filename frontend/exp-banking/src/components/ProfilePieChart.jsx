@@ -39,7 +39,7 @@ const renderCustomLabel = ({ cx, cy }) => {
   return (
     <text x={cx} y={cy} textAnchor="middle" dominantBaseline="middle">
       <tspan x={cx} dy="-1em" fontSize="16" fill={categoryColors[maxCategory] || defaultColor}>{maxCategory}</tspan>
-      <tspan x={cx} dy="1.2em" fontSize="24" fill={categoryColors[maxCategory] || defaultColor}>{`${maxAmount.toFixed(2)} $`}</tspan>
+      <tspan x={cx} dy="1.2em" fontSize="24" fill={categoryColors[maxCategory] || defaultColor}>{`${maxAmount.toFixed(2)} BGN`}</tspan>
     </text>
   );
 };

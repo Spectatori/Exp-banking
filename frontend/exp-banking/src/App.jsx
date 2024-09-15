@@ -7,6 +7,7 @@ import LoanCalcPage from "./pages/LoanCalcPage.jsx";
 import ProfileDetailsPage from "./pages/ProfileDetailsPage.jsx";
 import AccountOverviewPage from "./pages/AccountOverviewPage.jsx";
 import AIChat from "./components/AIChat.jsx";
+import ConsumerLoanInfoPage from "./pages/ConsumerLoanInfoPage.jsx";
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
                     <Route path="/auth/login" element={<AccessPage />} />
                     <Route path="/account-overview" element={<AccountOverviewPage />} />
                     <Route path="/calculator" element={<LoanCalcPage />} />
+                    <Route path="/consumer-loan" element={<ConsumerLoanInfoPage />} />
                 </Routes>
             </Router>
             <AIChat/>

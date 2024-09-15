@@ -7,6 +7,7 @@ import com.expbanking.expBanking.service.Impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,6 +25,7 @@ public class UserController {
         UserDTO savedInDb = userServiceImpl.saveUser(userDTO);
         return new ResponseEntity<>(savedInDb, HttpStatus.CREATED);
     }
+    @PreAuthorize("hasRole('USER')")
     @PutMapping("/update/{userId}")
     public ResponseEntity<UserDTO> updateUser(@PathVariable Long userId,
                                               @RequestBody UserDTO userDTO){

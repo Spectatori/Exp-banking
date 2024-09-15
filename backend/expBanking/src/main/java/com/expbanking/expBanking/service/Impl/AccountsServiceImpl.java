@@ -53,67 +53,62 @@ public class AccountsServiceImpl implements AccountsService{
 
         return iban.toString();
     }
-    @Transactional
-    @Override
-    public Accounts create(AccountsDTO accountDto, Long userId) {
-        log.info("Attempting to create account for user ID: {} with details: {}", userId, accountDto);
-        // Retrieve user by ID and handle case where user might not be found
-        Optional<User> userOpt = userRepository.findById(userId);
-        if (!userOpt.isPresent()) {
-            throw new RuntimeException("User with ID " + userId + " not found");
-        }
-
-        User user = userOpt.get();
-
-        // Create a new Accounts entity and set its fields
-        Accounts accounts = new Accounts();
-        accounts.setCurrency(accountDto.currency());  // Assuming getter method in DTO
-        accounts.setBalance(accountDto.balance());    // Assuming getter method in DTO
-        accounts.setIban(createIban());
-        accounts.setUser(user);
-
-//         Handle AccountType, assuming it's a String and needs to be fetched or created
-        AccountType accountTypeName = accountDto.accountType(); // Assuming getter method in DTO
-        AccountType accountType = accountTypeRepository.findByAccountType(accountTypeName);
-
-        if (accountType == null) {
-            // If the account type is not found, create a new one
-            accountType = new AccountType();
-            accountType.setAccountType(accountTypeName.toString()); // Assuming there's a setter for the name
-            accountTypeRepository.save(accountType);
-        }
-
-        accounts.setAccountType(accountType);
-
-        // Save the Accounts entity
-        Accounts savedAccount = accountsRepository.save(accounts);
-
-        return savedAccount;
-    }
-
-
-//@Transactional
+//    @Transactional
 //    @Override
 //    public Accounts create(AccountsDTO accountDto, Long userId) {
+////        log.info("Attempting to create account for user ID: {} with details: {}", userId, accountDto);
+//        // Retrieve user by ID and handle case where user might not be found
 //        Optional<User> userOpt = userRepository.findById(userId);
-//        Accounts accounts = new Accounts();
-//        accounts.setCurrency(accountDto.currency());
-//        accounts.setBalance(accountDto.balance());
-//        accounts.setIban(createIban());
-//        accounts.setUser(userOpt.get());
-//        AccountTypeDTO accountType = accountTypeRepository.findByName(accountDto.accountType());
-//        Long id = accountType.getAccountTypeId();
-//        if(accountType==null) {
-//            accountTypeMapper.convertDtoToEntity(accountType, id);
-//            accountType = new AccountType();
-//           accountTypeRepository.save(accountType);
-//            accounts.setAccountType(accountType);
+//        if (!userOpt.isPresent()) {
+//            throw new RuntimeException("User with ID " + userId + " not found");
 //        }
 //
-//        accounts.setAccountType(accountDto.accountType());
+//        User user = userOpt.get();
+//
+//        // Create a new Accounts entity and set its fields
+//        Accounts accounts = new Accounts();
+//        accounts.setCurrency(accountDto.currency());  // Assuming getter method in DTO
+//        accounts.setBalance(accountDto.balance());    // Assuming getter method in DTO
+//        accounts.setIban(createIban());
+//        accounts.setUser(user);
+//
+////         Handle AccountType, assuming it's a String and needs to be fetched or created
+//        AccountType accountTypeName = accountDto.accountType(); // Assuming getter method in DTO
+//        AccountType accountType = accountTypeRepository.findByAccountType(accountTypeName);
+//        String accountTypeNameToSave = accountTypeName.toString();
+//
+//        if (accountType == null) {
+//            // If the account type is not found, create a new one
+//            accountType = new AccountType();
+//            accountType.setAccountType(accountTypeNameToSave); // Assuming there's a setter for the name
+//            accountTypeRepository.save(accountType);
+//        }
+//
+//        accounts.setAccountType(accountType);
+//
+//        // Save the Accounts entity
 //        Accounts savedAccount = accountsRepository.save(accounts);
+//
 //        return savedAccount;
 //    }
+
+
+@Transactional
+    @Override
+    public Accounts create(AccountsDTO accountDto, Long userId) {
+        Optional<User> userOpt = userRepository.findById(userId);
+        Accounts accounts = new Accounts();
+        accounts.setCurrency(accountDto.currency());
+        accounts.setBalance(accountDto.balance());
+        accounts.setIban(createIban());
+        accounts.setUser(userOpt.get());
+        AccountType accountType = accountDto.accountType();
+        if(accountType != null){
+            accountTypeRepository.save(accountType);
+        }
+        Accounts savedAccount = accountsRepository.save(accounts);
+        return savedAccount;
+    }
 
     @Override
     public List<Accounts> getAllAccounts() {

@@ -22,6 +22,9 @@ public class JwtService {
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
     }
+    public Long extractUserId(String token) {
+        return extractClaim(token, claims -> claims.get("userId", Long.class));
+    }
     public <T> T extractClaim(String token, Function<Claims, T> claimsResolver){
         final Claims claims = extractAllClaims(token);
         return claimsResolver.apply(claims);
@@ -29,6 +32,15 @@ public class JwtService {
     public String generateToken(UserDetails userDetails){
         return generateToken(new HashMap<>(), userDetails);
     }
+
+    public String generateToken(UserDetails userDetails, Long userId) {
+        Map<String, Object> extraClaims = new HashMap<>();
+        extraClaims.put("userId", userId);  // Add user ID as a custom claim
+        return generateToken(extraClaims, userDetails);
+    }
+
+
+
     public String generateToken(
             Map<String, Object> extraClaims,
             UserDetails userDetails

@@ -26,7 +26,7 @@ public class AccountController {
     @PreAuthorize("hasRole('USER')")
     @PostMapping("/create/{userId}")
     public ResponseEntity<Accounts> createAccount(@RequestBody AccountsDTO accountsDTO,
-                                                  @RequestParam Long userId){
+                                                  @PathVariable Long userId){
         Accounts account = accountsServiceImpl.create(accountsDTO,userId);
         return new ResponseEntity<>(account, HttpStatus.CREATED);
     }

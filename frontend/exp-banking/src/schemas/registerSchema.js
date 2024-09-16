@@ -49,8 +49,18 @@ export const registerSchema = yup.object().shape({
         .matches(/^\d{10}$/, 'Моля, въведете валиден ЕГН с 10 цифри.')
         .required('ЕГН е задължително!'),
     expDate: yup.string()
-        .matches(/^\d{4}-\d{2}$/, 'Моля, въведете валидна дата във формат YYYY-MM.')
-        .required('Валидността на личната карта е задължителна!'),
+        .matches(/^\d{4}-\d{2}-\d{2}$/, 'Моля, въведете валидна дата във формат YYYY-MM-DD.')
+        .test('is-valid-date', 'Личната ви карта е изтекла.', (value) => {
+            if (!value) return true;
+            const [year, month, day] = value.split('-');
+            const inputDate = new Date(year, month - 1, day);
+            const today = new Date();
+            return inputDate.getFullYear() === +year &&
+                    inputDate.getMonth() === month - 1 &&
+                    inputDate.getDate() === +day &&
+                    inputDate >= today;
+        })
+            .required('Валидността на личната карта е задължителна!'),
     iDNum: yup.string()
         .matches(/^\d{9}$/, 'Моля, въведете валиден номер на лична карта.')
         .required('Номерът на личната карта е задължителен!'),

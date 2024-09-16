@@ -127,7 +127,7 @@ const RegisterForm = () => {
             />
             <InputField
                 label="Валидност на лична карта"
-                type="month"
+                type="date"
                 name="expDate"
                 value={values.expDate}
                 onChange={handleChange}

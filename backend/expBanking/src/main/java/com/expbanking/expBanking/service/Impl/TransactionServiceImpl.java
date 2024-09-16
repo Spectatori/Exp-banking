@@ -2,6 +2,7 @@ package com.expbanking.expBanking.service.Impl;
 
 import com.expbanking.expBanking.dto.TransactionsDTO;
 import com.expbanking.expBanking.mappers.TransactionsMapper;
+import com.expbanking.expBanking.model.Accounts;
 import com.expbanking.expBanking.model.Transactions;
 import com.expbanking.expBanking.model.User;
 import com.expbanking.expBanking.repository.AccountsRepository;
@@ -31,11 +32,13 @@ public class TransactionServiceImpl implements TransactionService{
 
     @Override
     public Transactions createTransaction(TransactionsDTO transactionDTO,Long accountId) {
+        Optional<Accounts> accountsOptional = accountsRepository.findById(accountId);
         Transactions transaction = new Transactions();
         transaction.setDateOfTransaction(transactionDTO.dateOfTransaction());
         transaction.setAmount(transactionDTO.amount());
         transaction.setDetails(transactionDTO.details());
         transaction.setTransactionType(transactionDTO.tType());
+        transaction.setAccount(accountsOptional.get());
         Transactions savedTransaction =transactionsRepo.save(transaction);
         return  savedTransaction;
     }

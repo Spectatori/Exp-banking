@@ -38,10 +38,10 @@ public class TransactionController {
     public List<Transactions> getAllTransactions(){ return transactionServiceImpl.getAllTransactions();}
 
     @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
-    @PostMapping("/createTransaction/{userId}")
+    @PostMapping("/createTransaction/{accountId}")
     public ResponseEntity<Transactions> createTransaction(@RequestBody TransactionsDTO transactionsDto,
-                                                          @PathVariable Long userId) {
-        Transactions transaction = transactionServiceImpl.createTransaction(transactionsDto,userId);
+                                                          @PathVariable Long accountId) {
+        Transactions transaction = transactionServiceImpl.createTransaction(transactionsDto,accountId);
         return new ResponseEntity<> (transaction, HttpStatus.CREATED);
     }
 

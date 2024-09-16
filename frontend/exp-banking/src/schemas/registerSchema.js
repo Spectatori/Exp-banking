@@ -1,4 +1,5 @@
 import * as yup from 'yup'
+import { bulgarianCities } from '../data/bulgarianCities.jsx';
 
 export const registerSchema = yup.object().shape({
     firstName: yup.string()
@@ -64,5 +65,14 @@ export const registerSchema = yup.object().shape({
     iDNum: yup.string()
         .matches(/^\d{9}$/, 'Моля, въведете валиден номер на лична карта.')
         .required('Номерът на личната карта е задължителен!'),
-
+    address: yup.object().shape({
+        street: yup.string()
+            .matches(/^[А-Яа-я0-9\s.,-]+$/, 'Адресът трябва да съдържа само букви на кирилица, цифри, интервали, запетайки, точки и тирета.')
+            .min(5, 'Адресът трябва да съдържа поне 5 символа.')
+            .max(100, 'Адресът не може да бъде по-дълъг от 100 символа.')
+            .required('Адресът е задължителен!'),
+        postcode: yup.string()
+            .matches(/^\d{4}$/, 'Пощенският код трябва да бъде 4 цифри.')
+            .required('Пощенският код е задължителен!')
+    }),
 }) 

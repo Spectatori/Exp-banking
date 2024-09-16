@@ -1,12 +1,8 @@
-
-import Navbar from '../components/nav-bar/Navbar.jsx'
-import LoanTable from '../components/Table.jsx'
-import calculateLoan from '../utils/LoanMortgageCalc.jsx'
-
+import Navbar from '../components/nav-bar/Navbar.jsx';
+import LoanTable from '../components/Table.jsx';
+import calculateLoan from '../utils/LoanMortgageCalc.jsx';
 import Switch from 'react-switch';
-
-
-import { useState, useRef} from 'react';  
+import { useState, useRef, useMemo } from 'react';  
 
 const LoanCalcPage = () => {
     const [resultsArray, setResultsArray] = useState([]);
@@ -26,6 +22,7 @@ const LoanCalcPage = () => {
         const results = calculateLoan(principal, years, interestRate);
         setResultsArray(results);
     };
+
     const handleMortgageCalculation = (event) => {
         event.preventDefault();
         const principal = parseFloat(calcValue.current.value);
@@ -36,18 +33,35 @@ const LoanCalcPage = () => {
         setResultsArray(results);
     };
 
-  return (
+    const columns = useMemo(() => [
+        {
+            accessorKey: 'year',
+            header: 'Години',
+            size: 80,
+        },
+        {
+            accessorKey: 'monthlyPayment',
+            header: 'Месечна такса',
+            size: 100,
+        },
+        {
+            accessorKey: 'overallPayment',
+            header: 'Крайна сума',
+            size: 100,
+        },
+    ], []);
+
+    return (
         <div className='flex flex-col '>
             <Navbar/>
             <div className="flex flex-row justify-between max-2xl:flex-col max-2xl:items-center">
                 <div className='flex flex-col w-2/6 pl-28 max-2xl:w-full max-2xl:pl-0'>
-                    <h1 className='text-5xl font-bold font-mono pt-16 max-2xl:text-3xl max-2xl:text-center'
-                    >Калкулатор за заеми</h1>
-                    <h2 className='text-2xl pt-10 font-mono pb-16 max-2xl:text-center max-2xl:text-xl'
-                    >Изчислете лесно месечните си вноски с нашия удобен калкулатор, като просто въведете сумата на заема.
-                    Независимо дали обмисляте ипотека, автомобилен заем или потребителски заем, този инструмент ви 
-                    помага да разберете финансовия ангажимент, преди да вземете назаем. Използвайте калкулатора за заеми,
-                    за да планирате бюджета си и да вземате информирани финансови решения.
+                    <h1 className='text-5xl font-bold font-mono pt-16 max-2xl:text-3xl max-2xl:text-center'>Калкулатор за заеми</h1>
+                    <h2 className='text-2xl pt-10 font-mono pb-16 max-2xl:text-center max-2xl:text-xl'>
+                        Изчислете лесно месечните си вноски с нашия удобен калкулатор, като просто въведете сумата на заема.
+                        Независимо дали обмисляте ипотека, автомобилен заем или потребителски заем, този инструмент ви 
+                        помага да разберете финансовия ангажимент, преди да вземете назаем. Използвайте калкулатора за заеми,
+                        за да планирате бюджета си и да вземате информирани финансови решения.
                     </h2>
 
                     <label htmlFor="small-radius-switch" className='pl-10 pb-5 max-2xl:text-center max-2xl:pl-0'>
@@ -86,6 +100,7 @@ const LoanCalcPage = () => {
                             id="small-radius-switch"
                         />
                     </label>
+
                     <div className='flex flex-col bg-sky-950 w-96 max-w-96 h-96 max-h-96 px-7 rounded-3xl text-gray-100 justify-center gap-6 max-2xl:w-80 max-2xl:self-center'>
                         {isChecked ? (
                         <>
@@ -132,7 +147,7 @@ const LoanCalcPage = () => {
                 </div>
                 <div className="pt-40 pr-60 w-2/5 max-2xl:pr-0 max-2xl:pt-10 max-2xl:w-full  ">
                     <div className="overflow-y-auto max-h-96 w-full">
-                        <LoanTable resultsArray={resultsArray} />
+                        <LoanTable columns={columns} data={resultsArray} />
                     </div>
                 </div>
             </div>
@@ -140,4 +155,4 @@ const LoanCalcPage = () => {
     )
 }
 
-export default LoanCalcPage
+export default LoanCalcPage;

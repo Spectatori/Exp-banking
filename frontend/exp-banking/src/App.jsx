@@ -13,7 +13,7 @@ import ConsumerLoanInfoPage from "./pages/ConsumerLoanInfoPage.jsx";
 function App() {
     
     return (
-        <div className="flex flex-col h-full ">
+        <div className="flex flex-col min-h-screen justify-between ">
             <Router>
                 <Routes>
                     <Route path="/" element={<MainPage />} />

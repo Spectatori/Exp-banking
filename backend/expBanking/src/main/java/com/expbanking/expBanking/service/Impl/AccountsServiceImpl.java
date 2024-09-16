@@ -106,6 +106,7 @@ public class AccountsServiceImpl implements AccountsService{
         if(accountType != null){
             accountTypeRepository.save(accountType);
         }
+        accounts.setAccountType(accountType);
         Accounts savedAccount = accountsRepository.save(accounts);
         return savedAccount;
     }

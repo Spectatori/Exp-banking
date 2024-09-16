@@ -29,8 +29,10 @@ public class AccountController {
     private final UserRepository userRepository;
     private final AuthenticationService authenticationService;
 
-    @Autowired AccountController(AccountsServiceImpl accountsServiceImpl) {
+    @Autowired AccountController(AccountsServiceImpl accountsServiceImpl, UserRepository userRepository, AuthenticationService authenticationService) {
         this.accountsServiceImpl = accountsServiceImpl;
+        this.userRepository = userRepository;
+        this.authenticationService = authenticationService;
     }
     @PreAuthorize("hasRole('USER')")
     @PostMapping("/create/{userId}")

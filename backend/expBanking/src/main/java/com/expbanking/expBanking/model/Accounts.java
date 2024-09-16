@@ -33,7 +33,7 @@ public class Accounts {
     private User user;
 
     //@OneToOne(mappedBy = "accounts")
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "account_type_id", referencedColumnName = "accountTypeId")
     private AccountType accountType;
 

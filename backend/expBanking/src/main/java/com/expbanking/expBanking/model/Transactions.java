@@ -34,7 +34,7 @@ public class Transactions {
     @JoinColumn(name = "account_id", referencedColumnName = "accountId", nullable = false)
     private Accounts account;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "transaction_type_id", referencedColumnName = "transactionTypeId")
     private TransactionType transactionType;
 

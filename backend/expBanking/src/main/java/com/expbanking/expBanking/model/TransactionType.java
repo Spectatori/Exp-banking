@@ -21,7 +21,7 @@ public class TransactionType {
     @Column(name = "transaction_type_name")
     private String transactionTypeName;
 
-    @OneToMany(mappedBy = "transactionType")
+    @OneToMany(mappedBy = "transactionType",cascade = CascadeType.PERSIST)
     private List<Transactions> transactions;
 
     public TransactionType(Long transactionTypeId, String transactionTypeName){

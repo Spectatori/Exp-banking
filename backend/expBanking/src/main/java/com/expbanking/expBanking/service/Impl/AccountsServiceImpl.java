@@ -134,6 +134,7 @@ public class AccountsServiceImpl implements AccountsService{
         }
     }
 
+    @Transactional
     @Override
     public Transactions transfer(String senderIban, String receiverIban, BigDecimal amount) {
             Optional<Accounts> senderOpt = accountsRepository.findAccountByIban(senderIban);
@@ -166,6 +167,7 @@ public class AccountsServiceImpl implements AccountsService{
         return transaction;
     }
 
+    @Transactional
     @Override
     public Accounts updateBalance(Long accountId, BigDecimal newBalance) {
         Optional<Accounts> accounts = accountsRepository.findById(accountId);

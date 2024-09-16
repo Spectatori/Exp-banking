@@ -1,5 +1,6 @@
 package com.expbanking.expBanking.security;
 
+import com.expbanking.expBanking.model.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
@@ -41,6 +42,23 @@ public class JwtService {
     }
 
 
+    public String generateTokenWithAccountId(User user, Long accountId) {
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("userId", user.getId());
+        claims.put("accountId", accountId); // Add the account ID to the token claims
+
+        return Jwts.builder()
+                .setClaims(claims)
+                .setSubject(user.getUsername())
+                .setIssuedAt(new Date(System.currentTimeMillis()))
+                .setExpiration(new Date(System.currentTimeMillis() +  1000 * 60 * 24))
+                .signWith(getSigningKey(), HS512)
+                .compact();
+    }
+
+    public Long extractAccountId(String token) {
+        return extractClaim(token, claims -> claims.get("accountId", Long.class));
+    }
 
     public String generateToken(
             Map<String, Object> extraClaims,

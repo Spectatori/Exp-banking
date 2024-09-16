@@ -42,6 +42,6 @@ public class AdminController {
     @DeleteMapping("/transactions/{transactionid}")
     public void deleteTransaction(Long transactionId){
         transactionServiceImpl.deleteTransaction(transactionId);
-    }
+    }//тук трябва промяна
 
 }

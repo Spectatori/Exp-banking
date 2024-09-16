@@ -3,11 +3,18 @@ package com.expbanking.expBanking.controller;
 import com.expbanking.expBanking.dto.AccountsDTO;
 import com.expbanking.expBanking.model.Accounts;
 import com.expbanking.expBanking.model.Transactions;
+import com.expbanking.expBanking.model.User;
+import com.expbanking.expBanking.repository.UserRepository;
+import com.expbanking.expBanking.security.AuthenticationResponse;
+import com.expbanking.expBanking.security.AuthenticationService;
 import com.expbanking.expBanking.service.Impl.AccountsServiceImpl;
+import com.expbanking.expBanking.service.Impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,19 +26,39 @@ import java.util.Optional;
 @RequestMapping("/api/accounts")
 public class AccountController {
     private final AccountsServiceImpl accountsServiceImpl;
+    private final UserRepository userRepository;
+    private final AuthenticationService authenticationService;
 
     @Autowired AccountController(AccountsServiceImpl accountsServiceImpl) {
         this.accountsServiceImpl = accountsServiceImpl;
     }
     @PreAuthorize("hasRole('USER')")
     @PostMapping("/create/{userId}")
-    public ResponseEntity<Accounts> createAccount(@RequestBody AccountsDTO accountsDTO,
-                                                  @PathVariable Long userId){
-        Accounts account = accountsServiceImpl.create(accountsDTO,userId);
-        return new ResponseEntity<>(account, HttpStatus.CREATED);
-    }
+    public ResponseEntity<AuthenticationResponse> createAccount(
+            @RequestBody AccountsDTO accountsDTO,
+            @PathVariable Long userId,
+            @AuthenticationPrincipal UserDetails userDetails) {
 
-    @GetMapping("/{accountId}")
+        // Create the account
+        Accounts account = accountsServiceImpl.create(accountsDTO, userId);
+
+        // Fetch the user by userId
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        // Generate a new token with the account ID
+        AuthenticationResponse newTokenResponse = authenticationService.updateTokenWithAccountId(user, account.getAccountId());
+
+        // Return the new token in the response
+        return new ResponseEntity<>(newTokenResponse, HttpStatus.CREATED);
+    }
+//    public ResponseEntity<Accounts> createAccount(@RequestBody AccountsDTO accountsDTO,
+//                                                  @PathVariable Long userId){
+//        Accounts account = accountsServiceImpl.create(accountsDTO,userId);
+//        return new ResponseEntity<>(account, HttpStatus.CREATED);
+//    }
+
+    @GetMapping("/getAccountById/{accountId}")
     public ResponseEntity<Accounts> getAccountById(@PathVariable Long accountId) {
         Optional<Accounts> accounts = accountsServiceImpl.getAccountById(accountId);
         return accounts.map(ResponseEntity::ok).orElseGet(()-> ResponseEntity.notFound().build());
@@ -42,7 +69,7 @@ public class AccountController {
         return accounts.map(ResponseEntity::ok).orElseGet(()-> ResponseEntity.notFound().build());
     }
 
-    @PostMapping("/{accountId}")
+    @PostMapping("/updateBalance/{accountId}")
     public ResponseEntity<Accounts> updateBalance(@PathVariable Long accountId,
                                                   @RequestBody BigDecimal amount){
         Accounts updatedAccount = accountsServiceImpl.updateBalance(accountId, amount);
@@ -54,7 +81,7 @@ public class AccountController {
     }
 
 
-    @PutMapping("/{accountId}")
+    @DeleteMapping("/delete/{accountId}")
     public ResponseEntity<Accounts> deleteAccount(@PathVariable Long accountId) {
         accountsServiceImpl.deleteAccount(accountId);
         return ResponseEntity.noContent().build();

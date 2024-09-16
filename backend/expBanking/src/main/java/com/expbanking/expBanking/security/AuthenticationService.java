@@ -69,4 +69,11 @@ public class AuthenticationService {
                 .token(jwtToken)
                 .build();
     }
+
+    public AuthenticationResponse updateTokenWithAccountId(User user, Long accountId) {
+        var jwtToken = jwtService.generateTokenWithAccountId(user, accountId);
+        return AuthenticationResponse.builder()
+                .token(jwtToken)
+                .build();
+    }
 }

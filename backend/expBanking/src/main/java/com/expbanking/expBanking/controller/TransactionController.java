@@ -2,7 +2,11 @@ package com.expbanking.expBanking.controller;
 
 
 import com.expbanking.expBanking.dto.TransactionsDTO;
+import com.expbanking.expBanking.model.Accounts;
 import com.expbanking.expBanking.model.Transactions;
+import com.expbanking.expBanking.repository.AccountsRepository;
+import com.expbanking.expBanking.security.AuthenticationResponse;
+import com.expbanking.expBanking.security.AuthenticationService;
 import com.expbanking.expBanking.service.Impl.TransactionServiceImpl;
 import com.expbanking.expBanking.service.Impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +25,16 @@ import java.util.Optional;
 public class TransactionController {
     private final TransactionServiceImpl transactionServiceImpl;
     private final UserServiceImpl userServiceImpl;
+    private final AuthenticationService authenticationService;
+    private final AccountsRepository accountsRepository;
 
 
     @Autowired
-    public TransactionController(TransactionServiceImpl transactionServiceImpl,UserServiceImpl userServiceImpl){
+    public TransactionController(TransactionServiceImpl transactionServiceImpl, UserServiceImpl userServiceImpl, AuthenticationService authenticationService, AccountsRepository accountsRepository){
         this.transactionServiceImpl = transactionServiceImpl;
         this.userServiceImpl=userServiceImpl;
+        this.authenticationService = authenticationService;
+        this.accountsRepository = accountsRepository;
     }
 
     @GetMapping("/{transactionId}")
@@ -42,6 +50,9 @@ public class TransactionController {
     public ResponseEntity<Transactions> createTransaction(@RequestBody TransactionsDTO transactionsDto,
                                                           @PathVariable Long accountId) {
         Transactions transaction = transactionServiceImpl.createTransaction(transactionsDto,accountId);
+        Accounts accounts = accountsRepository.findById(accountId)
+                .orElseThrow(() -> new RuntimeException("Account not found."));
+        AuthenticationResponse newTokenResponse = authenticationService.updateTokenWithTransactionId(accounts.getUser(), transaction.getTransactionId());
         return new ResponseEntity<> (transaction, HttpStatus.CREATED);
     }
 
@@ -53,7 +64,7 @@ public class TransactionController {
 
     }
 
-    @PutMapping("/{transactionId}")
+    @PutMapping("/updateTransaction/{transactionId}")
     public ResponseEntity<Transactions> updateTransaction(@PathVariable Long transactionId,
                                                           @RequestBody Transactions transaction){
         Transactions updatedTransaction = transactionServiceImpl.updateTransaction(transactionId,transaction);
@@ -65,7 +76,7 @@ public class TransactionController {
 
     }
 
-    @DeleteMapping("/{transactionId}")
+    @DeleteMapping("/delete/{transactionId}")
     public void deleteTransactions(@PathVariable Long transactionId){
        transactionServiceImpl.deleteTransaction(transactionId);
     }

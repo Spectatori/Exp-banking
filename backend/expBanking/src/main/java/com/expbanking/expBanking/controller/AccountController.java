@@ -54,11 +54,7 @@ public class AccountController {
         // Return the new token in the response
         return new ResponseEntity<>(newTokenResponse, HttpStatus.CREATED);
     }
-//    public ResponseEntity<Accounts> createAccount(@RequestBody AccountsDTO accountsDTO,
-//                                                  @PathVariable Long userId){
-//        Accounts account = accountsServiceImpl.create(accountsDTO,userId);
-//        return new ResponseEntity<>(account, HttpStatus.CREATED);
-//    }
+
 
     @GetMapping("/getAccountById/{accountId}")
     public ResponseEntity<Accounts> getAccountById(@PathVariable Long accountId) {

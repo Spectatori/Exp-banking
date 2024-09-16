@@ -11,8 +11,6 @@ import java.util.List;
 @Entity
 @Table(name = "transaction_type")
 @Data
-@Getter
-@Setter
 @NoArgsConstructor
 public class TransactionType {
     @Id
@@ -21,13 +19,12 @@ public class TransactionType {
     private Long transactionTypeId;
 
     @Column(name = "transaction_type_name")
-    @Enumerated(EnumType.ORDINAL)
-    private TransactionTypeEnum transactionTypeName;
+    private String transactionTypeName;
 
     @OneToMany(mappedBy = "transactionType")
     private List<Transactions> transactions;
 
-    public TransactionType(Long transactionTypeId, TransactionTypeEnum transactionTypeName){
+    public TransactionType(Long transactionTypeId, String transactionTypeName){
         this.transactionTypeId = transactionTypeId;
         this.transactionTypeName = transactionTypeName;
     }

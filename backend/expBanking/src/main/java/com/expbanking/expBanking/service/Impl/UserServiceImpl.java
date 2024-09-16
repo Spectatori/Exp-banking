@@ -29,23 +29,6 @@ public class UserServiceImpl implements UserService{
         return userRepo.getUserByEmail(email);
     }
 
-    /*
-    @Override
-    public User saveUser(UserDTO userDto) {
-        Optional<User> dbObject = Optional.ofNullable(findByEmail(userDto.email()));
-        Long id;
-        if(dbObject.isPresent()) {
-            id = dbObject.get().getUserId();
-
-        } else {
-            id = null;
-        }
-        User theUser = userMapper.convertDtoToEntity(userDto, id);
-        theUser.setIban(createIban());
-        return userRepo.saveAndFlush(theUser);
-    }
-
-     */
 
 
     @Transactional

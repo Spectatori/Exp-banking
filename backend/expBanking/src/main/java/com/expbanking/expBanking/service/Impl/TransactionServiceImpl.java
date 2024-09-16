@@ -3,9 +3,11 @@ package com.expbanking.expBanking.service.Impl;
 import com.expbanking.expBanking.dto.TransactionsDTO;
 import com.expbanking.expBanking.mappers.TransactionsMapper;
 import com.expbanking.expBanking.model.Accounts;
+import com.expbanking.expBanking.model.TransactionType;
 import com.expbanking.expBanking.model.Transactions;
 import com.expbanking.expBanking.model.User;
 import com.expbanking.expBanking.repository.AccountsRepository;
+import com.expbanking.expBanking.repository.TransactionTypeRepository;
 import com.expbanking.expBanking.repository.TransactionsRepository;
 import com.expbanking.expBanking.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +24,13 @@ public class TransactionServiceImpl implements TransactionService{
     private final TransactionsRepository transactionsRepo;
     private final AccountsRepository accountsRepository;
     private TransactionsMapper transactionsMapper;
+    private final TransactionTypeRepository transactionTypeRepository;
 
     @Autowired
-    public TransactionServiceImpl(TransactionsRepository transactionsRepo, AccountsRepository accountsRepository) {
+    public TransactionServiceImpl(TransactionsRepository transactionsRepo, AccountsRepository accountsRepository, TransactionTypeRepository transactionTypeRepository) {
         this.transactionsRepo = transactionsRepo;
         this.accountsRepository = accountsRepository;
+        this.transactionTypeRepository = transactionTypeRepository;
     }
 
 
@@ -34,10 +38,24 @@ public class TransactionServiceImpl implements TransactionService{
     public Transactions createTransaction(TransactionsDTO transactionDTO,Long accountId) {
         Optional<Accounts> accountsOptional = accountsRepository.findById(accountId);
         Transactions transaction = new Transactions();
+        TransactionType transactionType = transactionDTO.tType();
+//        if (transactionType.getTransactionTypeId() == null || !transactionTypeRepository.existsById(transactionType.getTransactionTypeId())) {
+//            transactionType.setTransactionTypeName(transactionType.getTransactionTypeName());
+//            transactionType = transactionTypeRepository.save(transactionType);
+//
+//        }
+        if (transactionType.getTransactionTypeId() == null || !transactionTypeRepository.existsById(transactionType.getTransactionTypeId())) {
+            // Save the new transaction type
+            transactionType.setTransactionTypeName(transactionType.getTransactionTypeName());
+            transactionType = transactionTypeRepository.save(transactionType);
+        } else {
+            // If the transaction type exists, fetch it to ensure we have the latest data
+            transactionType = transactionTypeRepository.findById(transactionType.getTransactionTypeId()).orElse(transactionType);
+        }
         transaction.setDateOfTransaction(transactionDTO.dateOfTransaction());
         transaction.setAmount(transactionDTO.amount());
         transaction.setDetails(transactionDTO.details());
-        transaction.setTransactionType(transactionDTO.tType());
+        transaction.setTransactionType(transactionType);
         transaction.setAccount(accountsOptional.get());
         Transactions savedTransaction =transactionsRepo.save(transaction);
         return  savedTransaction;

@@ -40,6 +40,22 @@ public class JwtService {
         extraClaims.put("addressId", addressId);
         return generateToken(extraClaims, userDetails);
     }
+    public String generateTokenWithTransactionId(User user, Long transactionId) {
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("userId", user.getId());
+        claims.put("transactionId", transactionId); // Add the account ID to the token claims
+
+        return Jwts.builder()
+                .setClaims(claims)
+                .setSubject(user.getUsername())
+                .setIssuedAt(new Date(System.currentTimeMillis()))
+                .setExpiration(new Date(System.currentTimeMillis() +  1000 * 60 * 24))
+                .signWith(getSigningKey(), HS512)
+                .compact();
+    }
+    public Long extractTransactionId(String token) {
+        return extractClaim(token, claims -> claims.get("transactionId", Long.class));
+    }
 
 
     public String generateTokenWithAccountId(User user, Long accountId) {

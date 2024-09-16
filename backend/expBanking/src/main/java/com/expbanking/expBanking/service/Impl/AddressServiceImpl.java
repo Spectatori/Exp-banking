@@ -1,7 +1,10 @@
 package com.expbanking.expBanking.service.Impl;
 
+import com.expbanking.expBanking.dto.AddressDTO;
 import com.expbanking.expBanking.model.Address;
 import com.expbanking.expBanking.repository.AddressRepository;
+import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,6 +13,7 @@ import java.util.Optional;
 @Service
 public class AddressServiceImpl implements AddressService{
 
+    @Autowired
     private AddressRepository addressRepository;
 
     @Override
@@ -27,15 +31,15 @@ public class AddressServiceImpl implements AddressService{
      addressRepository.deleteById(id);
     }
 
+    @Transactional
     @Override
-    public Address updateAddress(Long id, Address address) {
+    public Address updateAddress(Long id, AddressDTO addressDTO) {
         Optional<Address> existingAddress = addressRepository.findById(id);
         if(existingAddress.isPresent()){
             Address currentAddress = existingAddress.get();
-            currentAddress.setAddressId(address.getAddressId());
-            currentAddress.setPostcode(address.getPostcode());
-            currentAddress.setCityName(address.getCityName());
-            currentAddress.setStreet(address.getStreet());
+            currentAddress.setPostcode(addressDTO.postcode());
+            currentAddress.setCityName(addressDTO.cityName());
+            currentAddress.setStreet(addressDTO.street());
             return addressRepository.save(currentAddress);
         } else {
             throw new RuntimeException("Address not found with id: " + id);

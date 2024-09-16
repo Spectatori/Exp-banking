@@ -33,9 +33,10 @@ public class JwtService {
         return generateToken(new HashMap<>(), userDetails);
     }
 
-    public String generateToken(UserDetails userDetails, Long userId) {
+    public String generateToken(UserDetails userDetails, Long userId, Long addressId) {
         Map<String, Object> extraClaims = new HashMap<>();
-        extraClaims.put("userId", userId);  // Add user ID as a custom claim
+        extraClaims.put("userId", userId);
+        extraClaims.put("addressId", addressId);
         return generateToken(extraClaims, userDetails);
     }
 

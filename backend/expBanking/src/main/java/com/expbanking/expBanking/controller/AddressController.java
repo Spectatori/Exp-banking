@@ -52,7 +52,7 @@ public class AddressController {
 
     @PutMapping("/{addressId}")
     public ResponseEntity<Address> updateAddress(@PathVariable Long addressId,
-                                                 @RequestBody Address address){
+                                                 @RequestBody AddressDTO address){
         Address updatedAddress = addressService.updateAddress(addressId, address);
         if(updatedAddress != null){
             return ResponseEntity.ok(updatedAddress);

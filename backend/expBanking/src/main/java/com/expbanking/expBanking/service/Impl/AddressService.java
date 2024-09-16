@@ -15,7 +15,7 @@ public interface AddressService {
 
     void deleteAddress (Long id);
 
-    Address updateAddress(Long id,Address address);
+    Address updateAddress(Long id,AddressDTO addressDTO);
 
     Address getAddressById(Long id);
 

@@ -7,6 +7,8 @@ import com.expbanking.expBanking.repository.*;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.data.relational.core.sql.In;
+import org.springframework.http.ZeroCopyHttpOutputMessage;
 import org.springframework.stereotype.Service;
 
 
@@ -23,6 +25,9 @@ public class TransactionServiceImpl implements TransactionService{
     private final AccountsRepository accountsRepository;
     private TransactionsMapper transactionsMapper;
     private final TransactionTypeRepository transactionTypeRepository;
+    private final IncomeRepository incomeRepository;
+
+    private final ExpensesRepository expensesRepository;
 
     @Autowired
     public TransactionServiceImpl(TransactionsRepository transactionsRepo, AccountsRepository accountsRepository, TransactionTypeRepository transactionTypeRepository, IncomeRepository incomeRepository, ExpensesRepository expensesRepository) {
@@ -38,7 +43,7 @@ public class TransactionServiceImpl implements TransactionService{
     public Transactions createTransaction(TransactionsDTO transactionDTO,Long accountId) {
         Optional<Accounts> accountsOptional = accountsRepository.findById(accountId);
         Transactions transaction = new Transactions();
-        TransactionType transactionType = transactionDTO.tType();
+        TransactionType transactionType = transactionDTO.transactionType();
 //        if (transactionType.getTransactionTypeId() == null || !transactionTypeRepository.existsById(transactionType.getTransactionTypeId())) {
 //            transactionType.setTransactionTypeName(transactionType.getTransactionTypeName());
 //            transactionType = transactionTypeRepository.save(transactionType);

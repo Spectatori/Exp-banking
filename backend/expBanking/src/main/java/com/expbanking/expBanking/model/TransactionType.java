@@ -1,5 +1,6 @@
 package com.expbanking.expBanking.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
@@ -21,6 +22,7 @@ public class TransactionType {
     @Column(name = "transaction_type_name")
     private String transactionTypeName;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "transactionType",cascade = CascadeType.PERSIST)
     private List<Transactions> transactions;
 

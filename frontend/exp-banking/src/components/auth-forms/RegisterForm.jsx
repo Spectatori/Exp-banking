@@ -1,13 +1,13 @@
 import React from 'react'
-import  {Link}  from 'react-router-dom';
-import  {useFormik}  from 'formik';
-import  {registerSchema}  from '../../schemas/registerSchema.js';
+import { Link } from 'react-router-dom';
+import { useFormik } from 'formik';
+import { registerSchema } from '../../schemas/registerSchema.js';
 import InputField from './AuthInputField.jsx'
 import Button from './AuthButton.jsx'
-import  {bulgarianCities}  from '../../data/bulgarianCities.jsx';
-import  {registerUser}  from '../../api/authService.jsx';
-import  {employmentType}  from '../../data/employmentType.jsx';
-import {useCookies} from 'react-cookie'
+import { bulgarianCities } from '../../data/bulgarianCities.jsx';
+import { registerUser } from '../../api/authService.jsx';
+import { employmentType } from '../../data/employmentType.jsx';
+import { useCookies } from 'react-cookie'
 import { useNavigate } from 'react-router-dom';
 const RegisterForm = () => {
     const [cookies, setCookie] = useCookies(['token']);  // Initialize cookies
@@ -15,15 +15,27 @@ const RegisterForm = () => {
 
     const onSubmit = async (values) => {
         try {
-            const token = await registerUser(values);
-            setCookie('UserToken', token, { path: '/' });  // Set the token in cookies
+            // Restructure the values object
+            const { cityName, postcode, street, ...rest } = values;
+            const restructuredValues = {
+                ...rest,
+                address: {
+                    cityName,
+                    postcode,
+                    street
+                }
+            };
+
+            const token = await registerUser(restructuredValues);
+            setCookie('UserToken', token, { path: '/' });
             console.log('Registration successful!');
             navigate('/profile');
         } catch (error) {
             console.error('Registration failed:', error);
         }
+
     };
-    
+
 
     const { values, handleChange, handleBlur, handleSubmit, errors, touched } = useFormik({
         initialValues: {
@@ -34,17 +46,13 @@ const RegisterForm = () => {
             dateOfBirth: '',
             phoneNumber: '',
             email: '',
-            egn:'',
-            expDate:'',
-            idCardNumber:'',
-            address:{
-                postcode:'',
-                cityName:'',
-                street:'',
-            },
-                
-            
-            employmentType:'',
+            egn: '',
+            expDate: '',
+            idCardNumber: '',
+            postcode: '',
+            cityName: '',
+            street: '',
+            employmentType: '',
         },
         validationSchema: registerSchema,
         onSubmit
@@ -127,31 +135,31 @@ const RegisterForm = () => {
                     <div className='flex flex-col gap-3'>
                         <p>Телефонен номер</p>
                         <InputField
-                        label="Телефонен Номер"
-                        type="text"
-                        name="phoneNumber"
-                        value={values.phoneNumber}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        errors={errors}
-                        touched={touched}
-                    />
+                            label="Телефонен Номер"
+                            type="text"
+                            name="phoneNumber"
+                            value={values.phoneNumber}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            errors={errors}
+                            touched={touched}
+                        />
                     </div>
                     <div className='flex flex-col gap-3'>
                         <p>Вид заетост</p>
                         <InputField
-                        label="Вид заетост"
-                        type="select"
-                        name="employmentType"
-                        value={values.employmentType}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        errors={errors}
-                        touched={touched}
-                        options={employmentType}
-                    />
+                            label="Вид заетост"
+                            type="select"
+                            name="employmentType"
+                            value={values.employmentType}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            errors={errors}
+                            touched={touched}
+                            options={employmentType}
+                        />
                     </div>
-                    
+
                 </div>
                 <div className=" relative flex flex-col gap-1 justify-center items-center w-96 bg-white bg-opacity-40 rounded-2xl my-8 py-10 px-10 h-fit max-h-full max-xl:px-3 max-xl:w-80">
                     <div className='flex flex-col gap-3'>
@@ -170,86 +178,86 @@ const RegisterForm = () => {
                     <div className='flex flex-col gap-3'>
                         <p>ЕГН</p>
                         <InputField
-                        label="ЕГН"
-                        type="text"
-                        name="egn"
-                        value={values.egn}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        errors={errors}
-                        touched={touched}
-                    />
+                            label="ЕГН"
+                            type="text"
+                            name="egn"
+                            value={values.egn}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            errors={errors}
+                            touched={touched}
+                        />
                     </div>
                     <div className='flex flex-col gap-3'>
                         <p>Валидност на лична карта</p>
                         <InputField
-                        label="Валидност на лична карта"
-                        type="date"
-                        name="expDate"
-                        value={values.expDate}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        errors={errors}
-                        touched={touched}
-                    />
+                            label="Валидност на лична карта"
+                            type="date"
+                            name="expDate"
+                            value={values.expDate}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            errors={errors}
+                            touched={touched}
+                        />
                     </div>
                     <div className='flex flex-col gap-3'>
                         <p>Номер на лична карта</p>
                         <InputField
-                        label="Номер на лична карта"
-                        type="number"
-                        name="idCardNumber"
-                        value={values.idCardNumber}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        errors={errors}
-                        touched={touched}
-                    />
+                            label="Номер на лична карта"
+                            type="number"
+                            name="idCardNumber"
+                            value={values.idCardNumber}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            errors={errors}
+                            touched={touched}
+                        />
                     </div>
                     <div className='flex flex-col gap-3'>
                         <p>Пощенски код</p>
                         <InputField
-                        label="Пощенски код"
-                        type="text"
-                        name="postcode"
-                        value={values.postcode}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        errors={errors}
-                        touched={touched}
-                    />
+                            label="Пощенски код"
+                            type="text"
+                            name="postcode"
+                            value={values.postcode}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            errors={errors}
+                            touched={touched}
+                        />
                     </div>
                     <div className='flex flex-col gap-3'>
                         <p>Град</p>
                         <InputField
-                        label="Град"
-                        type="select"
-                        name="cityName"
-                        value={values.cityName}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        errors={errors}
-                        touched={touched}
-                        options={bulgarianCities}
-                    />
+                            label="Град"
+                            type="select"
+                            name="cityName"
+                            value={values.cityName}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            errors={errors}
+                            touched={touched}
+                            options={bulgarianCities}
+                        />
                     </div>
                     <div className='flex flex-col gap-3'>
                         <p>Улица</p>
                         <InputField
-                        label="Улица"   
-                        type="text"
-                        name="street"
-                        value={values.street}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        errors={errors}
-                        touched={touched}
-                    />
+                            label="Улица"
+                            type="text"
+                            name="street"
+                            value={values.street}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            errors={errors}
+                            touched={touched}
+                        />
                     </div>
                 </div>
             </div>
-            
-            <Button label="Регистрация"  type="submit" />
+
+            <Button label="Регистрация" type="submit" />
             <p className='mt-3 text-sm text-white'>
                 Вече имате акаунт? Влезте
                 <Link to='/auth/login' className='m-1 text-sky-500'>тук!</Link>

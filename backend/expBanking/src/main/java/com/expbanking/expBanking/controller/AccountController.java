@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Controller
@@ -88,11 +89,12 @@ public class AccountController {
     @GetMapping("/accounts")
     public List<Accounts> getAllAccounts(){ return accountsServiceImpl.getAllAccounts();}
 
-    @PostMapping("/transfer")
-    public ResponseEntity<Transactions> transfer (@RequestParam String senderIban,
-                                                  @RequestParam String receiverIban,
-                                                  @RequestParam BigDecimal amount) {
+    @PostMapping("/transfer/{senderIban}")
+    public ResponseEntity<Transactions> transfer (@PathVariable String senderIban,
+                                                  @RequestBody Map<String, Object> requestBody) {
 
+        String receiverIban = (String) requestBody.get("receiverIban");
+        BigDecimal amount = new BigDecimal(requestBody.get("amount").toString());
         Transactions transaction = accountsServiceImpl.transfer(senderIban,receiverIban,amount);
         return new ResponseEntity<>(transaction, HttpStatus.OK);
     }

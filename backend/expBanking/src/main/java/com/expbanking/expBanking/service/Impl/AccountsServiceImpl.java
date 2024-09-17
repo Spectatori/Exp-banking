@@ -161,8 +161,10 @@ public class AccountsServiceImpl implements AccountsService{
         transaction.setDateOfTransaction(new Timestamp(System.currentTimeMillis()));
         transaction.setDetails("Transfer from " + senderIban + " to " + receiverIban);
         transaction.setAccount(sender);
-
-
+        TransactionType transactionType = new TransactionType();
+        transactionType.setTransactionTypeName("Internal");
+        transactionTypeRepository.save(transactionType);
+        transaction.setTransactionType(transactionType);
         transactionsRepository.save(transaction);
 
         return transaction;

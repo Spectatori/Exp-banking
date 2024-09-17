@@ -61,6 +61,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 Long transactionId = jwtService.extractTransactionId(jwt);
                 request.setAttribute("transactionId", transactionId);
 
+                String iban = jwtService.extractIban(jwt);
+                request.setAttribute("iban", iban);
+
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                         userDetails,
                         null,

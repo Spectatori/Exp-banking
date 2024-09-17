@@ -6,12 +6,10 @@ import com.expbanking.expBanking.dto.AccountsDTO;
 import com.expbanking.expBanking.mappers.AccountTypeMapper;
 import com.expbanking.expBanking.mappers.AccountsMapper;
 import com.expbanking.expBanking.model.*;
-import com.expbanking.expBanking.repository.AccountTypeRepository;
-import com.expbanking.expBanking.repository.AccountsRepository;
-import com.expbanking.expBanking.repository.TransactionsRepository;
-import com.expbanking.expBanking.repository.UserRepository;
+import com.expbanking.expBanking.repository.*;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.SpringVersion;
 import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -28,15 +26,22 @@ public class AccountsServiceImpl implements AccountsService{
     private final AccountTypeRepository accountTypeRepository;
     //@Autowired
     private final TransactionsRepository transactionsRepository;
+
+    private final TransactionTypeRepository transactionTypeRepository;
+    private  final TransactionServiceImpl transactionServiceImpl;
     //@Autowired
     private final UserRepository userRepository;
-    private Logger log;
 
 
-    public AccountsServiceImpl(AccountsRepository accountsRepository, AccountTypeRepository accountTypeRepository, TransactionsRepository transactionsRepository, UserRepository userRepository) {
+
+    public AccountsServiceImpl(AccountsRepository accountsRepository, AccountTypeRepository accountTypeRepository,
+                               TransactionsRepository transactionsRepository, TransactionTypeRepository transactionTypeRepository,
+                               TransactionServiceImpl transactionServiceImpl, UserRepository userRepository) {
         this.accountsRepository = accountsRepository;
         this.accountTypeRepository = accountTypeRepository;
         this.transactionsRepository = transactionsRepository;
+        this.transactionTypeRepository = transactionTypeRepository;
+        this.transactionServiceImpl = transactionServiceImpl;
         this.userRepository = userRepository;
     }
 
@@ -53,44 +58,6 @@ public class AccountsServiceImpl implements AccountsService{
 
         return iban.toString();
     }
-//    @Transactional
-//    @Override
-//    public Accounts create(AccountsDTO accountDto, Long userId) {
-////        log.info("Attempting to create account for user ID: {} with details: {}", userId, accountDto);
-//        // Retrieve user by ID and handle case where user might not be found
-//        Optional<User> userOpt = userRepository.findById(userId);
-//        if (!userOpt.isPresent()) {
-//            throw new RuntimeException("User with ID " + userId + " not found");
-//        }
-//
-//        User user = userOpt.get();
-//
-//        // Create a new Accounts entity and set its fields
-//        Accounts accounts = new Accounts();
-//        accounts.setCurrency(accountDto.currency());  // Assuming getter method in DTO
-//        accounts.setBalance(accountDto.balance());    // Assuming getter method in DTO
-//        accounts.setIban(createIban());
-//        accounts.setUser(user);
-//
-////         Handle AccountType, assuming it's a String and needs to be fetched or created
-//        AccountType accountTypeName = accountDto.accountType(); // Assuming getter method in DTO
-//        AccountType accountType = accountTypeRepository.findByAccountType(accountTypeName);
-//        String accountTypeNameToSave = accountTypeName.toString();
-//
-//        if (accountType == null) {
-//            // If the account type is not found, create a new one
-//            accountType = new AccountType();
-//            accountType.setAccountType(accountTypeNameToSave); // Assuming there's a setter for the name
-//            accountTypeRepository.save(accountType);
-//        }
-//
-//        accounts.setAccountType(accountType);
-//
-//        // Save the Accounts entity
-//        Accounts savedAccount = accountsRepository.save(accounts);
-//
-//        return savedAccount;
-//    }
 
 
 @Transactional

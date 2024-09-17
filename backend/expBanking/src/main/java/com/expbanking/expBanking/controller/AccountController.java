@@ -50,7 +50,8 @@ public class AccountController {
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         // Generate a new token with the account ID
-        AuthenticationResponse newTokenResponse = authenticationService.updateTokenWithAccountId(user, account.getAccountId());
+        AuthenticationResponse newTokenResponse = authenticationService.updateTokenWithAccountId(user, account.getAccountId(),account.getIban());
+
 
         // Return the new token in the response
         return new ResponseEntity<>(newTokenResponse, HttpStatus.CREATED);

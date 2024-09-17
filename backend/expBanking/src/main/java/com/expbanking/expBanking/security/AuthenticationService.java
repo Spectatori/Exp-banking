@@ -50,10 +50,10 @@ public class AuthenticationService {
                 .role(Role.USER)
                 .build();
         userRepository.save(user);
-        var jwtToken = jwtService.generateToken(user, user.getUserId(), user.getAddress().getAddressId());
-       return AuthenticationResponse.builder()
-               .token(jwtToken)
-               .build();
+        var jwtToken = jwtService.generateTokenWithAddressId(user, user.getUserId(), user.getAddress().getAddressId());
+        return AuthenticationResponse.builder()
+                .token(jwtToken)
+                .build();
     }
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
@@ -65,14 +65,14 @@ public class AuthenticationService {
         );
         var user = userRepository.getUserByEmail(request.getEmail())
                 .orElseThrow();
-        var jwtToken = jwtService.generateToken(user, user.getUserId(),user.getAddress().getAddressId());
+        var jwtToken = jwtService.generateTokenWithAddressId(user, user.getUserId(), user.getAddress().getAddressId());
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();
     }
 
-    public AuthenticationResponse updateTokenWithAccountId(User user, Long accountId) {
-        var jwtToken = jwtService.generateTokenWithAccountId(user, accountId);
+    public AuthenticationResponse updateTokenWithAccountId(User user, Long accountId, String iban) {
+        var jwtToken = jwtService.generateTokenWithAccountId(user, accountId, iban);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();

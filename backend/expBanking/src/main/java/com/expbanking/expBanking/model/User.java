@@ -71,7 +71,7 @@ public class User implements UserDetails {
     @Column(name = "enabled")
     private boolean enabled = true;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "address_id")
     private Address address;
 

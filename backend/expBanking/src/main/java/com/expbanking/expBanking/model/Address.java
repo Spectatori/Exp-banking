@@ -1,5 +1,6 @@
 package com.expbanking.expBanking.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,7 +27,7 @@ public class Address {
 
     @Column (name = "street")
     private String street;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "address")
     private Set<User> users;
 

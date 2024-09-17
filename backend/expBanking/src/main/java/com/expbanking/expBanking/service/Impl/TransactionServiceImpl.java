@@ -2,38 +2,38 @@ package com.expbanking.expBanking.service.Impl;
 
 import com.expbanking.expBanking.dto.TransactionsDTO;
 import com.expbanking.expBanking.mappers.TransactionsMapper;
-import com.expbanking.expBanking.model.Accounts;
-import com.expbanking.expBanking.model.TransactionType;
-import com.expbanking.expBanking.model.Transactions;
-import com.expbanking.expBanking.model.User;
-import com.expbanking.expBanking.repository.AccountsRepository;
-import com.expbanking.expBanking.repository.TransactionTypeRepository;
-import com.expbanking.expBanking.repository.TransactionsRepository;
-import com.expbanking.expBanking.repository.UserRepository;
+import com.expbanking.expBanking.model.*;
+import com.expbanking.expBanking.repository.*;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 
 @Service
 public class TransactionServiceImpl implements TransactionService{
+    List<Double> incomes = new ArrayList<>();
+    List<Double> expenses = new ArrayList<>();
     private final TransactionsRepository transactionsRepo;
     private final AccountsRepository accountsRepository;
     private TransactionsMapper transactionsMapper;
     private final TransactionTypeRepository transactionTypeRepository;
 
     @Autowired
-    public TransactionServiceImpl(TransactionsRepository transactionsRepo, AccountsRepository accountsRepository, TransactionTypeRepository transactionTypeRepository) {
+    public TransactionServiceImpl(TransactionsRepository transactionsRepo, AccountsRepository accountsRepository, TransactionTypeRepository transactionTypeRepository, IncomeRepository incomeRepository, ExpensesRepository expensesRepository) {
         this.transactionsRepo = transactionsRepo;
         this.accountsRepository = accountsRepository;
         this.transactionTypeRepository = transactionTypeRepository;
+        this.incomeRepository = incomeRepository;
+        this.expensesRepository = expensesRepository;
     }
 
-
+    @Transactional
     @Override
     public Transactions createTransaction(TransactionsDTO transactionDTO,Long accountId) {
         Optional<Accounts> accountsOptional = accountsRepository.findById(accountId);
@@ -58,6 +58,23 @@ public class TransactionServiceImpl implements TransactionService{
         transaction.setTransactionType(transactionType);
         transaction.setAccount(accountsOptional.get());
         Transactions savedTransaction =transactionsRepo.save(transaction);
+        if(transactionDTO.amount() > 0){
+            incomes.add(savedTransaction.getAmount());
+            Income income = new Income();
+            income.setAmount(savedTransaction.getAmount());
+            income.setDescription(savedTransaction.getDetails());
+            income.setDateOfPayment(savedTransaction.getDateOfTransaction());
+            income.setTransactions(savedTransaction);
+            incomeRepository.save(income);
+        } else {
+            expenses.add(savedTransaction.getAmount());
+            Expenses expense = new Expenses();
+            expense.setAmount(savedTransaction.getAmount());
+            expense.setDescription(savedTransaction.getDetails());
+            expense.setDateOfPayment(savedTransaction.getDateOfTransaction());
+            expense.setTransactions(savedTransaction);
+            expensesRepository.save(expense);
+        }
         return  savedTransaction;
     }
 

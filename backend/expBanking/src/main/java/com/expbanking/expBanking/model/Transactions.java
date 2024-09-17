@@ -1,5 +1,6 @@
 package com.expbanking.expBanking.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
@@ -29,7 +30,7 @@ public class Transactions {
     @Column(name = "details")
     private String details;
 
-
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "account_id", referencedColumnName = "accountId", nullable = false)
     private Accounts account;

@@ -7,11 +7,18 @@ import Button from './AuthButton.jsx'
 import  {bulgarianCities}  from '../../data/bulgarianCities.jsx';
 import  {registerUser}  from '../../api/authService.jsx';
 import  {employmentType}  from '../../data/employmentType.jsx';
+import {useCookies} from 'react-cookie'
+import { useNavigate } from 'react-router-dom';
 const RegisterForm = () => {
+    const [cookies, setCookie] = useCookies(['token']);  // Initialize cookies
+    const navigate = useNavigate();
+
     const onSubmit = async (values) => {
         try {
-            await registerUser(values);
+            const token = await registerUser(values);
+            setCookie('UserToken', token, { path: '/' });  // Set the token in cookies
             console.log('Registration successful!');
+            navigate('/profile');
         } catch (error) {
             console.error('Registration failed:', error);
         }

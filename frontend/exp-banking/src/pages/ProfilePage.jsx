@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import ProfilePieChart from '../components/ProfilePieChart.jsx';
 import LoanTable from '../components/Table.jsx';
 import Navbar from '../components/nav-bar/Navbar.jsx';
+import { useCookies } from 'react-cookie';
 
 const mainAccount = [
   {
@@ -92,6 +93,8 @@ const transactions = [
 ];
 
 const ProfilePage = () => {
+
+
   const [selectedTimeSpan, setSelectedTimeSpan] = useState('daily');
 
   const handleTimeSpanChange = (e) => {

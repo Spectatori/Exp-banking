@@ -29,6 +29,9 @@ public class User implements UserDetails {
     @Column(name = "first_name")
     private String firstname;
 
+    @Column(name = "second_name")
+    private String secondname;
+
     @Column(name = "last_name")
     private String lastname;
 
@@ -85,8 +88,9 @@ public class User implements UserDetails {
     public User() {
     }
 
-    public User(String firstname, String lastname, String email, String password, String phoneNumber, LocalDate dateOfBirth, EmploymentType employmentType, String egn, Long idCardNumber, LocalDate expDate) {
+    public User(String firstname,String secondname ,String lastname, String email, String password, String phoneNumber, LocalDate dateOfBirth, EmploymentType employmentType, String egn, Long idCardNumber, LocalDate expDate) {
         this.firstname = firstname;
+        this.secondname = secondname;
         this.lastname = lastname;
         this.email = email;
         this.password = password;

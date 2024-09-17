@@ -7,9 +7,8 @@ import LoanCalcPage from "./pages/LoanCalcPage.jsx";
 import ProfileDetailsPage from "./pages/ProfileDetailsPage.jsx";
 import AccountOverviewPage from "./pages/AccountOverviewPage.jsx";
 import AIChat from "./components/AIChat.jsx";
+import PrivateRoute from "./components/auth-forms/PrivateRoute.jsx";
 import ConsumerLoanInfoPage from "./pages/ConsumerLoanInfoPage.jsx";
-
-
 function App() {
     
     return (
@@ -17,8 +16,8 @@ function App() {
             <Router>
                 <Routes>
                     <Route path="/" element={<MainPage />} />
-                    <Route path="/profile" element={<ProfilePage />} />
-                    <Route path="/profile/details" element={<ProfileDetailsPage />} />
+                    <Route path="/profile" element={<PrivateRoute element={<ProfilePage/>} />} />
+                    <Route path="/profile/details" element={<PrivateRoute element={<ProfileDetailsPage/>} />} />
                     <Route path="/auth/register" element={<AccessPage />} />
                     <Route path="/auth/login" element={<AccessPage />} />
                     <Route path="/account-overview" element={<AccountOverviewPage />} />

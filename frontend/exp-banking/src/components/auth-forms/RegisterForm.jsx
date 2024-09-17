@@ -28,7 +28,7 @@ const RegisterForm = () => {
     const { values, handleChange, handleBlur, handleSubmit, errors, touched } = useFormik({
         initialValues: {
             firstname: '',
-            // middleName: '',
+            secondname: '',
             lastname: '',
             password: '',
             dateOfBirth: '',
@@ -66,6 +66,19 @@ const RegisterForm = () => {
                             name="firstname"
                             id='firstName'
                             value={values.firstname}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            errors={errors}
+                            touched={touched}
+                        />
+                    </div>
+                    <div className='flex flex-col gap-3'>
+                        <p>Презиме</p>
+                        <InputField
+                            label="Презиме"
+                            type="text"
+                            name="secondname"
+                            value={values.secondname}
                             onChange={handleChange}
                             onBlur={handleBlur}
                             errors={errors}

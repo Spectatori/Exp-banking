@@ -11,6 +11,9 @@
   },
   "dependencies": {
     "@fontsource/inter": "^5.0.20",
+    "axios": "^1.7.7",
+    "cors": "^2.8.5",
+    "dotenv-webpack": "^8.1.0",
     "exp-banking": "file:",
     "formik": "^2.4.6",
     "material-react-table": "^3.0.1",

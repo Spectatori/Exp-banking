@@ -1,36 +1,43 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
-import { registerSchema } from '../../schemas/registerSchema.js';
+// import { registerSchema } from '../../schemas/registerSchema.js';
 import InputField from './AuthInputField.jsx'
 import Button from './AuthButton.jsx'
 import { bulgarianCities } from '../../data/bulgarianCities.jsx';
+import { registerUser } from '../../api/authService.jsx';
 
 const RegisterForm = () => {
-    const onSubmit = () => {
-        //   
-    }
+    const onSubmit = async (values) => {
+        try {
+            await registerUser(values);
+            console.log('Registration successful!');
+        } catch (error) {
+            console.error('Registration failed:', error);
+        }
+    };
+    
 
     const { values, handleChange, handleBlur, handleSubmit, errors, touched } = useFormik({
         initialValues: {
-            firstName: '',
-            middleName: '',
-            lastName: '',
+            firstname: '',
+            // middleName: '',
+            lastname: '',
             password: '',
-            confirmPassword: '',
             dateOfBirth: '',
             phoneNumber: '',
             email: '',
             egn:'',
             expDate:'',
-            iDNum:'',
+            idCardNumber:'',
             address:{
                 postcode:'',
                 cityName:'',
                 street:'',
-            }
+            },
+            employmentType:'',
         },
-        validationSchema: registerSchema,
+        // validationSchema: registerSchema,
         onSubmit
     })
 
@@ -40,33 +47,24 @@ const RegisterForm = () => {
             onSubmit={handleSubmit}>
             <h2 className="text-4xl text-white">Регистрация</h2>
             <p className='text-white'>Моля въвеждайте данните на кирилица </p>
-            <div className='flex gap-20 max-xl:flex-col'>
+            <div className='flex gap-20 max-xl:flex-col max-xl:gap-0'>
                 <div className=" relative flex flex-col justify-center items-center w-96 bg-white bg-opacity-40 rounded-2xl my-8 py-10 px-10 h-fit max-h-full max-xl:px-3 max-xl:w-80">
                     <InputField
                         label="Име"
                         type="text"
-                        name="firstName"
-                        value={values.firstName}
+                        name="firstname"
+                        value={values.firstname}
                         onChange={handleChange}
                         onBlur={handleBlur}
                         errors={errors}
                         touched={touched}
                     />
-                    <InputField
-                        label="Презиме"
-                        type="text"
-                        name="middleName"
-                        value={values.middleName}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        errors={errors}
-                        touched={touched}
-                    />
+
                     <InputField
                         label="Фамилия"
                         type="text"
-                        name="lastName"
-                        value={values.lastName}
+                        name="lastname"
+                        value={values.lastname}
                         onChange={handleChange}
                         onBlur={handleBlur}
                         errors={errors}
@@ -77,16 +75,6 @@ const RegisterForm = () => {
                         type="password"
                         name="password"
                         value={values.password}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        errors={errors}
-                        touched={touched}
-                    />
-                    <InputField
-                        label="Повтори Парола"
-                        type="password"
-                        name="confirmPassword"
-                        value={values.confirmPassword}
                         onChange={handleChange}
                         onBlur={handleBlur}
                         errors={errors}
@@ -107,6 +95,16 @@ const RegisterForm = () => {
                         type="text"
                         name="phoneNumber"
                         value={values.phoneNumber}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        errors={errors}
+                        touched={touched}
+                    />
+                    <InputField
+                        label="Вид заетост"
+                        type="text"
+                        name="employmentType"
+                        value={values.employmentType}
                         onChange={handleChange}
                         onBlur={handleBlur}
                         errors={errors}
@@ -147,8 +145,8 @@ const RegisterForm = () => {
                     <InputField
                         label="Номер на лична карта"
                         type="number"
-                        name="iDNum"
-                        value={values.iDNum}
+                        name="idCardNumber"
+                        value={values.idCardNumber}
                         onChange={handleChange}
                         onBlur={handleBlur}
                         errors={errors}
@@ -188,10 +186,10 @@ const RegisterForm = () => {
                 </div>
             </div>
             
-            <Button label="Регистрация" type="submit" />
-            <p className='mt-3 text-sm'>
+            <Button label="Регистрация"  type="submit" />
+            <p className='mt-3 text-sm text-white'>
                 Вече имате акаунт? Влезте
-                <Link to='/auth/login' className='m-1 text-dark-green'>тук!</Link>
+                <Link to='/auth/login' className='m-1 text-green-400'>тук!</Link>
             </p>
         </form>
     )

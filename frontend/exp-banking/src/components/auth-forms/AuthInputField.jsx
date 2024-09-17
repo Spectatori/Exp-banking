@@ -4,7 +4,7 @@ const InputField = ({ label, type, name, value, onChange, onBlur, errors, touche
     const error = errors[name];
 
     return (
-        <div className="relative input-field pt-8 max-h-16  ">
+        <div className="relative input-field max-h-16  ">
             {type === 'select' ? (
                 <>
                     <select
@@ -14,7 +14,7 @@ const InputField = ({ label, type, name, value, onChange, onBlur, errors, touche
                         onBlur={onBlur}
                         className={`max-xl:w-72 rounded-lg pl-4 h-10 w-80 border text-sm outline-none ${error && touched[name]
                             ? 'border-2 border-red-700 ring-black'
-                            : 'border-lime-600 focus:ring-1 focus:ring-lime-600'
+                            : 'border-blue-whale focus:ring-1 focus:ring-blue-whale'
                         }`}
                     >
                         <option value="">Изберете {label}</option>
@@ -29,7 +29,7 @@ const InputField = ({ label, type, name, value, onChange, onBlur, errors, touche
                 <input
                     className={`max-xl:w-72 rounded-lg pl-4 h-10 w-80 border text-sm outline-none ${error && touched[name]
                         ? 'border-2 border-red-700 ring-black'
-                        : 'border-lime-600 focus:ring-1 focus:ring-lime-600'
+                        : 'border-blue-whale focus:ring-1 focus:ring-blue-whale'
                     }`}
                     placeholder={label}
                     type={type}

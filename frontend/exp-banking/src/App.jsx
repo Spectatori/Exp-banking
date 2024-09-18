@@ -18,8 +18,8 @@ function App() {
                     <Route path="/" element={<MainPage />} />
                     <Route path="/profile" element={<PrivateRoute element={<ProfilePage/>} />} />
                     <Route path="/profile/details" element={<PrivateRoute element={<ProfileDetailsPage/>} />} />
-                    <Route path="/auth/register" element={<AccessPage />} />
-                    <Route path="/auth/login" element={<AccessPage />} />
+                    <Route path="/auth/register" element={<PrivateRoute element={<AccessPage/>} authRequired={false} />} />
+                    <Route path="/auth/login" element={<PrivateRoute element={<AccessPage/>} authRequired={false} />} />
                     <Route path="/account-overview" element={<AccountOverviewPage />} />
                     <Route path="/calculator" element={<LoanCalcPage />} />
                     <Route path="/consumer-loan" element={<ConsumerLoanInfoPage />} />

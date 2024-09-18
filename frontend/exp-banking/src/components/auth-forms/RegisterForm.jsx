@@ -15,7 +15,6 @@ const RegisterForm = () => {
 
     const onSubmit = async (values) => {
         try {
-            // Restructure the values object
             const { cityName, postcode, street, ...rest } = values;
             const restructuredValues = {
                 ...rest,

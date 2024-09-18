@@ -20,3 +20,9 @@ export const loginUser = async (UserData) => {
         throw error; 
     }
 };
+// export const deleteUser = async (token) =>{
+//     try{
+//         const response = awayt apiClient.post()
+//     }
+//     }
+// }

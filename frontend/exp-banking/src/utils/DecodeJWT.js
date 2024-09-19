@@ -1,15 +1,19 @@
-export function decodeJWT (token) {
-    if(!token){
-        console.error("No token is provided")
+import Cookies from 'js-cookie';
+
+export function decodeJWT() {
+    const token = Cookies.get('UserToken');
+    
+    if (!token) {
+        console.error("No token is provided");
         return null;
     }
-    try{
-        const[headerEncoded, payloadEncoded, signature] = token.split('.');
 
+    try {
+        const [, payloadEncoded] = token.split('.');
         const payload = JSON.parse(atob(payloadEncoded));
         return payload;
-    }catch{
-        console.error("Error decoding JWT: ", error);
+    } catch (error) {
+        console.error("Error decoding JWT:", error);
         return null;
     }
 }

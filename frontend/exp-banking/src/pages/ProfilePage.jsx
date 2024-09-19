@@ -1,7 +1,8 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import ProfilePieChart from '../components/ProfilePieChart.jsx';
 import LoanTable from '../components/Table.jsx';
 import Navbar from '../components/nav-bar/Navbar.jsx';
+import { decodeJWT } from '../utils/DecodeJWT.js';
 // import getUser from '../api/userService.jsx'
 
 const mainAccount = [
@@ -94,6 +95,9 @@ const transactions = [
 
 const ProfilePage = () => {
 
+  useEffect(()=>{
+    decodeJWT();
+  })
 
   const [selectedTimeSpan, setSelectedTimeSpan] = useState('daily');
 

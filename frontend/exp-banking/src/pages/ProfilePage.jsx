@@ -137,7 +137,6 @@ const ProfilePage = () => {
     <div className="flex flex-col">
       <Navbar />
       <div className="flex flex-col pt-10 px-40 gap-10 max-xl:px-4 max-2xl:pb-10">
-        <p className="text-2xl font-bold max-xl:text-center">Добре дошли в exp banking</p>
         <div className='flex flex-row justify-between max-2xl:flex-col max-xl:gap-10'>
           <div className='flex flex-col gap-16 '>
             {mainAccount.map((account) => (

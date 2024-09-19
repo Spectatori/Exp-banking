@@ -1,5 +1,6 @@
 package com.expbanking.expBanking.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,6 +17,7 @@ public class EmploymentType {
     @Column(name = "type")// EnumType.STRING ensures the enum is persisted as a string
     private String employmentType;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "employmentType", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private User user;
 

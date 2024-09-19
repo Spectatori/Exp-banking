@@ -15,7 +15,6 @@ import java.util.Map;
 import java.util.function.Function;
 
 import static io.jsonwebtoken.SignatureAlgorithm.HS512;
-import static org.springframework.security.config.Elements.JWT;
 
 @Service
 public class JwtService {
@@ -30,11 +29,8 @@ public class JwtService {
         final Claims claims = extractAllClaims(token);
         return claimsResolver.apply(claims);
     }
-    public String generateToken(UserDetails userDetails){
-        return generateToken(new HashMap<>(), userDetails);
-    }
 
-    public String generateToken(UserDetails userDetails, Long userId, Long addressId) {
+    public String generateTokenWithAddressId(UserDetails userDetails, Long userId, Long addressId) {
         Map<String, Object> extraClaims = new HashMap<>();
         extraClaims.put("userId", userId);
         extraClaims.put("addressId", addressId);
@@ -58,10 +54,11 @@ public class JwtService {
     }
 
 
-    public String generateTokenWithAccountId(User user, Long accountId) {
+    public String generateTokenWithAccountId(User user, Long accountId, String iban) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("userId", user.getId());
-        claims.put("accountId", accountId); // Add the account ID to the token claims
+        claims.put("accountId", accountId);// Add the account ID to the token claims
+        claims.put("iban", iban);
 
         return Jwts.builder()
                 .setClaims(claims)
@@ -71,6 +68,10 @@ public class JwtService {
                 .signWith(getSigningKey(), HS512)
                 .compact();
     }
+    public String extractIban(String token) {
+        return extractClaim(token, claims -> claims.get("iban", String.class));
+    }
+
 
     public Long extractAccountId(String token) {
         return extractClaim(token, claims -> claims.get("accountId", Long.class));

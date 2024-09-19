@@ -9,6 +9,7 @@ import org.mapstruct.Mapping;
 public interface UserMapper {
 
     @Mapping(target = "firstname", source = "dto.firstname")
+    @Mapping(target = "secondname", source = "dto.secondname")
     @Mapping(target = "lastname", source = "dto.lastname")
     @Mapping(target = "email", source = "dto.email")
     @Mapping(target = "phoneNumber", source = "dto.phoneNumber")

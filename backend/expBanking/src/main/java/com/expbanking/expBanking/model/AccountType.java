@@ -1,6 +1,7 @@
 package com.expbanking.expBanking.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -18,6 +19,7 @@ public class AccountType {
     @Column(name = "account_type")
     private String accountType;
 
+    @JsonIgnore
     //@OneToOne
     //@JoinColumn(name = "account_id", referencedColumnName = "accountId")
     @OneToOne(mappedBy = "accountType")

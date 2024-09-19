@@ -8,6 +8,8 @@ import java.time.LocalDate;
 
 public record UserDTO(
         String firstname,
+
+        String secondname,
         String lastname,
         String email,
         String password,

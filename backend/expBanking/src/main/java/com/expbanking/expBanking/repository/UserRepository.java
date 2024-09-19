@@ -12,6 +12,6 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User,Long> {
 //    List<Transactions> getAllTransactionsByUserId(Long theId);
     Optional<User> getUserByEmail(String email);
-
+    //User findByIban(String iban);
 
 }

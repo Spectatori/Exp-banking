@@ -36,6 +36,7 @@ public class UserServiceImpl implements UserService{
     public UserDTO saveUser(UserDTO userDTO) {
         User user = new User();
         user.setFirstname(userDTO.firstname());
+        user.setSecondname(userDTO.secondname());
         user.setLastname(userDTO.lastname());
         user.setEmail(userDTO.email());
         user.setPassword(userDTO.password());
@@ -70,6 +71,7 @@ public class UserServiceImpl implements UserService{
 
 
             updatedUser.setFirstname(userDto.firstname());
+            updatedUser.setSecondname(userDto.secondname());
             updatedUser.setLastname(userDto.lastname());
             updatedUser.setEmail(userDto.email());
             updatedUser.setPhoneNumber(userDto.phoneNumber());

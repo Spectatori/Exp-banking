@@ -1,5 +1,6 @@
 package com.expbanking.expBanking.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,7 +25,7 @@ public class Expenses {
 
     @Column(name = "description")
     private String description;
-
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "transactions_id")
     private Transactions transactions;

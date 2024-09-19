@@ -11,7 +11,7 @@ public record TransactionsDTO(
         Timestamp dateOfTransaction,
         Double amount,
         String details,
-        TransactionType tType
+        TransactionType transactionType
 ) {
 
 }

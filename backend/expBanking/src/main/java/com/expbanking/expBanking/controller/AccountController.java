@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Controller
@@ -49,7 +50,8 @@ public class AccountController {
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         // Generate a new token with the account ID
-        AuthenticationResponse newTokenResponse = authenticationService.updateTokenWithAccountId(user, account.getAccountId());
+        AuthenticationResponse newTokenResponse = authenticationService.updateTokenWithAccountId(user, account.getAccountId(),account.getIban());
+
 
         // Return the new token in the response
         return new ResponseEntity<>(newTokenResponse, HttpStatus.CREATED);
@@ -88,11 +90,12 @@ public class AccountController {
     @GetMapping("/accounts")
     public List<Accounts> getAllAccounts(){ return accountsServiceImpl.getAllAccounts();}
 
-    @PostMapping("/transfer")
-    public ResponseEntity<Transactions> transfer (@RequestParam String senderIban,
-                                                  @RequestParam String receiverIban,
-                                                  @RequestParam BigDecimal amount) {
+    @PostMapping("/transfer/{senderIban}")
+    public ResponseEntity<Transactions> transfer (@PathVariable String senderIban,
+                                                  @RequestBody Map<String, Object> requestBody) {
 
+        String receiverIban = (String) requestBody.get("receiverIban");
+        BigDecimal amount = new BigDecimal(requestBody.get("amount").toString());
         Transactions transaction = accountsServiceImpl.transfer(senderIban,receiverIban,amount);
         return new ResponseEntity<>(transaction, HttpStatus.OK);
     }

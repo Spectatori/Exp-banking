@@ -14,10 +14,24 @@ import PasswordChangeSection from '../components/profile-details/PasswordChangeS
 const ProfileDetailsPage = () => {
     const [selectedButton, setSelectedButton] = useState('personalInfoSection');
 
+    const [isEditing, setIsEditing] = useState({
+        email: false,
+        phoneNumber: false,
+        address: false,
+        employment: false,
+    });
+
     const handleButtonClick = (section) => {
         setSelectedButton(section);
     };
 
+    const handleEditClick = (field) => {
+        event.preventDefault();
+        setIsEditing((prevState) => ({
+        ...prevState,
+    [field]: !prevState[field], // Toggle edit state for the clicked field
+        }));
+    };
     return (
         <div>
             <header>
@@ -46,58 +60,84 @@ const ProfileDetailsPage = () => {
                 {selectedButton === 'personalInfoSection' && (
                     <section>
                         <h2 className='text-xl font-semibold text-blue-whale mt-10'>Моите данни</h2>
-
                         <div className='grid grid-cols-1 lg:grid-cols-2 mb-10 gap-8'>
-                            <ShadowBox className='flex flex-row justify-between gap-10'>
-                                <div className='flex flex-col gap-2'>
-                                    <p className='font-semibold'>Имейл</p>
-                                    <p>
-                                        john.doe@example.com
-                                    </p>
-                                </div>
-                                <button className='self-start underline text-azure'>
-                                    Edit
-                                </button>
-                            </ShadowBox>
 
+                            <form>
                             <ShadowBox className='flex flex-row justify-between gap-10'>
-                                <div className='flex flex-col gap-2'>
-                                    <p className='font-semibold'>Телефонен номер</p>
-                                    <p>
-                                        +359 88 123 4567
-                                    </p>
-                                </div>
-                                <button className='self-start underline text-azure'>
-                                    Edit
-                                </button>
+                            <div className='flex flex-col gap-2'>
+                                <p className='font-semibold'>Имейл</p>
+                                {isEditing.email ? (
+                                <input type="email" defaultValue="john.doe@example.com" />
+                                ) : (
+                                <p>john.doe@example.com</p>
+                                )}
+                            </div>
+                            <button
+                                onClick={() => handleEditClick('email')}
+                                className='self-start underline text-azure'
+                            >
+                                {isEditing.email ? 'Save' : 'Edit'}
+                            </button>
                             </ShadowBox>
+                            </form>
 
+                            <form>
                             <ShadowBox className='flex flex-row justify-between gap-10'>
-                                <div className='flex flex-col gap-2'>
-                                    <p className='font-semibold'>Настоящ адрес</p>
-                                    <p>
-                                        ул. „Цар Иван Асен II“ №24
-                                        ет. 3, ап. 12
-                                        1000 София
-                                        България
-                                    </p>
-                                </div>
-                                <button className='self-start underline text-azure'>
-                                    Edit
-                                </button>
+                            <div className='flex flex-col gap-2'>
+                                <p className='font-semibold'>Телефонен номер</p>
+                                {isEditing.phoneNumber ? (
+                                <input type="phoneNumber" defaultValue="+359 88 123 4567" />
+                                ) : (
+                                <p>+359 88 123 4567</p>
+                                )}
+                            </div>
+                            <button
+                                onClick={() => handleEditClick('phoneNumber')}
+                                className='self-start underline text-azure'
+                            >
+                                {isEditing.phoneNumber ? 'Save' : 'Edit'}
+                            </button>
                             </ShadowBox>
+                            </form>
+                            
+                            <form>
+                            <ShadowBox className='flex flex-row justify-between gap-10'>
+                            <div className='flex flex-col gap-2'>
+                                <p className='font-semibold'>Настоящ адрес</p>
+                                {isEditing.address ? (
+                                <input type="address" defaultValue="ул. „Цар Иван Асен II“ №24 ет. 3, ап. 12 1000 София България" />
+                                ) : (
+                                <p>ул. „Цар Иван Асен II“ №24 ет. 3, ап. 12 1000 София България</p>
+                                )}
+                            </div>
+                            <button
+                                onClick={() => handleEditClick('address')}
+                                className='self-start underline text-azure'
+                            >
+                                {isEditing.address ? 'Save' : 'Edit'}
+                            </button>
+                            </ShadowBox>
+                            </form>
 
+                            <form>
                             <ShadowBox className='flex flex-row justify-between gap-10'>
-                                <div className='flex flex-col gap-2'>
-                                    <p className='font-semibold'>Трудова заетост</p>
-                                    <p>
-                                        Пълно работно време
-                                    </p>
-                                </div>
-                                <button className='self-start underline text-azure'>
-                                    Edit
-                                </button>
+                            <div className='flex flex-col gap-2'>
+                                <p className='font-semibold'>Трудова заетост</p>
+                                {isEditing.employment ? (
+                                <input type="employment" defaultValue="Пълно работно време" />
+                                ) : (
+                                <p>Пълно работно време</p>
+                                )}
+                            </div>
+                            <button
+                                onClick={() => handleEditClick('employment')}
+                                className='self-start underline text-azure'
+                            >
+                                {isEditing.employment ? 'Save' : 'Edit'}
+                            </button>
                             </ShadowBox>
+                            </form>
+
                         </div>
                     </section>
                 )}

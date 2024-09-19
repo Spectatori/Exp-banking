@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import ProfilePieChart from '../components/ProfilePieChart.jsx';
 import LoanTable from '../components/Table.jsx';
 import Navbar from '../components/nav-bar/Navbar.jsx';
-import { useCookies } from 'react-cookie';
+// import getUser from '../api/userService.jsx'
 
 const mainAccount = [
   {

@@ -2,8 +2,8 @@ import React, { useState, useMemo, useEffect } from 'react';
 import ProfilePieChart from '../components/ProfilePieChart.jsx';
 import LoanTable from '../components/Table.jsx';
 import Navbar from '../components/nav-bar/Navbar.jsx';
-import { decodeJWT } from '../utils/DecodeJWT.js';
 import { getUser } from '../api/userService.jsx';
+import { useUserStore } from '../stores/AuthStore.js';
 
 const mainAccount = [
   {
@@ -95,10 +95,6 @@ const transactions = [
 
 const ProfilePage = () => {
 
-  useEffect(()=>{
-    decodeJWT();
-  })
-
   const [selectedTimeSpan, setSelectedTimeSpan] = useState('daily');
 
   const handleTimeSpanChange = (e) => {
@@ -133,6 +129,8 @@ const ProfilePage = () => {
     }
   ], []);
 
+  const user = useUserStore((state) => state.user);
+  console.log(user)
   return (
     <div className="flex flex-col">
       <Navbar />

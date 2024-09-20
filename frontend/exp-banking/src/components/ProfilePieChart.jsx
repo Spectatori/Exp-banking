@@ -39,7 +39,6 @@ const pieData = Object.keys(totalsByCategory).map(category => ({
   name: category,
   value: Math.abs(totalsByCategory[category])
 }));
-  console.log(pieData)
 
   return (
     <ResponsiveContainer width={300} height={300}>

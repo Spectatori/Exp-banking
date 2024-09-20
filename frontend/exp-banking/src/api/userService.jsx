@@ -4,9 +4,8 @@ import { decodeJWT } from '../utils/DecodeJWT.js'
 export const getUser = async() =>{
     try {
         const decoded = decodeJWT();
-        console.log(decoded.sub)
         const user = await apiClient.get(`/admin/getUser/`+decoded.sub)
-        console.log(user)
+        return user.data;
     }
     catch(error){
         console.log("The error is " + error)

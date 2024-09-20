@@ -29,7 +29,6 @@ public class AdminController {
         userServiceImpl.deleteUser(userid);
     }
 
-    @PreAuthorize("hasRole('ADMIN') or email == authenticate.name")
     @GetMapping("/getUser/{email}")
     public Optional<User> getUserById(@PathVariable String email){
        return userServiceImpl.findByEmail(email);

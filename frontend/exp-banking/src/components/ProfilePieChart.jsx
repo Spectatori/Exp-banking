@@ -2,10 +2,10 @@ import React from 'react';
 import { PieChart, Pie, Tooltip, Cell, ResponsiveContainer } from 'recharts';
 
 const categoryColors = {
-  Food: "#3ACDEA",
+  Food: "#FF6347",
   Groceries: "#32CD32",
-  Entertainment: "#FFD700",
-  Travel: "#1E90FF",
+  Entertainment: "#833EA5",
+  Travel: "red",
 };
 
 const defaultColor = "#D3D3D3";

@@ -96,24 +96,14 @@ const ProfilePage = () => {
 
   const columns = useMemo(() => [
     {
-      accessorKey: 'name',
-      header: 'Име',
-      size: 100,
-    },
-    {
-      accessorKey: 'date',
+      accessorKey: 'dateOfTransaction',
       header: 'Дата',
       size: 100,
     },
     {
-      accessorKey: 'type',
-      header: 'Тип',
+      accessorKey: 'details',
+      header: 'Детайли',
       size: 150,
-    },
-    {
-      accessorKey: 'category',
-      header: 'Категория',
-      size: 100,
     },
     {
       accessorKey: 'amount',
@@ -150,8 +140,8 @@ const ProfilePage = () => {
               boxShadow: 'rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px'
             }}>
               <p className='text-xl pb-2 pl-6'>Скорошни транзакции</p>
-              <div className='overflow-y-auto max-h-96 w-full'>
-                <LoanTable columns={columns} data={transactions} />
+              <div className='overflow-y-auto h-96 max-h-96 w-full'>
+                <LoanTable columns={columns} data={user.accounts[0].transactions} />
               </div>
               
             </div>
@@ -161,7 +151,7 @@ const ProfilePage = () => {
           }}>
             <div className='flex flex-row px-6 justify-between pb-10 max-2xl:pt-5'>
               <p className='text-2xl font-bold'>Всички разходи</p>
-              <button onClick={getUser} className='bg-teal-700 w-10 h-10 items-center justify-center flex rounded-lg hover:scale-110 ease-in duration-300'>
+              <button className='bg-teal-700 w-10 h-10 items-center justify-center flex rounded-lg hover:scale-110 ease-in duration-300'>
                 <svg className="arrow" viewBox="0 0 448 512" height="1em" xmlns="http://www.w3.org/2000/svg">
                   <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 
                     45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5 12.5 32.8 0 

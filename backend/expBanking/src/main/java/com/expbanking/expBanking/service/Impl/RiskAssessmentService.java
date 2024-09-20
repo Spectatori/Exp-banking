@@ -5,6 +5,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -54,7 +55,25 @@ public class RiskAssessmentService {
 
     private double checkIncomeStability(Long userId) {
         // Implement logic to check if income has been stable over time
-        return 1.0;  // Example: fully stable
+        List<Double> monthlyIncomes = financialSummaryService.getMonthlyIncomes(userId, 6);
+
+        if (monthlyIncomes.isEmpty()) {
+            return 0.0;  // No income data available, assume no stability
+        }
+
+        // Calculate average monthly income
+        double averageIncome = monthlyIncomes.stream().mapToDouble(Double::doubleValue).average().orElse(0.0);
+
+        // Check income stability
+        double deviationThreshold = 0.1;  // 10% allowed deviation
+        for (double income : monthlyIncomes) {
+            double deviation = (income - averageIncome) / averageIncome;
+            if (deviation > deviationThreshold) {
+                return 0.0;  // Income unstable if deviation exceeds the threshold
+            }
+        }
+
+        return 1.0;   // Example: fully stable
     }
 
     private double calculateDebtToIncomeRatio(UserFinancialSummary summary) {

@@ -84,7 +84,7 @@ public class TransactionServiceImpl implements TransactionService{
             expense.setTransactions(savedTransaction);
             expensesRepository.save(expense);
             Accounts acc = accountsOptional.get();
-            acc.setBalance(acc.getBalance().subtract(BigDecimal.valueOf(transactionDTO.amount())));
+            acc.setBalance(acc.getBalance().add(BigDecimal.valueOf(transactionDTO.amount())));
             accountsRepository.save(acc);
         }
         return  savedTransaction;

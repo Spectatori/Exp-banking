@@ -4,6 +4,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import com.expbanking.expBanking.model.UserFinancialSummary;
+
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -21,4 +23,14 @@ public interface UserFinancialSummaryRepository extends JpaRepository<UserFinanc
             "GROUP BY u.user_id", nativeQuery = true)
     Optional<UserFinancialSummary> findUserFinancialSummary(@Param("userId") Long userId);
 
+    @Query(value = "SELECT COALESCE(SUM(i.amount), 0) AS monthly_income, " +
+            "DATE_TRUNC('month', i.date_of_payment) AS income_month " +
+            "FROM income i " +
+            "JOIN transactions t ON i.transactions_id = t.transaction_id " +
+            "JOIN accounts a ON t.account_id = a.account_id " +
+            "WHERE a.user_id = :userId " +
+            "AND i.date_of_payment >= NOW() - INTERVAL '6 months' " +
+            "GROUP BY income_month " +
+            "ORDER BY income_month", nativeQuery = true)
+    List<Double> findMonthlyIncomes(@Param("userId") Long userId);
 }

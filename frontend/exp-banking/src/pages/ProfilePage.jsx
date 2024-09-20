@@ -2,8 +2,8 @@ import React, { useState, useMemo, useEffect } from 'react';
 import ProfilePieChart from '../components/ProfilePieChart.jsx';
 import LoanTable from '../components/Table.jsx';
 import Navbar from '../components/nav-bar/Navbar.jsx';
-import { getUser } from '../api/userService.jsx';
 import { useUserStore } from '../stores/AuthStore.js';
+import {filterTransactions, calculateTotal} from '../utils/FilterTransactionsByDate.jsx'
 
 const categoryColors = {
   Food: {
@@ -19,73 +19,6 @@ const categoryColors = {
     Color: "#32CD32",
   }
 };
-
-const transactions = [
-  {
-    name: "Starbucks",
-    date: "2024-09-06",
-    type: "Плащане с карта",
-    category: "Entertainment",
-    amount: "+5 BGN"
-  },
-  {
-    name: "Grocery Store",
-    date: "2024-09-05",
-    type: "Плащане с карта",
-    category: "Groceries",
-    amount: "-30 BGN"
-  },
-  {
-    name: "Restaurant",
-    date: "2024-09-04",
-    type: "Плащане с карта",
-    category: "Food",
-    amount: "-50 BGN"
-  },
-  {
-    name: "Restaurant",
-    date: "2024-09-04",
-    type: "Плащане с карта",
-    category: "Food",
-    amount: "-50 BGN"
-  },
-  {
-    name: "Restaurant",
-    date: "2024-09-04",
-    type: "Плащане с карта",
-    category: "Food",
-    amount: "-50 BGN"
-  },
-  {
-    name: "Restaurant",
-    date: "2024-09-04",
-    type: "Плащане с карта",
-    category: "Food",
-    amount: "-50 BGN"
-  },
-  {
-    name: "Restaurant",
-    date: "2024-09-04",
-    type: "Плащане с карта",
-    category: "Food",
-    amount: "-50 BGN"
-  },
-  {
-    name: "Restaurant",
-    date: "2024-09-04",
-    type: "Плащане с карта",
-    category: "Food",
-    amount: "-50 BGN"
-  },
-  {
-    name: "Restaurant",
-    date: "2024-09-04",
-    type: "Плащане с карта",
-    category: "Food",
-    amount: "-50 BGN"
-  },
-];
-
 const ProfilePage = () => {
 
   const [selectedTimeSpan, setSelectedTimeSpan] = useState('daily');
@@ -114,6 +47,22 @@ const ProfilePage = () => {
 
   const user = useUserStore((state) => state.user);
   console.log(user)
+
+  const filteredTransactions = useMemo(() => {
+    if (user && user.accounts && user.accounts.length > 0) {
+      return filterTransactions(user.accounts[0].transactions, selectedTimeSpan);
+    }
+    return [];
+  }, [user, selectedTimeSpan]);
+
+  const totalForSelectedTimeSpan = useMemo(() => {
+    return calculateTotal(filteredTransactions);
+  }, [filteredTransactions]);
+
+  const dailyTotal = calculateTotal(filterTransactions(user?.accounts[0]?.transactions, 'daily'));
+  const weeklyTotal = calculateTotal(filterTransactions(user?.accounts[0]?.transactions, 'weekly'));
+  const monthlyTotal = calculateTotal(filterTransactions(user?.accounts[0]?.transactions, 'monthly'));
+
   return (
     <div className="flex flex-col">
       <Navbar />
@@ -161,16 +110,22 @@ const ProfilePage = () => {
             </div>
             <div className='flex flex-row justify-around pb-4 max-xl:flex-col max-xl:items-center max-xl:gap-3'>
               <div className='flex flex-col items-start max-2xl:gap-1'>
-                <p className='font-mono text-gray-400'>Дневно</p>
-                <p className=' text-xl font-bold font-mono'>275<sub>,40</sub> ЛВ</p>
+                <p className='font-mono text-gray-400' >Дневно</p>
+                <p className=' text-xl font-bold font-mono'>
+                <p className=' text-xl font-bold font-mono'>{dailyTotal.toFixed(2)} ЛВ</p>
+                </p>
               </div>
               <div className='flex flex-col items-start max-2xl:gap-1'>
                 <p className='font-mono text-gray-400'>Седмично</p>
-                <p className=' text-xl font-bold font-mono'>1.420<sub>,65</sub> ЛВ</p>
+                <p className=' text-xl font-bold font-mono'>
+                <p className=' text-xl font-bold font-mono'>{weeklyTotal.toFixed(2)} ЛВ</p>
+                </p>
               </div>
               <div className='flex flex-col items-start max-2xl:gap-1'>
                 <p className='font-mono text-gray-400'>Месечно</p>
-                <p className=' text-xl font-bold font-mono'>8.200<sub>,00</sub> ЛВ</p>
+                <p className=' text-xl font-bold font-mono'>
+                <p className=' text-xl font-bold font-mono'>{monthlyTotal.toFixed(2)} ЛВ</p>
+                </p>
               </div>
             </div>
             <hr className='border-t border-gray-300 pl-10 w-5/6 self-center pb-7' />
@@ -188,7 +143,7 @@ const ProfilePage = () => {
                   </select>
                 </div>
                 <div className='pl-20 pt-10 max-xl:pl-0 max-xl:self-center'>
-                <ProfilePieChart transactions={user.accounts[0].transactions} />
+                <ProfilePieChart transactions={filteredTransactions} />
                 </div>
               </div>
               <div className='flex flex-col pr-44 justify-center pl-20 max-xl:pt-5'>

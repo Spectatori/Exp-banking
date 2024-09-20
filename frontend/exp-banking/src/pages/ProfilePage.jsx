@@ -5,13 +5,6 @@ import Navbar from '../components/nav-bar/Navbar.jsx';
 import { getUser } from '../api/userService.jsx';
 import { useUserStore } from '../stores/AuthStore.js';
 
-const mainAccount = [
-  {
-    balance: "1050.00",
-    IBAN: "BG67STSA93000000000012345"
-  }
-];
-
 const categoryColors = {
   Food: {
     Color: "#FF6347",
@@ -137,21 +130,21 @@ const ProfilePage = () => {
       <div className="flex flex-col pt-10 px-40 gap-10 max-xl:px-4 max-2xl:pb-10">
         <div className='flex flex-row justify-between max-2xl:flex-col max-xl:gap-10'>
           <div className='flex flex-col gap-16 '>
-            {mainAccount.map((account) => (
-              <div key={account.IBAN} className='flex flex-row justify-between px-10 items-center rounded-xl h-28 w-full max-xl:flex-col max-xl:h-44 max-xl:items-center max-xl:justify-center max-xl gap-5' style={{
+              <div className='flex flex-row justify-between px-10 items-center rounded-xl h-28 w-full 
+              max-xl:flex-col max-xl:h-44 max-xl:items-center max-xl:justify-center gap-3' style={{
                 boxShadow: 'rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px'
               }}>
+                {user && user.accounts && user.accounts.length > 0 ? (
+                  <p className='font-bold text-md'>{user.accounts[0].iban}</p> ) : ( <p>No account available</p> )}
                 <div className="flex flex-col">
-                  <p className="font-mono text-gray-400 text-sm self-start max-xl:self-center">Tester Testov</p>
-                  <p className='font-mono self-start max-xl:self-center'>Online pay account</p>
-                  <p className='font-mono font-bold text-m self-start'>{account.IBAN}</p>
+                  <p className="font-mono text-gray-400 text-md self-start max-xl:self-center">{user.firstname} {user.lastname}</p>
+                  <p className='font-mono self-start max-xl:self-center max-xl:pt-1'>{user.accounts[0].accountType.accountType}</p>
                 </div>
                 <div className="flex flex-col">
-                  <p className="font-mono text-gray-400 text-sm self-end">Налична сума</p>
-                  <p className=' text-2xl self-end'>{account.balance}</p>
+                  <p className="font-mono text-gray-400 text-sm self-end max-xl:self-center">Налична сума</p>
+                  <p className=' text-2xl self-end max-xl:self-center'>{user.accounts[0].balance} BGN</p>
                 </div>
               </div>
-            ))}
 
             <div className='flex flex-col justify-between rounded-xl p-3' style={{
               boxShadow: 'rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px'

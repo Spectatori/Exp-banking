@@ -25,6 +25,13 @@ public class RiskAssessmentService {
         UserFinancialSummary financialSummary = financialSummaryOpt.get();
         int riskScore = 0;
 
+        // Step 1: Check if expenses exceed income, if yes, deny loan immediately
+        if (financialSummary.getTotalExpenses() >= financialSummary.getTotalIncome()) {
+            // Automatically reject loan if expenses are greater than or equal to income
+            return -1; // Use -1 or any other flag to denote automatic rejection
+        }
+
+        // Step 2: Calculate the risk score if expenses are less than income
         // Income Stability (Example: 90% stability gets 10 points)
         double incomeStabilityScore = checkIncomeStability(userId);
         if (incomeStabilityScore > 0.9) {
@@ -38,7 +45,7 @@ public class RiskAssessmentService {
         }
 
         // Loan-to-Income Ratio (Smaller loan size compared to income)
-        double loanToIncomeRatio = calculateLoanToIncomeRatio(financialSummary,requestedLoanAmount);
+        double loanToIncomeRatio = calculateLoanToIncomeRatio(financialSummary, requestedLoanAmount);
         if (loanToIncomeRatio < 0.5) {
             riskScore += 10;
         }
@@ -47,8 +54,6 @@ public class RiskAssessmentService {
         if (financialSummary.getTotalExpenses() / financialSummary.getTotalIncome() > 0.5) {
             riskScore -= 20;  // Deduct points for high expenses
         }
-
-        // Add more risk factors (e.g. credit score, employment type, etc.)
 
         return riskScore;  // The higher the score, the lower the risk.
     }

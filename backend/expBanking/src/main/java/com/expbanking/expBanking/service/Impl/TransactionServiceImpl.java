@@ -72,6 +72,9 @@ public class TransactionServiceImpl implements TransactionService{
             income.setDateOfPayment(savedTransaction.getDateOfTransaction());
             income.setTransactions(savedTransaction);
             incomeRepository.save(income);
+            Accounts acc = accountsOptional.get();
+            acc.setBalance(acc.getBalance().add(BigDecimal.valueOf(transactionDTO.amount())));
+            accountsRepository.save(acc);
         } else {
             expenses.add(savedTransaction.getAmount());
             Expenses expense = new Expenses();
@@ -80,6 +83,9 @@ public class TransactionServiceImpl implements TransactionService{
             expense.setDateOfPayment(savedTransaction.getDateOfTransaction());
             expense.setTransactions(savedTransaction);
             expensesRepository.save(expense);
+            Accounts acc = accountsOptional.get();
+            acc.setBalance(acc.getBalance().subtract(BigDecimal.valueOf(transactionDTO.amount())));
+            accountsRepository.save(acc);
         }
         return  savedTransaction;
     }

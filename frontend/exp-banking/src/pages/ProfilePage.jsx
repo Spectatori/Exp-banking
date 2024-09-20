@@ -188,7 +188,7 @@ const ProfilePage = () => {
                   </select>
                 </div>
                 <div className='pl-20 pt-10 max-xl:pl-0 max-xl:self-center'>
-                <ProfilePieChart transactions={transactions} />
+                <ProfilePieChart transactions={user.accounts[0].transactions} />
                 </div>
               </div>
               <div className='flex flex-col pr-44 justify-center pl-20 max-xl:pt-5'>

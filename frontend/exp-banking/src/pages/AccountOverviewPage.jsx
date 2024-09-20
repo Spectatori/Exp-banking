@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import InnerHeader from '../components/nav-bar/authenticated/InnerHeader'
 import AuthNavbar from '../components/nav-bar/authenticated/AuthNavbar'
 import PrimaryButton from '../components/PrimaryButton'
@@ -216,16 +217,18 @@ const AccountOverviewPage = () => {
 
             <section className='flex gap-10 flex-row bg-space-wolves-grey mt-10 p-10 items-center justify-evenly'>
                 <button className='max-w-28'>
-                    <div className='flex flex-col items-center gap-2 group'>
-                        <div className='flex bg-azure border rounded-full size-28 items-center justify-center transition-transform duration-300 ease-in-out transform group-hover:scale-110'>
-                            <img
-                                src={transactionIcon}
-                                alt=""
-                                className='h-16'
-                            />
+                    <Link to='/new-transfer'>
+                        <div className='flex flex-col items-center gap-2 group'>
+                            <div className='flex bg-azure border rounded-full size-28 items-center justify-center transition-transform duration-300 ease-in-out transform group-hover:scale-110'>
+                                <img
+                                    src={transactionIcon}
+                                    alt=""
+                                    className='h-16'
+                                />
+                            </div>
+                            <h3 className='text-lg font-semibold text-blue-whale leading-5 mt-2'>Нов превод </h3>
                         </div>
-                        <h3 className='text-lg font-semibold text-blue-whale leading-5 mt-2'>Нов превод </h3>
-                    </div>
+                    </Link>
                 </button>
 
                 <button className='max-w-28'>

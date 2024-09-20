@@ -9,8 +9,9 @@ import AccountOverviewPage from "./pages/AccountOverviewPage.jsx";
 import AIChat from "./components/AIChat.jsx";
 import PrivateRoute from "./components/auth-forms/PrivateRoute.jsx";
 import ConsumerLoanInfoPage from "./pages/ConsumerLoanInfoPage.jsx";
+import NewTransferPage from "./pages/NewTransferPage.jsx"
+
 function App() {
-    
     return (
         <div className="flex flex-col min-h-screen justify-between ">
             <Router>
@@ -23,6 +24,7 @@ function App() {
                     <Route path="/account-overview" element={<AccountOverviewPage />} />
                     <Route path="/calculator" element={<LoanCalcPage />} />
                     <Route path="/consumer-loan" element={<ConsumerLoanInfoPage />} />
+                    <Route path="/new-transfer" element={<NewTransferPage />} />
                 </Routes>
             </Router>
             <AIChat/>

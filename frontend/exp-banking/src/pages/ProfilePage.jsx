@@ -49,7 +49,7 @@ const ProfilePage = () => {
   console.log(user)
 
   const filteredTransactions = useMemo(() => {
-    if (user && user.accounts && user.accounts.length && user.accounts[0].transactions > 0) {
+    if (user && user.accounts && user.accounts.length && user.accounts[0].transactions.length > 0) {
       return filterTransactions(user.accounts[0].transactions, selectedTimeSpan);
     }
     return [];

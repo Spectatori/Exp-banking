@@ -6,6 +6,7 @@ import PrimaryButton from '../components/PrimaryButton'
 import ShadowBox from '../components/ShadowBox'
 import AddAccountForm from '../components/account-overview/AddAccountForm'
 import { useUserStore } from '../stores/AuthStore.js';
+import { useNavigate } from 'react-router-dom'
 
 import detailsIcon from '../assets/account-overview/details.png'
 import transactionIcon from '../assets/account-overview/money.png'
@@ -21,7 +22,8 @@ const AccountOverviewPage = () => {
     const [selectedAccountTransactions, setSelectedAccountTransactions] = useState([]);
     const [selectedAccount, setSelectedAccount] = useState([]);
 
-    const user = useUserStore((state) => state.user);
+    const { user } = useUserStore();
+    const navigate = useNavigate();
 
     const mockTransactionHistory = {
         1: [
@@ -115,13 +117,6 @@ const AccountOverviewPage = () => {
         setIsAddAccountButtonClicked(false);
     }
 
-    const handleTransactionHistoryClick = (accountId) => {
-        setSelectedAccountTransactions([accountId] || []);
-        setSelectedAccount(mockAccounts.find((account) => account.id === accountId));
-
-        selectedAccount.id === accountId ? setShowTransactionHistory(!showTransactionHistory) : setShowTransactionHistory(true);
-    };
-
     return (
         <div>
             <header>
@@ -160,17 +155,10 @@ const AccountOverviewPage = () => {
                                             </div>
 
                                             <div className='flex flex-row gap-5'>
-                                                <div className='flex flex-col'>
-                                                    <button className='overflow-visible h-16 relative flex flex-col items-center justify-center gap-2 transition-all duration-300 group overflow-hidden'>
-                                                        <img src={detailsIcon} className='size-7 transition-transform duration-300 group-hover:translate-y-[-8px]' alt="" />
-                                                        <p className='mt-12 absolute text-xs transform translate-y-5 transition-transform duration-300 opacity-0 group-hover:translate-y-0 group-hover:opacity-100'>Детайли</p>
-                                                    </button>
-                                                </div>
-
                                                 <div className='flex flex-col w-fit'>
                                                     <button
                                                         className='overflow-visible h-16 relative flex flex-col items-center justify-center gap-2 transition-all duration-300 group overflow-hidden'
-                                                        onClick={() => handleTransactionHistoryClick(account.id)}
+                                                        onClick={() => navigate('/profile', { state: { accountId: user.accounts.indexOf(account)}})}
                                                     >
                                                         <img src={transactionHistoryIcon} className='size-8 transition-transform duration-300 group-hover:translate-y-[-8px]' alt="" />
                                                         <p className='mt-12 absolute text-xs transform translate-y-5 transition-transform duration-300 opacity-0 group-hover:translate-y-0 group-hover:opacity-100'>Движения</p>
@@ -178,31 +166,6 @@ const AccountOverviewPage = () => {
                                                 </div>
                                             </div>
                                         </div>
-
-                                        {selectedAccount.id === account.id && showTransactionHistory && (
-                                            <div className='mt-5 flex flex-col w-[35rem] border-t border-t-gray-300 w-full px-5 justify-items-center text-sm md:text-base'>
-                                                {selectedAccountTransactions.map((transaction) => {
-                                                    const categoryCircle = categoryColors[transaction.category]?.Circle || null;
-
-                                                    return (
-                                                        <div className='flex gap-10 mt-5 items-center'>
-                                                            <div className='flex flex-row gap-2'>
-                                                                <div className='flex flex-col '>
-                                                                    <h3>{transaction.merchant}</h3>
-                                                                    <p>{transaction.date}</p>
-                                                                </div>
-                                                            </div>
-                                                            <p className='flex-1 text-start'>{transaction.description}</p>
-                                                            <div className='flex-1 flex items-center justify-end'>
-                                                                {categoryCircle && <img src={categoryCircle} className="w-4 h-4" alt="Category Circle" />}
-                                                                <p >{transaction.category}</p>
-                                                            </div>
-                                                            <p className='flex-none'>{transaction.amount} BGN</p>
-                                                        </div>
-                                                    )
-                                                })}
-                                            </div>
-                                        )}
                                     </ShadowBox>
                                 ))
                                 : (

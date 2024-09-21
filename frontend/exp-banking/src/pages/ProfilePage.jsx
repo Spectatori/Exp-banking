@@ -5,6 +5,7 @@ import Navbar from '../components/nav-bar/Navbar.jsx';
 import { useUserStore } from '../stores/AuthStore.js';
 import {filterTransactions, calculateTotal} from '../utils/FilterTransactionsByDate.jsx'
 import { getUser } from '../api/userService.jsx';
+import { useLocation } from 'react-router-dom';
 
 const categoryColors = {
   Food: {
@@ -61,11 +62,22 @@ const ProfilePage = () => {
   }
 
   const user = useUserStore((state) => state.user);
-  console.log(user)
 
-  ///Change account function
+  const location = useLocation();
+  const { accountId } = (location.state || { accountId: 0 });
+
+  const [selectedAccountIndex, setSelectedAccountIndex] = useState(accountId);
+
+  const handleAccountChange = (event) => {
+    const index = event.target.value;
+    setSelectedAccountIndex(index);
+  };
+
+
+  //console.log(user)
+
+  /*///Change account function
   // Track the selected account
-  const [selectedAccountIndex, setSelectedAccountIndex] = useState(0);
   // Handle the change
   const handleAccountChange = (e) => {
     const index = parseInt(e.target.value); // Convert string value to number
@@ -78,7 +90,8 @@ const ProfilePage = () => {
     if (savedIndex !== null) {
       setSelectedAccountIndex(parseInt(savedIndex)); // Convert to number and set
     }
-  }, []);
+  }, []);*/
+
   // Make sure there's a user
   if (!user || !user.accounts || user.accounts.length === 0) {
     return <p>No accounts available</p>;

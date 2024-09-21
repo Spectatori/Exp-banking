@@ -2,18 +2,31 @@ import React from 'react'
 import { useState, useEffect, useRef } from 'react'
 import ShadowBox from '../ShadowBox'
 import PrimaryButton from '../PrimaryButton'
+import useCreateAccount from '../../hooks/useCreateAccount'
 
-const AddAccountForm = ({closeForm}) => {
-    const [accountType, setAccountType] = useState('checking');
+const AddAccountForm = ({ closeForm }) => {
+    const [accountType, setAccountType] = useState('Разплащателна сметка');
     const formRef = useRef(null);
+
+    const { createAccount } = useCreateAccount();
 
     const handleSelectChange = (e) => {
         setAccountType(e.target.value);
     };
 
-    const handleButtonClick = (e) => {
+    const handleButtonClick = async (e) => {
         e.preventDefault();
-        console.log(accountType);
+
+        const accountInitialValues = {
+            "currency": "BGN",
+            "balance": 0,
+            "accountType": {
+                "accountType": accountType
+            }
+        }
+        await createAccount(accountInitialValues);
+        //console.log(accountType);
+
 
         closeForm();
     };
@@ -45,8 +58,8 @@ const AddAccountForm = ({closeForm}) => {
                     value={accountType}
                     onChange={handleSelectChange}
                 >
-                    <option value="checking">Разплащателна сметка</option>
-                    <option value="savings">Спестовна сметка</option>
+                    <option value="Разплащателна сметка">Разплащателна сметка</option>
+                    <option value="Спестовна сметка">Спестовна сметка</option>
                 </select>
                 <PrimaryButton label='Добави' className='bg-kelly-green mt-5' onClick={handleButtonClick} />
             </form>
@@ -55,3 +68,4 @@ const AddAccountForm = ({closeForm}) => {
 }
 
 export default AddAccountForm
+

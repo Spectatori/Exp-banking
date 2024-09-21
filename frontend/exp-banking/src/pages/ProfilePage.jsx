@@ -118,7 +118,7 @@ const ProfilePage = () => {
                 <select
                   value={selectedAccountIndex}
                   onChange={handleAccountChange}
-                  className="font-bold text-md p-2 rounded"
+                  className="font-bold text-md p-2 rounded bg-teal-700 text-white"
                 >
                   {user.accounts.map((account, index) => (
                     <option key={index} value={index}>

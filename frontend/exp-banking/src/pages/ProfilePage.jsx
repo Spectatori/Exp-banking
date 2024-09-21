@@ -92,7 +92,7 @@ const ProfilePage = () => {
       return filterTransactions(selectedAccount.transactions, selectedTimeSpan);
     }
     return [];
-  }, [user, selectedTimeSpan]);
+  }, [user, selectedTimeSpan, selectedAccount]);
 
   const totalForSelectedTimeSpan = useMemo(() => {
     return calculateTotal(filteredTransactions);

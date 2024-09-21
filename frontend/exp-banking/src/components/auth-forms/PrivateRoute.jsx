@@ -9,10 +9,7 @@ const PrivateRoute = ({ element,  authRequired = true }) => {
     if (authRequired && !isAuthenticated) {
         return <Navigate to="/auth/login" />;
     }
-    if(!authRequired && isAuthenticated){
-        return <Navigate to="/profile"/>
-    }
-
+    
     return element;
 };
 

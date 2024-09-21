@@ -6,7 +6,10 @@ export const useUserStore = create(
         (set) => ({
             user: null,
             setUser: (user) => set({ user }),
-            clearUser: () => set({ user: null }),
+            clearUser: () => {
+                document.cookie = 'UserToken=; Max-Age=0; path=/;'; 
+                set({ user: null })
+            }
         }),
         {
             name: 'userStorage',

@@ -27,12 +27,14 @@ const categoryColors = {
 };
 const ProfilePage = () => {
 
+  ///Handles the time change for the pie chart
   const [selectedTimeSpan, setSelectedTimeSpan] = useState('daily');
 
   const handleTimeSpanChange = (e) => {
     setSelectedTimeSpan(e.target.value);
   };
 
+  ///Addding the column names for the transaction table
   const columns = useMemo(() => [
     {
       accessorKey: 'dateOfTransaction',
@@ -50,7 +52,7 @@ const ProfilePage = () => {
       size: 80,
     }
   ], []);
-
+  /// Sets new user data in the local storage after pressing the button
   async function handleRefresh() {
     const setUser = useUserStore.getState().setUser;
     try {
@@ -60,7 +62,7 @@ const ProfilePage = () => {
       console.log(error); 
     }
   }
-
+  /// Sets the user initially after logging in or registering
   const user = useUserStore((state) => state.user);
 
   const location = useLocation();
@@ -100,17 +102,18 @@ const ProfilePage = () => {
   const selectedAccount = user.accounts[selectedAccountIndex];
 
 
+  ///controls which transactions go to the pie chart
   const filteredTransactions = useMemo(() => {
     if (user && user.accounts && user.accounts.length && selectedAccount.transactions.length > 0) {
       return filterTransactions(selectedAccount.transactions, selectedTimeSpan);
     }
     return [];
   }, [user, selectedTimeSpan, selectedAccount]);
-
   const totalForSelectedTimeSpan = useMemo(() => {
     return calculateTotal(filteredTransactions);
   }, [filteredTransactions]);
 
+  ///this function show the daily, weekly and monthly overall payments above the pie chart
   const dailyTotal = calculateTotal(filterTransactions(selectedAccount?.transactions, 'daily'));
   const weeklyTotal = calculateTotal(filterTransactions(selectedAccount?.transactions, 'weekly'));
   const monthlyTotal = calculateTotal(filterTransactions(selectedAccount?.transactions, 'monthly'));
@@ -128,7 +131,7 @@ const ProfilePage = () => {
                 <select
                   value={selectedAccountIndex}
                   onChange={handleAccountChange}
-                  className="font-bold text-md p-2 rounded"
+                  className="font-bold text-md p-2 rounded bg-teal-700 text-white"
                 >
                   {user.accounts.map((account, index) => (
                     <option key={index} value={index}>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useState } from 'react'
 import InnerHeader from '../components/nav-bar/authenticated/InnerHeader'
 import AuthNavbar from '../components/nav-bar/authenticated/AuthNavbar'
@@ -8,106 +8,15 @@ import AddAccountForm from '../components/account-overview/AddAccountForm'
 import { useUserStore } from '../stores/AuthStore.js';
 import { useNavigate } from 'react-router-dom'
 
-import detailsIcon from '../assets/account-overview/details.png'
 import transactionIcon from '../assets/account-overview/money.png'
 import loanIcon from '../assets/account-overview/loan.png'
 import mortgageIcon from '../assets/account-overview/mortgage.png'
 import transactionHistoryIcon from '../assets/account-overview/transaction.png'
-import TransactionDetailBlue from '../assets/TransactionDetailBlue.png';
-import TransactionDetailPurple from '../assets/TransactionDetailPurple.png';
 
 const AccountOverviewPage = () => {
     const [isAddAccountButtonClicked, setIsAddAccountButtonClicked] = useState(false);
-    const [showTransactionHistory, setShowTransactionHistory] = useState(false);
-    const [selectedAccountTransactions, setSelectedAccountTransactions] = useState([]);
-    const [selectedAccount, setSelectedAccount] = useState([]);
-
     const { user } = useUserStore();
     const navigate = useNavigate();
-
-    const mockTransactionHistory = {
-        1: [
-            {
-                id: 1,
-                date: '2024-09-01',
-                description: 'Плащане с карта',
-                amount: -50.00,
-                category: 'Food',
-                merchant: 'Billa'
-            },
-            {
-                id: 2,
-                date: '2024-09-02',
-                description: 'Заплата',
-                amount: 1050.00,
-                category: 'Salary',
-                merchant: 'Работодател'
-            },
-            {
-                id: 3,
-                date: '2024-09-03',
-                description: 'Плащане с карта',
-                amount: -20.00,
-                category: 'Entertainment',
-                merchant: 'eMAG'
-            },
-            {
-                id: 4,
-                date: '2024-09-04',
-                description: 'Трансфер',
-                amount: -200.00,
-                category: 'Transfer',
-                merchant: 'Личен Акаунт'
-            },
-        ],
-        2: [
-            {
-                id: 1,
-                date: '2024-09-05',
-                description: 'Плащане с карта',
-                amount: -30.00,
-                category: 'Travel',
-                merchant: 'Shell'
-            },
-            {
-                id: 2,
-                date: '2024-09-06',
-                description: 'Трансфер',
-                amount: -10.00,
-                category: 'Other',
-                merchant: 'Обменно Бюро'
-            },
-        ],
-        3: [
-            {
-                id: 1,
-                date: '2024-09-07',
-                description: 'Депозит',
-                amount: 15.00,
-                category: 'Savings',
-                merchant: 'Банка'
-            },
-        ]
-    };
-
-    const categoryColors = {
-        Food: {
-            Color: "#FF6347",
-            Circle: TransactionDetailBlue
-        },
-        Entertainment: {
-            Color: "#833EA5",
-            Circle: TransactionDetailPurple
-        },
-        Travel: {
-            Color: "red",
-            Circle: TransactionDetailPurple
-        },
-        Groceries: {
-            Color: "#32CD32",
-            Circle: TransactionDetailPurple
-        }
-    };
 
     const handleAddAccountButtonClick = (e) => {
         setIsAddAccountButtonClicked(true);
@@ -130,14 +39,21 @@ const AccountOverviewPage = () => {
                 <section className='md:w-fit'>
                     <div className='flex flex-row justify-between items-center mt-10 relative'>
                         <h2 className='text-xl font-semibold text-blue-whale'>Наличност по сметки</h2>
-                        <PrimaryButton label='Добави сметка' className='bg-kelly-green' onClick={handleAddAccountButtonClick} />
+
+                        {user.accounts.length < 5 && (
+                            <PrimaryButton
+                                label='Добави сметка'
+                                className='bg-kelly-green'
+                                onClick={handleAddAccountButtonClick}
+                            />
+                        )}
 
                         {isAddAccountButtonClicked && (
                             <AddAccountForm closeForm={closeForm} />
                         )}
                     </div>
 
-                    <div className=''>
+                    <div>
                         <div className='mt-5 space-y-7'>
                             {user.accounts.length > 0
                                 ? user.accounts.map((account) => (
@@ -158,7 +74,7 @@ const AccountOverviewPage = () => {
                                                 <div className='flex flex-col w-fit'>
                                                     <button
                                                         className='overflow-visible h-16 relative flex flex-col items-center justify-center gap-2 transition-all duration-300 group overflow-hidden'
-                                                        onClick={() => navigate('/profile', { state: { accountId: user.accounts.indexOf(account)}})}
+                                                        onClick={() => navigate('/profile', { state: { accountId: user.accounts.indexOf(account) } })}
                                                     >
                                                         <img src={transactionHistoryIcon} className='size-8 transition-transform duration-300 group-hover:translate-y-[-8px]' alt="" />
                                                         <p className='mt-12 absolute text-xs transform translate-y-5 transition-transform duration-300 opacity-0 group-hover:translate-y-0 group-hover:opacity-100'>Движения</p>

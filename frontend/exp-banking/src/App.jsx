@@ -10,8 +10,12 @@ import AIChat from "./components/AIChat.jsx";
 import PrivateRoute from "./components/auth-forms/PrivateRoute.jsx";
 import ConsumerLoanInfoPage from "./pages/ConsumerLoanInfoPage.jsx";
 import NewTransferPage from "./pages/NewTransferPage.jsx"
+import { useUserStore } from "./stores/AuthStore.js";
+import { Navigate } from "react-router-dom";
 
 function App() {
+    const { user } = useUserStore();
+
     return (
         <div className="flex flex-col min-h-screen justify-between ">
             <Router>
@@ -19,8 +23,8 @@ function App() {
                     <Route path="/" element={<MainPage />} />
                     <Route path="/profile" element={<PrivateRoute element={<ProfilePage/>} />} />
                     <Route path="/profile/details" element={<PrivateRoute element={<ProfileDetailsPage/>} />} />
-                    <Route path="/auth/register" element={<PrivateRoute element={<AccessPage/>} authRequired={false} />} />
-                    <Route path="/auth/login" element={<PrivateRoute element={<AccessPage/>} authRequired={false} />} />
+                    <Route path="/auth/register" element={user ? <Navigate to="/profile" /> : <AccessPage/>} />
+                    <Route path="/auth/login" element={user ? <Navigate to="/profile" /> : <AccessPage/>} />
                     <Route path="/account-overview" element={<AccountOverviewPage />} />
                     <Route path="/calculator" element={<LoanCalcPage />} />
                     <Route path="/consumer-loan" element={<ConsumerLoanInfoPage />} />

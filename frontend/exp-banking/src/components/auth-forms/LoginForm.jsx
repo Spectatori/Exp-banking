@@ -16,7 +16,7 @@ const LoginForm = () => {
             const token = await loginUser(values); 
             setCookie('UserToken', token, { path: '/' });  // Store token in cookies
             console.log('Login successful!');
-            navigate('/profile');
+            navigate('/account-overview');
         } catch (error) {
             console.error('Login failed:', error);
         } 

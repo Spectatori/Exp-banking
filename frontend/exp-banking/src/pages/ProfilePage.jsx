@@ -63,9 +63,33 @@ const ProfilePage = () => {
   const user = useUserStore((state) => state.user);
   console.log(user)
 
+  ///Change account function
+  // Track the selected account
+  const [selectedAccountIndex, setSelectedAccountIndex] = useState(0);
+  // Handle the change
+  const handleAccountChange = (e) => {
+    const index = parseInt(e.target.value); // Convert string value to number
+    setSelectedAccountIndex(index);
+    localStorage.setItem('selectedAccountIndex', index); // Save to localStorage
+  };
+  // Load selected account index from localStorage on component mount
+  useEffect(() => {
+    const savedIndex = localStorage.getItem('selectedAccountIndex');
+    if (savedIndex !== null) {
+      setSelectedAccountIndex(parseInt(savedIndex)); // Convert to number and set
+    }
+  }, []);
+  // Make sure there's a user
+  if (!user || !user.accounts || user.accounts.length === 0) {
+    return <p>No accounts available</p>;
+  }
+  // Get the currently selected account
+  const selectedAccount = user.accounts[selectedAccountIndex];
+
+
   const filteredTransactions = useMemo(() => {
-    if (user && user.accounts && user.accounts.length && user.accounts[0].transactions.length > 0) {
-      return filterTransactions(user.accounts[0].transactions, selectedTimeSpan);
+    if (user && user.accounts && user.accounts.length && selectedAccount.transactions.length > 0) {
+      return filterTransactions(selectedAccount.transactions, selectedTimeSpan);
     }
     return [];
   }, [user, selectedTimeSpan]);
@@ -74,9 +98,9 @@ const ProfilePage = () => {
     return calculateTotal(filteredTransactions);
   }, [filteredTransactions]);
 
-  const dailyTotal = calculateTotal(filterTransactions(user?.accounts[0]?.transactions, 'daily'));
-  const weeklyTotal = calculateTotal(filterTransactions(user?.accounts[0]?.transactions, 'weekly'));
-  const monthlyTotal = calculateTotal(filterTransactions(user?.accounts[0]?.transactions, 'monthly'));
+  const dailyTotal = calculateTotal(filterTransactions(selectedAccount?.transactions, 'daily'));
+  const weeklyTotal = calculateTotal(filterTransactions(selectedAccount?.transactions, 'weekly'));
+  const monthlyTotal = calculateTotal(filterTransactions(selectedAccount?.transactions, 'monthly'));
 
   return (
     <div className="flex flex-col">
@@ -88,15 +112,24 @@ const ProfilePage = () => {
               max-xl:flex-col max-xl:h-44 max-xl:items-center max-xl:justify-center gap-3' style={{
                 boxShadow: 'rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px'
               }}>
-                {user && user.accounts && user.accounts.length > 0 ? (
-                  <p className='font-bold text-md'>{user.accounts[0].iban}</p> ) : ( <p>No account available</p> )}
+                <select
+                  value={selectedAccountIndex}
+                  onChange={handleAccountChange}
+                  className="font-bold text-md p-2 rounded"
+                >
+                  {user.accounts.map((account, index) => (
+                    <option key={index} value={index}>
+                      {account.iban}
+                    </option>
+                  ))}
+                </select>
                 <div className="flex flex-col">
                   <p className="font-mono text-gray-400 text-md self-start max-xl:self-center">{user.firstname} {user.lastname}</p>
-                  <p className='font-mono self-start max-xl:self-center max-xl:pt-1'>{user.accounts[0].accountType.accountType}</p>
+                  <p className='font-mono self-start max-xl:self-center max-xl:pt-1'>{selectedAccount.accountType.accountType}</p>
                 </div>
                 <div className="flex flex-col">
                   <p className="font-mono text-gray-400 text-sm self-end max-xl:self-center">Налична сума</p>
-                  <p className=' text-2xl self-end max-xl:self-center'>{user.accounts[0].balance} BGN</p>
+                  <p className=' text-2xl self-end max-xl:self-center'>{selectedAccount.balance} BGN</p>
                 </div>
               </div>
 
@@ -105,7 +138,7 @@ const ProfilePage = () => {
             }}>
               <p className='text-xl pb-2 pl-6'>Скорошни транзакции</p>
               <div className='overflow-y-auto h-96 max-h-96 w-full'>
-                <LoanTable columns={columns} data={user.accounts[0].transactions} />
+                <LoanTable columns={columns} data={selectedAccount.transactions} />
               </div>
               
             </div>

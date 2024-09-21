@@ -4,18 +4,23 @@ import LoanTable from '../components/Table.jsx';
 import Navbar from '../components/nav-bar/Navbar.jsx';
 import { useUserStore } from '../stores/AuthStore.js';
 import {filterTransactions, calculateTotal} from '../utils/FilterTransactionsByDate.jsx'
+import { getUser } from '../api/userService.jsx';
 
 const categoryColors = {
   Food: {
+    Name: "Храна",
     Color: "#FF6347",
   },
   Entertainment: {
+    Name:"Забавление",
     Color: "#833EA5",
   },
   Travel: {
+    Name: "Пътуване",
     Color: "red",
   },
   Groceries: {
+    Name: "Хранителни стоки",
     Color: "#32CD32",
   }
 };
@@ -44,6 +49,16 @@ const ProfilePage = () => {
       size: 80,
     }
   ], []);
+
+  async function handleRefresh() {
+    const setUser = useUserStore.getState().setUser;
+    try {
+      const user = await getUser();
+      setUser(user);
+    } catch (error) {
+      console.log(error); 
+    }
+  }
 
   const user = useUserStore((state) => state.user);
   console.log(user)
@@ -100,32 +115,40 @@ const ProfilePage = () => {
           }}>
             <div className='flex flex-row px-6 justify-between pb-10 max-2xl:pt-5'>
               <p className='text-2xl font-bold'>Всички разходи</p>
-              <button className='bg-teal-700 w-10 h-10 items-center justify-center flex rounded-lg hover:scale-110 ease-in duration-300'>
-                <svg className="arrow" viewBox="0 0 448 512" height="1em" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 
-                    45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5 12.5 32.8 0 
-                    45.3s32.8 12.5 45.3 0l160-160z" fill="white"/>
-                </svg>
+              <button onClick={handleRefresh} 
+              className='bg-teal-700 w-10 h-10 items-center justify-center flex rounded-lg hover:scale-110 ease-in duration-300'>
+                
+              <svg fill="white" height="50px" width="25px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" 
+              viewBox="0 0 489.698 489.698"><g id="SVGRepo_bgCarrier">
+                </g><g id="SVGRepo_tracerCarrier" ></g>
+               <g id="SVGRepo_iconCarrier"> <g> <g> <path 
+               d="M468.999,227.774c-11.4,0-20.8,8.3-20.8,19.8c-1,74.9-44.2,142.6-110.3,178.9c-99.6,54.7-216,5.6-260.6-61l62.9,13.1 
+               c10.4,2.1,21.8-4.2,23.9-15.6c2.1-10.4-4.2-21.8-15.6-23.9l-123.7-26c-7.2-1.7-26.1,3.5-23.9,22.9l15.6,124.8 
+               c1,10.4,9.4,17.7,19.8,17.7c15.5,0,21.8-11.4,20.8-22.9l-7.3-60.9c101.1,121.3,229.4,104.4,306.8,69.3 
+               c80.1-42.7,131.1-124.8,132.1-215.4C488.799,237.174,480.399,227.774,468.999,227.774z"></path> 
+               <path d="M20.599,261.874c11.4,0,20.8-8.3,20.8-19.8c1-74.9,44.2-142.6,110.3-178.9c99.6-54.7,216-5.6,260.6,61l-62.9-13.1 
+               c-10.4-2.1-21.8,4.2-23.9,15.6c-2.1,10.4,4.2,21.8,15.6,23.9l123.8,26c7.2,1.7,26.1-3.5,23.9-22.9l-15.6-124.8 
+               c-1-10.4-9.4-17.7-19.8-17.7c-15.5,0-21.8,11.4-20.8,22.9l7.2,60.9c-101.1-121.2-229.4-104.4-306.8-69.2 
+               c-80.1,42.6-131.1,124.8-132.2,215.3C0.799,252.574,9.199,261.874,20.599,261.874z"></path> </g> </g> </g>
+               </svg>
+
               </button>
             </div>
             <div className='flex flex-row justify-around pb-4 max-xl:flex-col max-xl:items-center max-xl:gap-3'>
               <div className='flex flex-col items-start max-2xl:gap-1'>
                 <p className='font-mono text-gray-400' >Дневно</p>
-                <p className=' text-xl font-bold font-mono'>
+                <p className=' text-xl font-bold font-mono'></p>
                 <p className=' text-xl font-bold font-mono'>{dailyTotal.toFixed(2)} ЛВ</p>
-                </p>
               </div>
               <div className='flex flex-col items-start max-2xl:gap-1'>
                 <p className='font-mono text-gray-400'>Седмично</p>
-                <p className=' text-xl font-bold font-mono'>
+                <p className=' text-xl font-bold font-mono'></p>
                 <p className=' text-xl font-bold font-mono'>{weeklyTotal.toFixed(2)} ЛВ</p>
-                </p>
               </div>
               <div className='flex flex-col items-start max-2xl:gap-1'>
                 <p className='font-mono text-gray-400'>Месечно</p>
-                <p className=' text-xl font-bold font-mono'>
+                <p className=' text-xl font-bold font-mono'></p>
                 <p className=' text-xl font-bold font-mono'>{monthlyTotal.toFixed(2)} ЛВ</p>
-                </p>
               </div>
             </div>
             <hr className='border-t border-gray-300 pl-10 w-5/6 self-center pb-7' />
@@ -150,7 +173,7 @@ const ProfilePage = () => {
                 {Object.keys(categoryColors).map((category) => (
                   <div key={category} className='text-2xl font-bold'>
                     <p style={{ color: categoryColors[category].Color }}>
-                      {category}
+                      {categoryColors[category].Name}
                     </p>
                   </div>
                 ))}

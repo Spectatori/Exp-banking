@@ -2,10 +2,22 @@
   import { PieChart, Pie, Tooltip, Cell, ResponsiveContainer } from 'recharts';
 
   const categoryColors = {
-    Food: "#FF6347",
-    Groceries: "#32CD32",
-    Entertainment: "#833EA5",
-    Travel: "red",
+    Food: {
+      Name: "Храна",
+      Color: "#FF6347",
+    },
+    Entertainment: {
+      Name:"Забавление",
+      Color: "#833EA5",
+    },
+    Travel: {
+      Name: "Пътуване",
+      Color: "red",
+    },
+    Groceries: {
+      Name: "Хранителни стоки",
+      Color: "#32CD32",
+    }
   };
 
   const defaultColor = "#D3D3D3";
@@ -27,8 +39,8 @@
   const renderCustomLabel = ({ cx, cy }, maxCategory, maxAmount) => {
     return (
       <text x={cx} y={cy} textAnchor="middle" dominantBaseline="middle">
-        <tspan x={cx} dy="-1em" fontSize="16" fill={categoryColors[maxCategory] || defaultColor}>{maxCategory}</tspan>
-        <tspan x={cx} dy="1.2em" fontSize="24" fill={categoryColors[maxCategory] || defaultColor}>{`${maxAmount.toFixed(2)} BGN`}</tspan>
+        <tspan x={cx} dy="-1em" fontSize="16" fill={categoryColors[maxCategory]?.Color || defaultColor}>{maxCategory}</tspan>
+        <tspan x={cx} dy="1.2em" fontSize="24" fill={categoryColors[maxCategory]?.Name || defaultColor}>{`${maxAmount.toFixed(2)} BGN`}</tspan>
       </text>
     );
   };
@@ -60,7 +72,7 @@
             {pieData.map((entry, index) => (
               <Cell
                 key={`cell-${index}`}
-                fill={categoryColors[entry.name] || defaultColor}
+                fill={categoryColors[entry.name]?.Color || defaultColor}
               />
             ))}
           </Pie>

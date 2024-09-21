@@ -85,6 +85,10 @@ const ProfileDetailsPage = () => {
             [field]: e.target.value, // Update the specific field dynamically
         }));
     };
+    //handle the "Моите данни" and "Смяна на парола" button click
+    const handleButtonClick = (section) => {
+        setSelectedButton(section);
+    };
 
     return (
         <div>
@@ -99,8 +103,8 @@ const ProfileDetailsPage = () => {
                     <ShadowBox className='pr-38 items-center'>
                         <img src={userPfp} alt="" className='size-14' />
                         <div className='flex flex-col gap-2'>
-                            <h2 className='text-blue-whale font-semibold text-xl'>ИМЕ ПРЕЗИМЕ ФАМИЛИЯ</h2>
-                            <h2 className='text-blue-whale'>Клиентски номер: 12345</h2>
+                            <h2 className='text-blue-whale font-semibold text-xl pl-2'>{user.firstname +" "+ user.secondname + " " + user.lastname}</h2>
+                            <h2 className='text-blue-whale pl-2'>Клиентски номер: 12345</h2>
                         </div>
                     </ShadowBox>
                 </section>
@@ -110,104 +114,106 @@ const ProfileDetailsPage = () => {
                     <ProfileDetailsNavLink onClick={() => handleButtonClick('changePasswordSection')} isActive={selectedButton === 'changePasswordSection'} icon={changePasswordIcon} text='Смяна на парола' />
                 </section>
 
-                <form>
-                    <div className='grid grid-cols-1 lg:grid-cols-2 mb-10 gap-8'>
-                        <ShadowBox className='flex flex-row justify-between gap-10'>
-                            <div className='flex flex-col gap-2'>
-                                <label className='font-semibold'>Имейл</label>
-                                {isEditing.email ? (
-                                    <input
-                                        type="email"
-                                        value={formData.email}
-                                        onChange={(e) => handleChange(e, 'email')}
-                                        className='border p-2'
-                                    />
-                                ) : (
-                                    <p>{formData.email}</p>
-                                )}
-                            </div>
-                            <button
-                                type="button"
-                                onClick={() => handleEditClick('email')}
-                                className='self-start underline text-azure'
-                            >
-                                {isEditing.email ? 'Save' : 'Edit'}
-                            </button>
-                        </ShadowBox>
+                {selectedButton === 'personalInfoSection' && (
+                    <section className='pt-10'>
+                        <form>
+                            <div className='grid grid-cols-1 lg:grid-cols-2 mb-10 gap-8'>
+                                <ShadowBox className='flex flex-row justify-between gap-10'>
+                                    <div className='flex flex-col gap-2'>
+                                        <label className='font-semibold'>Имейл</label>
+                                        {isEditing.email ? (
+                                            <input
+                                                type="email"
+                                                value={formData.email}
+                                                onChange={(e) => handleChange(e, 'email')}
+                                                className='border p-2'
+                                            />
+                                        ) : (
+                                            <p>{formData.email}</p>
+                                        )}
+                                    </div>
+                                    <button
+                                        type="button"
+                                        onClick={() => handleEditClick('email')}
+                                        className='self-start underline text-azure'
+                                    >
+                                        {isEditing.email ? 'Save' : 'Edit'}
+                                    </button>
+                                </ShadowBox>
 
-                        <ShadowBox className='flex flex-row justify-between gap-10'>
-                            <div className='flex flex-col gap-2'>
-                                <label className='font-semibold'>Телефонен номер</label>
-                                {isEditing.phoneNumber ? (
-                                    <input
-                                        type="tel"
-                                        value={formData.phoneNumber}
-                                        onChange={(e) => handleChange(e, 'phoneNumber')}
-                                        className='border p-2'
-                                    />
-                                ) : (
-                                    <p>{formData.phoneNumber}</p>
-                                )}
+                                <ShadowBox className='flex flex-row justify-between gap-10'>
+                                    <div className='flex flex-col gap-2'>
+                                        <label className='font-semibold'>Телефонен номер</label>
+                                        {isEditing.phoneNumber ? (
+                                            <input
+                                                type="tel"
+                                                value={formData.phoneNumber}
+                                                onChange={(e) => handleChange(e, 'phoneNumber')}
+                                                className='border p-2'
+                                            />
+                                        ) : (
+                                            <p>{formData.phoneNumber}</p>
+                                        )}
+                                    </div>
+                                    <button
+                                        type="button"
+                                        onClick={() => handleEditClick('phoneNumber')}
+                                        className='self-start underline text-azure'
+                                    >
+                                        {isEditing.phoneNumber ? 'Save' : 'Edit'}
+                                    </button>
+                                </ShadowBox>
                             </div>
-                            <button
-                                type="button"
-                                onClick={() => handleEditClick('phoneNumber')}
-                                className='self-start underline text-azure'
-                            >
-                                {isEditing.phoneNumber ? 'Save' : 'Edit'}
-                            </button>
-                        </ShadowBox>
-                    </div>
-                    <div className='grid grid-cols-1 lg:grid-cols-2 mb-10 gap-8'>
-                        <ShadowBox className='flex flex-row justify-between gap-10'>
-                            <div className='flex flex-col gap-2'>
-                                <label className='font-semibold'>Настоящ адрес</label>
-                                {isEditing.address ? (
-                                    <input
-                                        type="text"
-                                        value={formData.address}
-                                        onChange={(e) => handleChange(e, 'address')}
-                                        className='border p-2'
-                                    />
-                                ) : (
-                                    <p>{formData.address}</p>
-                                )}
-                            </div>
-                            <button
-                                type="button"
-                                onClick={() => handleEditClick('address')}
-                                className='self-start underline text-azure'
-                            >
-                                {isEditing.address ? 'Save' : 'Edit'}
-                            </button>
-                        </ShadowBox>
+                            <div className='grid grid-cols-1 lg:grid-cols-2 mb-10 gap-8'>
+                                <ShadowBox className='flex flex-row justify-between gap-10'>
+                                    <div className='flex flex-col gap-2'>
+                                        <label className='font-semibold'>Настоящ адрес</label>
+                                        {isEditing.address ? (
+                                            <input
+                                                type="text"
+                                                value={formData.address}
+                                                onChange={(e) => handleChange(e, 'address')}
+                                                className='border p-2'
+                                            />
+                                        ) : (
+                                            <p>{formData.address}</p>
+                                        )}
+                                    </div>
+                                    <button
+                                        type="button"
+                                        onClick={() => handleEditClick('address')}
+                                        className='self-start underline text-azure'
+                                    >
+                                        {isEditing.address ? 'Save' : 'Edit'}
+                                    </button>
+                                </ShadowBox>
 
-                        <ShadowBox className='flex flex-row justify-between gap-10'>
-                            <div className='flex flex-col gap-2'>
-                                <label className='font-semibold'>Трудова заетост</label>
-                                {isEditing.employment ? (
-                                    <input
-                                        type="text"
-                                        value={formData.employment}
-                                        onChange={(e) => handleChange(e, 'employment')}
-                                        className='border p-2'
-                                    />
-                                ) : (
-                                    <p>{formData.employment}</p>
-                                )}
+                                <ShadowBox className='flex flex-row justify-between gap-10'>
+                                    <div className='flex flex-col gap-2'>
+                                        <label className='font-semibold'>Трудова заетост</label>
+                                        {isEditing.employment ? (
+                                            <input
+                                                type="text"
+                                                value={formData.employment}
+                                                onChange={(e) => handleChange(e, 'employment')}
+                                                className='border p-2'
+                                            />
+                                        ) : (
+                                            <p>{formData.employment}</p>
+                                        )}
+                                    </div>
+                                    <button
+                                        type="button"
+                                        onClick={() => handleEditClick('employment')}
+                                        className='self-start underline text-azure'
+                                    >
+                                        {isEditing.employment ? 'Save' : 'Edit'}
+                                    </button>
+                                </ShadowBox>
                             </div>
-                            <button
-                                type="button"
-                                onClick={() => handleEditClick('employment')}
-                                className='self-start underline text-azure'
-                            >
-                                {isEditing.employment ? 'Save' : 'Edit'}
-                            </button>
-                        </ShadowBox>
-                    </div>
-                    
-                </form>
-
+                        </form>
+                    </section>
+                )}
                 {selectedButton === 'changePasswordSection' && <PasswordChangeSection />}
             </div>
         </div>

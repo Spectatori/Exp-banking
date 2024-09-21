@@ -75,32 +75,12 @@ const ProfilePage = () => {
     setSelectedAccountIndex(index);
   };
 
-
-  //console.log(user)
-
-  /*///Change account function
-  // Track the selected account
-  // Handle the change
-  const handleAccountChange = (e) => {
-    const index = parseInt(e.target.value); // Convert string value to number
-    setSelectedAccountIndex(index);
-    localStorage.setItem('selectedAccountIndex', index); // Save to localStorage
-  };
-  // Load selected account index from localStorage on component mount
-  useEffect(() => {
-    const savedIndex = localStorage.getItem('selectedAccountIndex');
-    if (savedIndex !== null) {
-      setSelectedAccountIndex(parseInt(savedIndex)); // Convert to number and set
-    }
-  }, []);*/
-
   // Make sure there's a user
   if (!user || !user.accounts || user.accounts.length === 0) {
     return <p>No accounts available</p>;
   }
   // Get the currently selected account
   const selectedAccount = user.accounts[selectedAccountIndex];
-
 
   ///controls which transactions go to the pie chart
   const filteredTransactions = useMemo(() => {

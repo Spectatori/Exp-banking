@@ -1,7 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import ProfilePieChart from '../components/ProfilePieChart.jsx';
 import LoanTable from '../components/Table.jsx';
-import Navbar from '../components/nav-bar/Navbar.jsx';
 import { useUserStore } from '../stores/AuthStore.js';
 import {filterTransactions, calculateTotal} from '../utils/FilterTransactionsByDate.jsx'
 import { getUser } from '../api/userService.jsx';
@@ -102,7 +101,6 @@ const ProfilePage = () => {
 
   return (
     <div className="flex flex-col">
-      <Navbar />
       <div className="flex flex-col pt-10 pb-10 px-20 gap-10 max-xl:px-4 max-2xl:pb-10">
         <div className='flex flex-row gap-28 justify-between max-2xl:flex-col max-xl:gap-10'>
           <div className='flex flex-col gap-10 '>

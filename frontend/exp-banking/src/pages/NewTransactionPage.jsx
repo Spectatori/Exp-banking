@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
-import InnerHeader from '../components/nav-bar/authenticated/InnerHeader';
-import AuthNavbar from '../components/nav-bar/authenticated/AuthNavbar';
 import ShadowBox from '../components/ShadowBox';
 import { useUserStore } from '../stores/AuthStore';
 import useCreateTransaction from '../hooks/useCreateTransaction';
@@ -45,11 +43,6 @@ const NewTransactionPage = () => {
 
     return (
         <div>
-            <header>
-                <InnerHeader />
-                <AuthNavbar />
-            </header>
-
             <div className='mx-6 mb-5 mt-12 flex flex-col'>
                 <h2 className='text-2xl font-semibold text-blue-whale'>Транзакция</h2>
                 <form

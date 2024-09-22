@@ -1,6 +1,4 @@
 import React, { useState } from 'react'
-import InnerHeader from '../components/nav-bar/authenticated/InnerHeader'
-import AuthNavbar from '../components/nav-bar/authenticated/AuthNavbar'
 import userPfp from '../../src/assets/profile-page-images/user.png'
 import ShadowBox from '../components/ShadowBox'
 import ProfileDetailsNavLink from '../components/profile-details/ProfileDetailsNavLink'
@@ -104,11 +102,6 @@ const ProfileDetailsPage = () => {
 
     return (
         <div>
-            <header>
-                <InnerHeader />
-                <AuthNavbar />
-            </header>
-
             <div className='mx-10 mt-12'>
                 <section>
                     <h1 className='text-2xl font-semibold text-blue-whale'>Профил</h1>

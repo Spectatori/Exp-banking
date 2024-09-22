@@ -1,5 +1,4 @@
 import React from 'react';
-import Navbar from '../components/nav-bar/Navbar.jsx';
 import BankIcon from '../assets/logo_header.svg';
 import { useNavigate, Link } from 'react-router-dom';
 
@@ -26,7 +25,6 @@ const MainPage = () => {
     return (
         <div className='flex flex-col max-xl:'>
             <div className='flex flex-col h-full bg-sky-950 rounded-3xl w-full'>
-                <Navbar />
                 <div className="flex flex-col pl-10 bg-white rounded-b-3xl max-xl:pl-0">
                     <div className="flex flex-row pt-8 items-start max-xl:flex-col max-xl:items-center">
                         <img src={BankIcon} className='h-40' alt="Bank Logo"/>

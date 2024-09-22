@@ -1,4 +1,3 @@
-import Navbar from '../components/nav-bar/Navbar.jsx';
 import LoanTable from '../components/Table.jsx';
 import calculateLoan from '../utils/LoanMortgageCalc.jsx';
 import Switch from 'react-switch';
@@ -55,7 +54,6 @@ const LoanCalcPage = () => {
 
     return (
         <div className='flex flex-col '>
-            <Navbar/>
             <div className="flex flex-row justify-between max-2xl:flex-col max-2xl:items-center">
                 <div className='flex flex-col w-2/6 pl-28 max-2xl:w-full max-2xl:pl-0'>
                     <h1 className='text-5xl font-bold font-mono pt-16 max-2xl:text-3xl max-2xl:text-center'>Калкулатор за заеми</h1>

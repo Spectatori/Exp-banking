@@ -1,6 +1,4 @@
 import React from 'react'
-import InnerHeader from '../components/nav-bar/authenticated/InnerHeader'
-import AuthNavbar from '../components/nav-bar/authenticated/AuthNavbar'
 import ShadowBox from '../components/ShadowBox'
 import { useFormik } from 'formik';
 import { transferSchema } from '../schemas/transferSchema';
@@ -23,11 +21,6 @@ const NewTransferPage = () => {
 
     return (
         <div>
-            <header>
-                <InnerHeader />
-                <AuthNavbar />
-            </header>
-
             <div className='mx-6 mb-5 mt-12 flex flex-col'>
                 <h2 className='text-2xl font-semibold text-blue-whale'>Левов превод</h2>
                 <form

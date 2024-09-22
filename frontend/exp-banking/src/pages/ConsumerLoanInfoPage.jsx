@@ -1,5 +1,4 @@
 import React from 'react'
-import Navbar from '../components/nav-bar/Navbar'
 import PrimaryButton from '../components/PrimaryButton'
 import { useFetchUser } from '../hooks/useFetchUser'
 
@@ -14,8 +13,6 @@ const ConsumerLoanInfoPage = () => {
     useFetchUser();
     return (
         <>
-            <Navbar />
-
             <section className='mt-5 flex flex-col md:relative'>
                 <img src={Banner} alt="" className='max-h-["180px"] w-full object-cover  object-center ' />
                 <h1 className='text-dark-blue font-bold text-5xl md:text-4xl lg:text-5xl md:absolute top-20 mt-10 ml-16 max-w-32'>Потребителски кредит</h1>

@@ -12,29 +12,30 @@ import ConsumerLoanInfoPage from "./pages/ConsumerLoanInfoPage.jsx";
 import NewTransferPage from "./pages/NewTransferPage.jsx"
 import NewTransactionPage from "./pages/NewTransactionPage.jsx";
 import ToastConfig from "./config/ToastConfig.jsx";
+import Navbar from "./components/nav-bar/Navbar.jsx";
 
 //import { useUserStore } from "./stores/AuthStore.js";
 //import { Navigate } from "react-router-dom";
 
 function App() {
-
     return (
         <div className="flex flex-col min-h-screen justify-between ">
             <Router>
+                <Navbar />
                 <Routes>
-                    <Route path="/" element={<MainPage />} />
-                    <Route path="/profile" element={<PrivateRoute element={<ProfilePage/>} />} />
-                    <Route path="/profile/details" element={<PrivateRoute element={<ProfileDetailsPage/>} />} />
-                    <Route path="/auth/register" element={<PrivateRoute element={<AccessPage/>} authRequired={false} />} />
-                    <Route path="/auth/login" element={<PrivateRoute element={<AccessPage/>} authRequired={false} />} />
-                    <Route path="/account-overview" element={<PrivateRoute element={<AccountOverviewPage/>} />} />
+                    <Route path="/"  element={<PrivateRoute element={<MainPage />} authRequired={false} />} />
+                    <Route path="/profile" element={<PrivateRoute element={<ProfilePage />} />} />
+                    <Route path="/profile/details" element={<PrivateRoute element={<ProfileDetailsPage />} />} />
+                    <Route path="/auth/register" element={<PrivateRoute element={<AccessPage />} authRequired={false} />} />
+                    <Route path="/auth/login" element={<PrivateRoute element={<AccessPage />} authRequired={false} />} />
+                    <Route path="/account-overview" element={<PrivateRoute element={<AccountOverviewPage />} />} />
                     <Route path="/calculator" element={<LoanCalcPage />} />
                     <Route path="/consumer-loan" element={<ConsumerLoanInfoPage />} />
                     <Route path="/new-transfer" element={<NewTransferPage />} />
-                    <Route path="/new-transaction" element={<PrivateRoute element={<NewTransactionPage/>} />} />
+                    <Route path="/new-transaction" element={<PrivateRoute element={<NewTransactionPage />} />} />
                 </Routes>
             </Router>
-            <AIChat/>
+            <AIChat />
             <Footer />
             <ToastConfig />
         </div>

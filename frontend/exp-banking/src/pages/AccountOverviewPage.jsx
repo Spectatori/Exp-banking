@@ -1,7 +1,5 @@
 import React from 'react'
 import { useState } from 'react'
-import InnerHeader from '../components/nav-bar/authenticated/InnerHeader'
-import AuthNavbar from '../components/nav-bar/authenticated/AuthNavbar'
 import PrimaryButton from '../components/PrimaryButton'
 import ShadowBox from '../components/ShadowBox'
 import AddAccountForm from '../components/account-overview/AddAccountForm'
@@ -32,11 +30,6 @@ const AccountOverviewPage = () => {
     }
     return (
         <div>
-            <header>
-                <InnerHeader />
-                <AuthNavbar />
-            </header>
-
             <div className='mx-6 mb-5'>
                 <h1 className='font-semibold text-2xl text-blue-whale mt-12'>Добре дошли, {user.firstname} {user.lastname}</h1>
 

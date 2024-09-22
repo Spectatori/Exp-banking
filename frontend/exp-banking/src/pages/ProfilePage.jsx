@@ -7,6 +7,7 @@ import {filterTransactions, calculateTotal} from '../utils/FilterTransactionsByD
 import { getUser } from '../api/userService.jsx';
 import { useLocation } from 'react-router-dom';
 import { useFetchUser } from '../hooks/useFetchUser.js';
+import { Navigate } from 'react-router-dom';
 
 const categoryColors = {
   Food: {
@@ -78,7 +79,7 @@ const ProfilePage = () => {
 
   // Make sure there's a user
   if (!user || !user.accounts || user.accounts.length === 0) {
-    return <p>No accounts available</p>;
+    return <Navigate to="/account-overview"/>;  
   }
   // Get the currently selected account
   const selectedAccount = user.accounts[selectedAccountIndex];

@@ -1,5 +1,4 @@
 import React from 'react'
-import CustomNavLink from "../CustomNavLink";
 import { Link } from "react-router-dom";
 import { FaUserAlt } from "react-icons/fa";
 import { MdLogout } from "react-icons/md";

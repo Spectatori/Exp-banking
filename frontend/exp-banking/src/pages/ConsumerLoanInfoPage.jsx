@@ -1,8 +1,5 @@
 import React from 'react'
-import InnerHeader from '../components/nav-bar/authenticated/InnerHeader'
-import AuthNavbar from '../components/nav-bar/authenticated/AuthNavbar'
 import Navbar from '../components/nav-bar/Navbar'
-import ShadowBox from '../components/ShadowBox'
 import PrimaryButton from '../components/PrimaryButton'
 import { useFetchUser } from '../hooks/useFetchUser'
 

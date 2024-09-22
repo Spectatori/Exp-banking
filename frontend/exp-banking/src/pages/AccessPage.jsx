@@ -1,5 +1,5 @@
 import React from 'react';
-import background from '../assets/piggy_background_blue.png';
+import background from '../assets/piggy_background_blue.jpg';
 import RegisterForm from "../components/auth-forms/RegisterForm.jsx";
 import LoginForm from '../components/auth-forms/LoginForm.jsx';
 import Navbar from '../components/nav-bar/Navbar.jsx';

@@ -12,8 +12,8 @@ import ConsumerLoanInfoPage from "./pages/ConsumerLoanInfoPage.jsx";
 import NewTransferPage from "./pages/NewTransferPage.jsx"
 import NewTransactionPage from "./pages/NewTransactionPage.jsx";
 
-import { useUserStore } from "./stores/AuthStore.js";
-import { Navigate } from "react-router-dom";
+//import { useUserStore } from "./stores/AuthStore.js";
+//import { Navigate } from "react-router-dom";
 
 function App() {
 

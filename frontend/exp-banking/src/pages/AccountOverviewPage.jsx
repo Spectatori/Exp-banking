@@ -7,6 +7,7 @@ import ShadowBox from '../components/ShadowBox'
 import AddAccountForm from '../components/account-overview/AddAccountForm'
 import { useUserStore } from '../stores/AuthStore.js';
 import { useNavigate } from 'react-router-dom'
+import { useFetchUser } from '../hooks/useFetchUser.js'
 
 import transactionIcon from '../assets/account-overview/money.png'
 import loanIcon from '../assets/account-overview/loan.png'
@@ -14,6 +15,7 @@ import mortgageIcon from '../assets/account-overview/mortgage.png'
 import transactionHistoryIcon from '../assets/account-overview/transaction.png'
 
 const AccountOverviewPage = () => {
+    useFetchUser();
     const [isAddAccountButtonClicked, setIsAddAccountButtonClicked] = useState(false);
     const { user } = useUserStore();
     const navigate = useNavigate();
@@ -25,7 +27,9 @@ const AccountOverviewPage = () => {
     const closeForm = () => {
         setIsAddAccountButtonClicked(false);
     }
-
+    if (!user) {
+        return <div>Loading...</div>; // Or some other loading indicator
+    }
     return (
         <div>
             <header>

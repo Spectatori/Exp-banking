@@ -4,6 +4,7 @@ import AuthNavbar from '../components/nav-bar/authenticated/AuthNavbar'
 import Navbar from '../components/nav-bar/Navbar'
 import ShadowBox from '../components/ShadowBox'
 import PrimaryButton from '../components/PrimaryButton'
+import { useFetchUser } from '../hooks/useFetchUser'
 
 import Banner from '../assets/consumer-loan-info/family-cropped.jpg'
 import RelocationPic from '../assets/consumer-loan-info/relocation.jpg'
@@ -13,6 +14,7 @@ import PiggyIcon from '../assets/consumer-loan-info/piggy-bank.png'
 import { IoCheckmarkSharp } from "react-icons/io5";
 
 const ConsumerLoanInfoPage = () => {
+    useFetchUser();
     return (
         <>
             <Navbar />

@@ -4,7 +4,7 @@ import { decodeJWT } from '../utils/DecodeJWT.js'
 export const getUser = async() =>{
     try {
         const decoded = decodeJWT();
-        const user = await apiClient.get(`api/admin/getUser/`+decoded.sub)
+        const user = await apiClient.get(`api/admin/getUser/${decoded.sub}`)
         return user.data;
     }
     catch(error){
@@ -13,14 +13,14 @@ export const getUser = async() =>{
 }
 export const onSave = async (user, updatedData) => {
     try {
-        const decoded = decodeJWT(); // Get userId from the decoded JWT
+        const decoded = decodeJWT();
 
         // Construct the full payload based on user and updatedData
         const payload = {
             firstname: user.firstname,
             secondname: user.secondname,
             lastname: user.lastname,
-            email: updatedData.email || user.email, // Use updated email if present
+            email: updatedData.email || user.email,
             phoneNumber: updatedData.phoneNumber || user.phoneNumber,
             dateOfBirth: user.dateOfBirth,
             employmentType: {
@@ -32,11 +32,10 @@ export const onSave = async (user, updatedData) => {
             address: {
                 postcode: user.address.postcode,
                 cityName: user.address.cityName,
-                street: updatedData.address || user.address.street, // Use updated address if present
+                street: updatedData.address || user.address.street,
             },
         };
 
-        // Send the PUT request with the constructed payload
         const response = await apiClient.put(`user/update/${decoded.userId}`, payload);
 
         console.log('User updated successfully:', response.data);

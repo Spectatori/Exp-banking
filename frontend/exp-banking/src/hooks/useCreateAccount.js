@@ -13,7 +13,7 @@ const useCreateAccount = () => {
         try {
             setIsLoading(true);
             const user = await getUser();
-            await apiClient.post(`accounts/create/${user.userId}`, values)
+            await apiClient.post(`api/accounts/create/${user.userId}`, values)
             const updatedUser = await getUser();
             setUser(updatedUser);
         } catch (error) {

@@ -11,8 +11,10 @@ import { useUserStore } from '../stores/AuthStore.js'
 import {onSave} from '../api/userService.jsx'
 import { useEffect } from 'react'
 import { getUser } from '../api/userService.jsx'
+import { useFetchUser } from '../hooks/useFetchUser.js'
 
 const ProfileDetailsPage = () => {
+    useFetchUser();
     const user = useUserStore((state) => state.user);
     const [selectedButton, setSelectedButton] = useState('personalInfoSection');
     const [isEditing, setIsEditing] = useState({
@@ -104,7 +106,7 @@ const ProfileDetailsPage = () => {
                         <img src={userPfp} alt="" className='size-14' />
                         <div className='flex flex-col gap-2'>
                             <h2 className='text-blue-whale font-semibold text-xl pl-2'>{user.firstname +" "+ user.secondname + " " + user.lastname}</h2>
-                            <h2 className='text-blue-whale pl-2'>Клиентски номер: 12345</h2>
+                            <h2 className='text-blue-whale pl-2'>Клиентски номер: {user.userId}</h2>
                         </div>
                     </ShadowBox>
                 </section>

@@ -4,8 +4,10 @@ import AuthNavbar from '../components/nav-bar/authenticated/AuthNavbar'
 import ShadowBox from '../components/ShadowBox'
 import { useFormik } from 'formik';
 import { transferSchema } from '../schemas/transferSchema';
+import { useFetchUser } from '../hooks/useFetchUser';
 
 const NewTransferPage = () => {
+    useFetchUser();
     const onSubmit = () => {
         console.log(values);
     }

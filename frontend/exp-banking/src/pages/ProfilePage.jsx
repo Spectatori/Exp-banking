@@ -6,6 +6,7 @@ import { useUserStore } from '../stores/AuthStore.js';
 import {filterTransactions, calculateTotal} from '../utils/FilterTransactionsByDate.jsx'
 import { getUser } from '../api/userService.jsx';
 import { useLocation } from 'react-router-dom';
+import { useFetchUser } from '../hooks/useFetchUser.js';
 
 const categoryColors = {
   Food: {
@@ -26,7 +27,7 @@ const categoryColors = {
   }
 };
 const ProfilePage = () => {
-
+  useFetchUser();
   ///Handles the time change for the pie chart
   const [selectedTimeSpan, setSelectedTimeSpan] = useState('daily');
 

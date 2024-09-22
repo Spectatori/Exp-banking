@@ -78,8 +78,5 @@ export const registerSchema = yup.object().shape({
             return bulgarianCities.includes(value);
         }),
     employmentType: yup.string()
-        .required('Моля, изберете вид заетост.')
-        .test('is-valid-employmentType', 'Моля, изберете валиден град.', (value) => {
-            return employmentType.includes(value);
-        })
+        .required('Типът заетост е задължителен!'),
 }) 

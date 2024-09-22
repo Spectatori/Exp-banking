@@ -153,21 +153,25 @@ const RegisterForm = () => {
                             touched={touched}
                         />
                     </div>
-                    <div className='flex flex-col gap-3'>
-                        <p>Вид заетост</p>
-                        <InputField
-                            label="Вид заетост"
-                            type="select"
+                    <div className='flex flex-col gap-3 w-full px-1'>
+                        <div className='flex flex-col gap-2'>
+                        <label>Трудова заетост</label>
+                        <select
                             name="employmentType"
                             value={values.employmentType}
                             onChange={handleChange}
                             onBlur={handleBlur}
-                            errors={errors}
-                            touched={touched}
-                            options={employmentType}
-                        />
+                            className='border p-2 rounded-md'
+                        >
+                            <option value="">Изберете трудова заетост</option>
+                            {employmentType.map((type) => (
+                            <option key={type.value} value={type.value}>
+                                {type.label}
+                            </option>
+                            ))}
+                        </select>
+                        </div>
                     </div>
-
                 </div>
                 <div className=" relative flex flex-col gap-1 justify-center items-center w-96 bg-white bg-opacity-40 rounded-2xl my-8 py-10 px-10 h-fit max-h-full max-xl:px-3 max-xl:w-80">
                     <div className='flex flex-col gap-3'>

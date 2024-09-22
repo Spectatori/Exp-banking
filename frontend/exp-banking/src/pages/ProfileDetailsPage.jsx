@@ -12,8 +12,14 @@ import {onSave} from '../api/userService.jsx'
 import { useEffect } from 'react'
 import { getUser } from '../api/userService.jsx'
 import { useFetchUser } from '../hooks/useFetchUser.js'
+import { editUserSchema } from '../schemas/editUserSchema.js'
+import * as Yup from 'yup';
+import { useToastNotification } from '../hooks/useToastNotification.js'
+import { employmentType } from '../data/employmentType.jsx'
 
 const ProfileDetailsPage = () => {
+    const { showErrorToast } = useToastNotification();
+    const [errors, setErrors] = useState({});
     useFetchUser();
     const user = useUserStore((state) => state.user);
     const [selectedButton, setSelectedButton] = useState('personalInfoSection');
@@ -27,7 +33,7 @@ const ProfileDetailsPage = () => {
         email: user.email,
         phoneNumber: user.phoneNumber,
         address: user.address.street,
-        employment: user.employmentType.employmentType,
+        employmentType: user.employmentType.employmentType,
     });
 
     const fetchUserData = async () => {
@@ -57,21 +63,25 @@ const ProfileDetailsPage = () => {
         if (isEditing[field]) {
             try {
                 // Save updated form data to the server
+                await editUserSchema.validateAt(field, { [field]: formData[field] });
+
                 await onSave(user, formData);
-    
-                // Update the user data in the local state to reflect the changes
-                setFormData((prevData) => ({
-                    ...prevData,
-                    [field]: formData[field],
-                }));
-    
-                // Refetch updated data after save
+
                 await fetchUserData();
     
                 // Optionally, you can store the data in localStorage for persistence
                 localStorage.setItem('user', JSON.stringify(formData));
             } catch (error) {
-                console.error('Error saving user data:', error);
+                if (error instanceof Yup.ValidationError) {
+                    showErrorToast(
+                        <div className='text-sm'>
+                            <p className='font-semibold'>Неуспешно влизане</p>
+                            <p>Моля, проверете данните и опитайте отново.</p>
+                        </div>
+                    );
+                } else {
+                    console.error('Error saving user data:', error);
+                }
             }
         }
     
@@ -194,12 +204,18 @@ const ProfileDetailsPage = () => {
                                     <div className='flex flex-col gap-2'>
                                         <label className='font-semibold'>Трудова заетост</label>
                                         {isEditing.employment ? (
-                                            <input
-                                                type="text"
-                                                value={formData.employment}
-                                                onChange={(e) => handleChange(e, 'employment')}
-                                                className='border p-2'
-                                            />
+                                            <select
+                                            value={formData.employment}
+                                            onChange={(e) => handleChange(e, 'employment')}
+                                            className='border p-2'
+                                        >
+                                            <option value="">Изберете...</option>
+                                            {employmentType.map((type) => (
+                                                <option key={type.value} value={type.value}>
+                                                    {type.label}
+                                                </option>
+                                            ))}
+                                        </select>
                                         ) : (
                                             <p>{formData.employment}</p>
                                         )}

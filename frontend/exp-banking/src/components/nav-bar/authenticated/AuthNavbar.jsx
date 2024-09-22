@@ -10,16 +10,16 @@ const AuthNavbar = () => {
     };
 
     return (
-        <nav className='relative flex pt-5 px-5'>
+        <nav className='relative flex  pt-10 justify-end pr-4'>
             <button 
-                className='md:hidden absolute top-0 right-4 mt-3 mr-3'
+                className='md:hidden absolute top-0'
                 onClick={toggleMenu}
             >
                 <GiHamburgerMenu size={24} />
             </button>
 
             <ul
-                className={`z-50 absolute top-12 right-5 w-96 rounded-md text-blue-whale space-y-3 p-5 font-semibold
+                className={`pl-10 z-50 absolute rounded-md w-72 text-blue-whale space-y-3 p-5 font-semibold
                      bg-white border border-gray-300 shadow-md md:w-full md:shadow-none md:static md:space-y-0 md:flex 
                      md:items-center md:gap-8 md:text-dark-blue md:text-sm  md:bg-transparent md:border-none 
                      ${isMenuOpen ? 'block' : 'hidden'}`}

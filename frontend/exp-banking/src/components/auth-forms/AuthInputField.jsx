@@ -12,12 +12,12 @@ const InputField = ({ label, type, name, value, onChange, onBlur, errors, touche
                         value={value}
                         onChange={onChange}
                         onBlur={onBlur}
-                        className={`max-xl:w-72 rounded-lg pl-4 h-10 w-80 border text-sm outline-none ${error && touched[name]
+                        className={`max-xl:w-72 rounded-lg pl-4 h-8 w-80 border text-sm outline-none ${error && touched[name]
                             ? 'border-2 border-red-700 ring-black'
                             : 'border-blue-whale focus:ring-1 focus:ring-blue-whale'
                         }`}
                     >
-                        <option value="">Изберете {label}</option>
+                        <option value="">--- {label}</option>
                         {options.map((option, index) => (
                             <option key={index} value={option}>
                                 {option}
@@ -27,8 +27,8 @@ const InputField = ({ label, type, name, value, onChange, onBlur, errors, touche
                 </>
             ) : (
                 <input
-                    className={`max-xl:w-72 rounded-lg pl-4 h-10 w-80 border text-sm outline-none ${error && touched[name]
-                        ? 'border-2 border-red-700 ring-black'
+                    className={`max-xl:w-72 rounded-lg pl-4 h-8 w-80 border text-sm outline-none ${error && touched[name]
+                        ? 'border-2 border-red-600 ring-black'
                         : 'border-blue-whale focus:ring-1 focus:ring-blue-whale'
                     }`}
                     placeholder={label}
@@ -40,7 +40,7 @@ const InputField = ({ label, type, name, value, onChange, onBlur, errors, touche
                 />
             )}
             {error && touched[name] && (
-                <div className='text-sm font-medium text-wrap text-red-700 mt-1'>
+                <div className='text-sm font-medium text-wrap text-red-600 mt-1'>
                     {error}
                 </div>
             )}

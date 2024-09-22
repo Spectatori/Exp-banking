@@ -70,14 +70,13 @@ const RegisterForm = () => {
         <form
             className="relative flex flex-col  justify-center items-center w-96 bg-opacity-40 rounded-2xl my-8 py-5 px-10 h-fit max-h-full max-xl:px-3 max-xl:w-80"
             onSubmit={handleSubmit}>
-            <h2 className="text-4xl text-white">Регистрация</h2>
-            <p className='text-white'>Моля въвеждайте данните на кирилица </p>
+            <h2 className="text-5xl font-bold text-white mb-5">Регистрация</h2>
+            {/*<p className='text-white text-center mt-2'>Моля въвеждайте данните на кирилица </p>*/}
             <div className='flex gap-20 max-xl:flex-col max-xl:gap-0'>
-                <div className=" text-start relative flex flex-col gap-1 justify-center items-center w-96 bg-white bg-opacity-40 rounded-2xl my-8 py-10 px-10 h-fit max-h-full max-xl:px-3 max-xl:w-80">
-                    <div className='flex flex-col gap-3'>
+                <div className=" text-start relative gap-3 flex flex-col gap-1 justify-center items-center w-96 bg-white bg-opacity-70 rounded-2xl my-8 py-10 px-10 h-fit max-h-full max-xl:px-3 max-xl:w-80">
+                    <div className='flex flex-col space-y-2'>
                         <p>Име</p>
                         <InputField
-                            label="Име"
                             type="text"
                             name="firstname"
                             id='firstName'
@@ -88,10 +87,9 @@ const RegisterForm = () => {
                             touched={touched}
                         />
                     </div>
-                    <div className='flex flex-col gap-3'>
+                    <div className='flex flex-col space-y-2'>
                         <p>Презиме</p>
                         <InputField
-                            label="Презиме"
                             type="text"
                             name="secondname"
                             value={values.secondname}
@@ -101,10 +99,9 @@ const RegisterForm = () => {
                             touched={touched}
                         />
                     </div>
-                    <div className='flex flex-col gap-3'>
+                    <div className='flex flex-col space-y-2'>
                         <p>Фамилия</p>
                         <InputField
-                            label="Фамилия"
                             type="text"
                             name="lastname"
                             value={values.lastname}
@@ -114,10 +111,9 @@ const RegisterForm = () => {
                             touched={touched}
                         />
                     </div>
-                    <div className='flex flex-col gap-3'>
+                    <div className='flex flex-col space-y-2'>
                         <p>Парола</p>
                         <InputField
-                            label="Парола"
                             type="password"
                             name="password"
                             value={values.password}
@@ -127,10 +123,9 @@ const RegisterForm = () => {
                             touched={touched}
                         />
                     </div>
-                    <div className='flex flex-col gap-3'>
+                    <div className='flex flex-col space-y-2'>
                         <p>Дата на раждане</p>
                         <InputField
-                            label="Дата на раждане"
                             type="date"
                             name="dateOfBirth"
                             value={values.dateOfBirth}
@@ -140,10 +135,9 @@ const RegisterForm = () => {
                             touched={touched}
                         />
                     </div>
-                    <div className='flex flex-col gap-3'>
+                    <div className='flex flex-col space-y-2'>
                         <p>Телефонен номер</p>
                         <InputField
-                            label="Телефонен Номер"
                             type="text"
                             name="phoneNumber"
                             value={values.phoneNumber}
@@ -153,10 +147,9 @@ const RegisterForm = () => {
                             touched={touched}
                         />
                     </div>
-                    <div className='flex flex-col gap-3'>
+                    <div className='flex flex-col space-y-2'>
                         <p>Вид заетост</p>
                         <InputField
-                            label="Вид заетост"
                             type="select"
                             name="employmentType"
                             value={values.employmentType}
@@ -169,11 +162,10 @@ const RegisterForm = () => {
                     </div>
 
                 </div>
-                <div className=" relative flex flex-col gap-1 justify-center items-center w-96 bg-white bg-opacity-40 rounded-2xl my-8 py-10 px-10 h-fit max-h-full max-xl:px-3 max-xl:w-80">
-                    <div className='flex flex-col gap-3'>
+                <div className=" relative flex flex-col gap-3 justify-center items-center w-96 bg-white bg-opacity-70 rounded-2xl my-8 py-10 px-10 h-fit max-h-full max-xl:px-3 max-xl:w-80">
+                    <div className='flex flex-col space-y-2'>
                         <p>Имейл</p>
                         <InputField
-                            label="Имейл"
                             type="text"
                             name="email"
                             value={values.email}
@@ -183,10 +175,9 @@ const RegisterForm = () => {
                             touched={touched}
                         />
                     </div>
-                    <div className='flex flex-col gap-3'>
+                    <div className='flex flex-col space-y-2'>
                         <p>ЕГН</p>
                         <InputField
-                            label="ЕГН"
                             type="text"
                             name="egn"
                             value={values.egn}
@@ -196,10 +187,9 @@ const RegisterForm = () => {
                             touched={touched}
                         />
                     </div>
-                    <div className='flex flex-col gap-3'>
+                    <div className='flex flex-col space-y-2'>
                         <p>Валидност на лична карта</p>
                         <InputField
-                            label="Валидност на лична карта"
                             type="date"
                             name="expDate"
                             value={values.expDate}
@@ -209,10 +199,9 @@ const RegisterForm = () => {
                             touched={touched}
                         />
                     </div>
-                    <div className='flex flex-col gap-3'>
+                    <div className='flex flex-col space-y-2'>
                         <p>Номер на лична карта</p>
                         <InputField
-                            label="Номер на лична карта"
                             type="number"
                             name="idCardNumber"
                             value={values.idCardNumber}
@@ -222,10 +211,9 @@ const RegisterForm = () => {
                             touched={touched}
                         />
                     </div>
-                    <div className='flex flex-col gap-3'>
+                    <div className='flex flex-col space-y-2'>
                         <p>Пощенски код</p>
                         <InputField
-                            label="Пощенски код"
                             type="text"
                             name="postcode"
                             value={values.postcode}
@@ -235,10 +223,9 @@ const RegisterForm = () => {
                             touched={touched}
                         />
                     </div>
-                    <div className='flex flex-col gap-3'>
+                    <div className='flex flex-col space-y-2'>
                         <p>Град</p>
                         <InputField
-                            label="Град"
                             type="select"
                             name="cityName"
                             value={values.cityName}
@@ -249,10 +236,9 @@ const RegisterForm = () => {
                             options={bulgarianCities}
                         />
                     </div>
-                    <div className='flex flex-col gap-3'>
+                    <div className='flex flex-col space-y-2'>
                         <p>Улица</p>
                         <InputField
-                            label="Улица"
                             type="text"
                             name="street"
                             value={values.street}
@@ -265,11 +251,13 @@ const RegisterForm = () => {
                 </div>
             </div>
 
-            <Button label="Регистрация" type="submit" />
-            <p className='mt-3 text-sm text-white'>
-                Вече имате акаунт? Влезте
-                <Link to='/auth/login' className='m-1 text-sky-500'>тук!</Link>
-            </p>
+            <div className=" w-full relative flex flex-col justify-center items-center h-fit bg-white bg-opacity-70 rounded-2xl py-1 px-1 max-xl:px-4">
+                <Button label="Регистрация" type="submit" />
+                <p className='my-3'>
+                    Вече имате акаунт? Влезте
+                    <Link to='/auth/login' className='m-1 text-dark-blue font-bold'>тук!</Link>
+                </p>
+            </div>
         </form>
     )
 }

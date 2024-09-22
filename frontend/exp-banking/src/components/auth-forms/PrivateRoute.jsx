@@ -11,6 +11,9 @@ const PrivateRoute = ({ element,  authRequired = true }) => {
     if (authRequired && !isAuthenticated || !user) {
         return <Navigate to="/auth/login" />;
     }
+    else if(authRequired == false && isAuthenticated && user){
+        return <Navigate to="/account-overview"/>;  
+    }
     
     return element;
 };

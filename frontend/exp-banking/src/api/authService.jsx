@@ -6,7 +6,7 @@ import Cookies from 'js-cookie'
 export const registerUser = async (UserData) =>{
     const setUser = useUserStore.getState().setUser;
     try{
-        const response = await apiClient.post('/authentication/register', UserData);
+        const response = await apiClient.post('/api/authentication/register', UserData);
 
         const token = response.data.token;
         Cookies.set('UserToken', token, { path: '/' });
@@ -23,7 +23,7 @@ export const registerUser = async (UserData) =>{
 export const loginUser = async (UserData) => {
     const setUser = useUserStore.getState().setUser;
     try {
-        const response = await apiClient.post('/authentication/authenticate', UserData)
+        const response = await apiClient.post('/api/authentication/authenticate', UserData)
 
         const token = response.data.token;
         Cookies.set('UserToken', token, { path: '/' });

@@ -148,7 +148,7 @@ const RegisterForm = () => {
                         />
                     </div>
                     <div className='flex flex-col gap-3 w-full px-1'>
-                        <div className='flex flex-col gap-2'>
+                        <div className='flex flex-col space-y-2'>
                         <label>Трудова заетост</label>
                         <select
                             name="employmentType"

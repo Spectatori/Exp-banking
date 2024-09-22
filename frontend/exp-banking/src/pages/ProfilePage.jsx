@@ -103,10 +103,10 @@ const ProfilePage = () => {
   return (
     <div className="flex flex-col">
       <Navbar />
-      <div className="flex flex-col pt-10 px-40 gap-10 max-xl:px-4 max-2xl:pb-10">
-        <div className='flex flex-row justify-between max-2xl:flex-col max-xl:gap-10'>
-          <div className='flex flex-col gap-16 '>
-              <div className='flex flex-row justify-between px-10 items-center rounded-xl h-28 w-full 
+      <div className="flex flex-col pt-10 pb-10 px-20 gap-10 max-xl:px-4 max-2xl:pb-10">
+        <div className='flex flex-row gap-28 justify-between max-2xl:flex-col max-xl:gap-10'>
+          <div className='flex flex-col gap-10 '>
+              <div className='bg-white flex flex-row justify-between px-10 items-center rounded-xl h-28 w-full 
               max-xl:flex-col max-xl:h-44 max-xl:items-center max-xl:justify-center gap-3' style={{
                 boxShadow: 'rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px'
               }}>
@@ -122,16 +122,16 @@ const ProfilePage = () => {
                   ))}
                 </select>
                 <div className="flex flex-col">
-                  <p className="font-mono text-gray-400 text-md self-start max-xl:self-center">{user.firstname} {user.lastname}</p>
-                  <p className='font-mono self-start max-xl:self-center max-xl:pt-1'>{selectedAccount.accountType.accountType}</p>
+                  <p className="font-mono text-center text-gray-400 text-md self-start max-xl:self-center">{user.firstname} {user.lastname}</p>
+                  <p className='font-mono text-center self-start max-xl:self-center max-xl:pt-1'>{selectedAccount.accountType.accountType}</p>
                 </div>
                 <div className="flex flex-col">
-                  <p className="font-mono text-gray-400 text-sm self-end max-xl:self-center">Налична сума</p>
-                  <p className=' text-2xl self-end max-xl:self-center'>{selectedAccount.balance} BGN</p>
+                  <p className="font-mono text-gray-400 text-sm text-center self-end max-xl:self-center">Налична сума</p>
+                  <p className=' text-xl text-center self-end max-xl:self-center'>{selectedAccount.balance} BGN</p>
                 </div>
               </div>
 
-            <div className='flex flex-col justify-between rounded-xl p-3' style={{
+            <div className='bg-white flex flex-col justify-between rounded-xl p-3' style={{
               boxShadow: 'rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px'
             }}>
               <p className='text-xl pb-2 pl-6'>Скорошни транзакции</p>
@@ -141,7 +141,7 @@ const ProfilePage = () => {
               
             </div>
           </div>
-          <div className='flex flex-col rounded-xl h-90 justify-center max-2xl:pb-10' style={{
+          <div className='bg-white flex flex-col rounded-xl h-90 justify-center max-2xl:pb-10' style={{
             boxShadow: 'rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px',
           }}>
             <div className='flex flex-row px-6 justify-between pb-10 max-2xl:pt-5'>

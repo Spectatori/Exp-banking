@@ -16,7 +16,6 @@ import { useUserStore } from "./stores/AuthStore.js";
 import { Navigate } from "react-router-dom";
 
 function App() {
-    const { user } = useUserStore();
 
     return (
         <div className="flex flex-col min-h-screen justify-between ">
@@ -25,9 +24,9 @@ function App() {
                     <Route path="/" element={<MainPage />} />
                     <Route path="/profile" element={<PrivateRoute element={<ProfilePage/>} />} />
                     <Route path="/profile/details" element={<PrivateRoute element={<ProfileDetailsPage/>} />} />
-                    <Route path="/auth/register" element={user ? <Navigate to="/profile" /> : <AccessPage/>} />
-                    <Route path="/auth/login" element={user ? <Navigate to="/profile" /> : <AccessPage/>} />
-                    <Route path="/account-overview" element={<AccountOverviewPage />} />
+                    <Route path="/auth/register" element={<PrivateRoute element={<AccessPage/>} authRequired={false} />} />
+                    <Route path="/auth/login" element={<PrivateRoute element={<AccessPage/>} authRequired={false} />} />
+                    <Route path="/account-overview" element={<PrivateRoute element={<AccountOverviewPage/>} />} />
                     <Route path="/calculator" element={<LoanCalcPage />} />
                     <Route path="/consumer-loan" element={<ConsumerLoanInfoPage />} />
                     <Route path="/new-transfer" element={<NewTransferPage />} />

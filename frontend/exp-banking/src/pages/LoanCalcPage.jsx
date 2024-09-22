@@ -3,8 +3,10 @@ import LoanTable from '../components/Table.jsx';
 import calculateLoan from '../utils/LoanMortgageCalc.jsx';
 import Switch from 'react-switch';
 import { useState, useRef, useMemo } from 'react';  
+import { useFetchUser } from '../hooks/useFetchUser.js';
 
 const LoanCalcPage = () => {
+    useFetchUser();
     const [resultsArray, setResultsArray] = useState([]);
     const calcValue = useRef(null);
 

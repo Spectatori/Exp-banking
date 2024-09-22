@@ -8,7 +8,8 @@ export const useUserStore = create(
             setUser: (user) => set({ user }),
             clearUser: () => {
                 document.cookie = 'UserToken=; Max-Age=0; path=/;'; 
-                set({ user: null })
+                set({ user: undefined })
+                localStorage.clear();
             }
         }),
         {

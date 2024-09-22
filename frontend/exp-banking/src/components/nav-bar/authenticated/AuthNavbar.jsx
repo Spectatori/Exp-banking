@@ -19,7 +19,10 @@ const AuthNavbar = () => {
             </button>
 
             <ul
-                className={`z-50 absolute top-12 right-5 w-96 rounded-md text-blue-whale space-y-3 p-5 font-semibold bg-white border border-gray-300 shadow-md md:w-full md:shadow-none md:static md:space-y-0 md:flex md:items-center md:gap-8 md:text-dark-blue md:text-sm  md:bg-transparent md:border-none ${isMenuOpen ? 'block' : 'hidden'}`}
+                className={`z-50 absolute top-12 right-5 w-96 rounded-md text-blue-whale space-y-3 p-5 font-semibold
+                     bg-white border border-gray-300 shadow-md md:w-full md:shadow-none md:static md:space-y-0 md:flex 
+                     md:items-center md:gap-8 md:text-dark-blue md:text-sm  md:bg-transparent md:border-none 
+                     ${isMenuOpen ? 'block' : 'hidden'}`}
             >
                 <CustomNavLink url='/' title='НАЧАЛО' />
                 <CustomNavLink url='/' title='СМЕТКИ И ДЕПОЗИТИ' />

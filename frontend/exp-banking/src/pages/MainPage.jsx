@@ -10,8 +10,10 @@ import TransferServices from '../assets/MainPageImages/transfer_services.png';
 import DepositServices from '../assets/MainPageImages/deposit_services.png';
 import Mortgages from '../assets/MainPageImages/mortgages.png';
 import AccountManagement from '../assets/MainPageImages/account_management.png';
+import { useFetchUser } from '../hooks/useFetchUser.js';
 
 const MainPage = () => {
+    useFetchUser();
     const navigate = useNavigate();
 
     const handleNavigation = (event) => {

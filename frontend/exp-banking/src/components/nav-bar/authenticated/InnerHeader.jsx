@@ -6,8 +6,7 @@ import { useUserStore } from '../../../stores/AuthStore';
 import { useNavigate } from 'react-router-dom';
 
 const InnerHeader = () => {
-    const user = useUserStore((state) => state.user);
-    const { clearUser } = useUserStore();
+    const { user, clearUser } = useUserStore();
     const navigate = useNavigate();
 
     const handleLogout = () => {
@@ -26,7 +25,7 @@ const InnerHeader = () => {
             <div>
                 <div className='flex flex-row gap-5 items-center'>
                     <FaUserAlt size={22} className='text-blue-whale' />
-                    <p className='text-blue-whale'>{user.firstname +" "+ user.secondname + " " + user.lastname}</p>
+                    <p className='text-blue-whale uppercase'>{`${user.firstname} ${user.secondname} ${user.lastname}`}</p>
                     <button>
                         <MdLogout onClick={handleLogout} className='w-16 h-7 ext-blue-whale'/>
                     </button>

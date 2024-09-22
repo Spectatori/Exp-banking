@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-import { useEffect } from 'react';
+import { useState } from 'react'
 import { getUser } from '../api/userService';
 import apiClient from '../api/apiClient';
 import { useUserStore } from '../stores/AuthStore';

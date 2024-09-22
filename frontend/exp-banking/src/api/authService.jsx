@@ -5,6 +5,7 @@ import Cookies from 'js-cookie'
 
 export const registerUser = async (UserData) =>{
     const setUser = useUserStore.getState().setUser;
+
     try{
         const response = await apiClient.post('api/authentication/register', UserData);
 

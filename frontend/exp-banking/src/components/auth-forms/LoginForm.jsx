@@ -7,18 +7,28 @@ import Button from './AuthButton.jsx'
 import {useCookies} from 'react-cookie'
 import { loginUser } from '../../api/authService.jsx';
 import { useNavigate } from 'react-router-dom';
+import { useToastNotification } from '../../hooks/useToastNotification.js';
+
 const LoginForm = () => {
-    const [cookies, setCookie] = useCookies(['token']);  // Initialize cookies
+    const { showErrorToast } = useToastNotification();
+
+    const [cookies, setCookie] = useCookies(['token']);  
     const navigate = useNavigate();
 
     const onSubmit = async (values) => {
        try {
             const token = await loginUser(values); 
-            setCookie('UserToken', token, { path: '/' });  // Store token in cookies
+            setCookie('UserToken', token, { path: '/' });  
             console.log('Login successful!');
             navigate('/account-overview');
         } catch (error) {
             console.error('Login failed:', error);
+            showErrorToast(
+                <div className='text-sm'>
+                    <p className='font-semibold'>Неуспешно влизане</p>
+                    <p>Моля, проверете данните и опитайте отново.</p>
+                </div>
+            );
         } 
     }
 

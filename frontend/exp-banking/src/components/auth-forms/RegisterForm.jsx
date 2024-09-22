@@ -9,7 +9,11 @@ import { registerUser } from '../../api/authService.jsx';
 import { employmentType } from '../../data/employmentType.jsx';
 import { useCookies } from 'react-cookie'
 import { useNavigate } from 'react-router-dom';
+import { useToastNotification } from '../../hooks/useToastNotification.js';
+
 const RegisterForm = () => {
+    const { showErrorToast } = useToastNotification();
+
     const [cookies, setCookie] = useCookies(['token']);  // Initialize cookies
     const navigate = useNavigate();
 
@@ -31,6 +35,11 @@ const RegisterForm = () => {
             navigate('/profile');
         } catch (error) {
             console.error('Registration failed:', error);
+            showErrorToast(
+                <div className='text-sm'>
+                    <p className='font-semibold'>Неуспешна регистрация</p>
+                </div>
+            );
         }
 
     };

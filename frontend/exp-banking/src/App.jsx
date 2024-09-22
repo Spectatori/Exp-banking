@@ -11,6 +11,7 @@ import PrivateRoute from "./components/auth-forms/PrivateRoute.jsx";
 import ConsumerLoanInfoPage from "./pages/ConsumerLoanInfoPage.jsx";
 import NewTransferPage from "./pages/NewTransferPage.jsx"
 import NewTransactionPage from "./pages/NewTransactionPage.jsx";
+import ToastConfig from "./config/ToastConfig.jsx";
 
 //import { useUserStore } from "./stores/AuthStore.js";
 //import { Navigate } from "react-router-dom";
@@ -35,6 +36,7 @@ function App() {
             </Router>
             <AIChat/>
             <Footer />
+            <ToastConfig />
         </div>
     );
 }

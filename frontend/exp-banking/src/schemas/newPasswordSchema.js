@@ -10,6 +10,6 @@ export const newPasswordSchema = yup.object().shape({
             'Паролата трябва да съдържа поне една малка буква, една главна буква, една цифра и един специален символ.')
         .required('Полето е задължително!'),
     confirmNewPassword: yup.string()
-        .oneOf([yup.ref('password'), null], 'Паролите не съвпадат.')
+        .oneOf([yup.ref('newPassword'), null], 'Паролите не съвпадат.')
         .required('Полето е задължително!'),
 })

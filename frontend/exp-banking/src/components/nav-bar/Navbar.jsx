@@ -23,7 +23,7 @@ const Navbar = () => {
                 </nav>
             )
             : (
-                <nav className="pl-6 flex bg-ghost-white pt-4 max-xl:pl-0 max-xl:gap-6 max-xl:flex-col">
+                <nav className="pl-6 flex bg-ghost-white pt-4 max-xl:pl-0 max-xl:gap-6 max-xl:flex-col pb-5">
                     <div className="flex max-xl:w-full max-xl:justify-center">
                         <img src="/logo.png" className="w-20" alt="" />
                     </div>

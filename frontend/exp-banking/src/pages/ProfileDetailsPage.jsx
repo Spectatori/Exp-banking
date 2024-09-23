@@ -17,7 +17,6 @@ import { employmentType } from '../data/employmentType.jsx'
 
 const ProfileDetailsPage = () => {
     const { showErrorToast } = useToastNotification();
-    const [errors, setErrors] = useState({});
     useFetchUser();
     const user = useUserStore((state) => state.user);
     const [selectedButton, setSelectedButton] = useState('personalInfoSection');
@@ -49,7 +48,7 @@ const ProfileDetailsPage = () => {
     };
 
     useEffect(() => {
-        const storedUser = localStorage.getItem('user');
+        const storedUser = localStorage.getItem('userStorage').state;
         if (storedUser) {
             setFormData(JSON.parse(storedUser));
         } else {
@@ -66,9 +65,6 @@ const ProfileDetailsPage = () => {
                 await onSave(user, formData);
 
                 await fetchUserData();
-    
-                // Optionally, you can store the data in localStorage for persistence
-                localStorage.setItem('user', JSON.stringify(formData));
             } catch (error) {
                 if (error instanceof Yup.ValidationError) {
                     showErrorToast(
@@ -100,6 +96,10 @@ const ProfileDetailsPage = () => {
         setSelectedButton(section);
     };
 
+      // Make sure there's a user
+  if (!user || !user.accounts || user.accounts.length === 0) {
+    return <Navigate to="/account-overview"/>;  
+  }
     return (
         <div>
             <div className='mx-10 mt-12'>

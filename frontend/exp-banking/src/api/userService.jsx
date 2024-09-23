@@ -18,6 +18,7 @@ export const onSave = async (user, updatedData) => {
         // Construct the full payload based on user and updatedData
         const payload = {
             firstname: user.firstname,
+            password: updatedData.password || user.password,
             secondname: user.secondname,
             lastname: user.lastname,
             email: updatedData.email || user.email,

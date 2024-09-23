@@ -1,10 +1,31 @@
 import React from 'react'
 import { useFormik } from 'formik';
 import { newPasswordSchema } from '../../schemas/newPasswordSchema';
-
+import { useUserStore } from '../../stores/AuthStore';
+import bcrypt from 'bcryptjs'
 const PasswordChangeSection = () => {
-    
+
+    const user = useUserStore((state) => state.user);
     const onSubmit = () => {
+        console.log(user)
+        const hashedPassword = bcrypt.hashSync(values.oldPassword, 10);
+        const isMatch = bcrypt.compareSync(values.oldPassword, user.password);
+        if (isMatch) {
+            
+            } else {
+                console.log('Password does not match');
+            }
+
+        hashPassword("Test123@").then(hashedPassword => {
+            console.log(hashedPassword); // Output: "$2a$10$kECRY7TZtjvNuvWMaX27.OiDS9C4hY/rMG8S7Aa8NOrEiUXqwqlxi"
+          });
+
+          async function hashPassword(password) {
+            const saltRounds = 10; // Adjust the salt rounds as needed
+            const hash = await bcrypt.hash(password, saltRounds);
+            return hash;
+          }
+
         console.log(values);
     }
 

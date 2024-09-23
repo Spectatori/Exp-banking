@@ -26,7 +26,7 @@ const InnerHeader = () => {
                 <div className='flex flex-row gap-5 items-center'>
                     <FaUserAlt size={22} className='text-blue-whale' />
                     <Link
-                        to='/profile-details'
+                        to='/profile'
                     >
                         <p className='text-blue-whale uppercase'>{`${user.firstname} ${user.secondname} ${user.lastname}`}</p>
                     </Link>

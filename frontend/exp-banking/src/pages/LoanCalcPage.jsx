@@ -8,6 +8,7 @@ const LoanCalcPage = () => {
     useFetchUser();
     const [resultsArray, setResultsArray] = useState([]);
     const calcValue = useRef(null);
+    const calcPeriod = useRef(null);
 
     const [isChecked, setIsChecked] = useState(false);
     const handleChange = (checked) => {
@@ -17,27 +18,27 @@ const LoanCalcPage = () => {
     const handleLoanCalculation = (event) => {
         event.preventDefault();
         const principal = parseFloat(calcValue.current.value);
-        const years = 10;
+        const period = parseFloat(calcPeriod.current.value);
         const interestRate = 6;
 
-        const results = calculateLoan(principal, years, interestRate);
+        const results = calculateLoan(principal, period, interestRate);
         setResultsArray(results);
     };
 
     const handleMortgageCalculation = (event) => {
         event.preventDefault();
         const principal = parseFloat(calcValue.current.value);
-        const years = 30;
+        const period = parseFloat(calcPeriod.current.value);
         const interestRate = 3;
 
-        const results = calculateLoan(principal, years, interestRate);
+        const results = calculateLoan(principal, period, interestRate);
         setResultsArray(results);
     };
 
     const columns = useMemo(() => [
         {
-            accessorKey: 'year',
-            header: 'Години',
+            accessorKey: 'period',
+            header: 'Месеци',
             size: 80,
         },
         {
@@ -101,21 +102,34 @@ const LoanCalcPage = () => {
                         />
                     </label>
 
-                    <div className='flex flex-col bg-sky-950 w-96 max-w-96 h-96 max-h-96 px-7 rounded-3xl text-gray-100 justify-center gap-6 max-2xl:w-80 max-2xl:self-center'>
+                    <div className='flex flex-col bg-sky-950 w-96 max-w-96 h-96 max-h-96 px-7 rounded-3xl text-gray-100 justify-center gap-6 max-2xl:w-80 max-2xl:self-center max-xl:gap-0'>
                         {isChecked ? (
                         <>
                         <div className='flex flex-row w-full justify-between '>
                             <h2 className='text-3xl pb-5'>Заем</h2>
                             <h3>Лихва: 6%</h3>
                         </div>
-                        <h2>Стойност на заема</h2>
                         <form onSubmit={handleLoanCalculation} className='flex flex-col gap-4'>
-                            <input
-                            className='w-48 h-12 rounded-xl text-black max-2xl:w-60'
-                            type='number'
-                            name='value'
-                            ref={calcValue}
-                            />
+                            <div className='flex justify-between pb-3 max-xl:flex-col max-xl:gap-10'>
+                                <div>
+                                    <p className='pb-2'>Сума в лв</p>
+                                    <input
+                                    className='w-32 text-center h-12 rounded-xl text-black max-2xl:w-60'
+                                    type='number'
+                                    name='value'
+                                    ref={calcValue}
+                                    />
+                                </div>
+                                <div>
+                                    <p className='pb-2'>Месеци</p>
+                                    <input
+                                    className='w-32 text-center h-12 rounded-xl text-black max-2xl:w-60'
+                                    type='number'
+                                    name='value'
+                                    ref={calcPeriod}
+                                    />
+                                </div>
+                            </div>
                             <button
                             className='bg-gray-100 text-black w-32 rounded-lg h-9'
                             type='submit'>
@@ -123,18 +137,31 @@ const LoanCalcPage = () => {
                             </button>
                         </form>
                         </>) : (<>
-                            <div className='flex flex-row w-full justify-between '>
+                        <div className='flex flex-row w-full justify-between '>
                             <h2 className='text-3xl pb-5'>Ипотека</h2>
                             <h3>Лихва: 3%</h3>
                         </div>
-                        <h2>Стойност на ипотеката</h2>
                         <form onSubmit={handleMortgageCalculation} className='flex flex-col gap-4'>
-                            <input
-                            className='w-48 h-12 rounded-xl text-black max-2xl:w-60'
-                            type='number'
-                            name='value'
-                            ref={calcValue}
-                            />
+                            <div className='flex justify-between pb-3 max-xl:flex-col max-xl:gap-10'>
+                                <div>
+                                    <p className='pb-2'>Сума в лв</p>
+                                    <input
+                                    className='w-32 text-center h-12 rounded-xl text-black max-2xl:w-60'
+                                    type='number'
+                                    name='value'
+                                    ref={calcValue}
+                                    />
+                                </div>
+                                <div>
+                                    <p className='pb-2'>Месеци</p>
+                                    <input
+                                    className='w-32 text-center h-12 rounded-xl text-black max-2xl:w-60'
+                                    type='number'
+                                    name='value'
+                                    ref={calcPeriod}
+                                    />
+                                </div>
+                            </div>
                             <button
                             className='bg-gray-100 text-black w-32 rounded-lg h-9'
                             type='submit'>

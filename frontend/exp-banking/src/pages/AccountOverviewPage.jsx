@@ -70,8 +70,8 @@ const AccountOverviewPage = () => {
                                             <div className='flex flex-row gap-5'>
                                                 <div className='flex flex-col w-fit'>
                                                     <button
-                                                        className='overflow-visible h-16 relative flex flex-col items-center justify-center gap-2 transition-all duration-300 group overflow-hidden'
-                                                        onClick={() => navigate('/profile', { state: { accountId: user.accounts.indexOf(account) } })}
+                                                        className='overflow-visible h-16 relative flex flex-col items-center justify-center gap-2 transition-all duration-300 group'
+                                                        onClick={() => navigate('/transactions', { state: { accountId: user.accounts.indexOf(account) } })}
                                                     >
                                                         <img src={transactionHistoryIcon} className='size-8 transition-transform duration-300 group-hover:translate-y-[-8px]' alt="" />
                                                         <p className='mt-12 absolute text-xs transform translate-y-5 transition-transform duration-300 opacity-0 group-hover:translate-y-0 group-hover:opacity-100'>Движения</p>

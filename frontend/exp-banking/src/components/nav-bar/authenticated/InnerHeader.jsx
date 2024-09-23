@@ -17,7 +17,7 @@ const InnerHeader = () => {
     return (
         <nav className="flex justify-between bg-ghost-white p-1 items-center pt-3">
             <Link
-                to='/'
+                to='/account-overview'
             >
                 <img src="/logo.png" className="w-16 h-14 ml-2" alt="" />
             </Link>
@@ -25,11 +25,15 @@ const InnerHeader = () => {
             <div>
                 <div className='flex flex-row gap-5 items-center'>
                     <FaUserAlt size={22} className='text-blue-whale' />
-                    <p className='text-blue-whale uppercase'>{`${user.firstname} ${user.secondname} ${user.lastname}`}</p>
+                    <Link
+                        to='/profile-details'
+                    >
+                        <p className='text-blue-whale uppercase'>{`${user.firstname} ${user.secondname} ${user.lastname}`}</p>
+                    </Link>
                     <button>
-                        <MdLogout onClick={handleLogout} className='w-16 h-7 ext-blue-whale'/>
+                        <MdLogout onClick={handleLogout} className='w-16 h-7 ext-blue-whale' />
                     </button>
-                </div>     
+                </div>
             </div>
         </nav>
     )

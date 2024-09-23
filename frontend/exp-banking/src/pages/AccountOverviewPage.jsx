@@ -94,7 +94,10 @@ const AccountOverviewPage = () => {
             </div>
 
             <section className='flex gap-10 flex-row bg-space-wolves-grey mt-10 p-10 items-center justify-evenly'>
-                <button className='max-w-28 h-40 flex justify-center'>
+                <button 
+                    className='max-w-28 h-40 flex justify-center'
+                    onClick={() => navigate('/payments')}                 
+                >
                     <div className='flex flex-col items-center gap-2 group'>
                         <div className='flex bg-azure border rounded-full size-28 items-center justify-center transition-transform duration-300 ease-in-out transform group-hover:scale-110'>
                             <img
@@ -103,11 +106,14 @@ const AccountOverviewPage = () => {
                                 className='h-16'
                             />
                         </div>
-                        <h3 className='text-lg font-semibold text-blue-whale leading-5 mt-2'>Нов превод </h3>
+                        <h3 className='text-lg font-semibold text-blue-whale leading-5 mt-2'>Ново плащане </h3>
                     </div>
                 </button>
 
-                <button className='max-w-28 h-40 flex justify-center'>
+                <button
+                    className='max-w-28 h-40 flex justify-center'
+                    onClick={() => navigate('/loans/consumer-loan')}
+                >
                     <div className='flex flex-col items-center gap-2  group'>
                         <div className='flex bg-kelly-green border rounded-full size-28 items-center justify-center transition-transform duration-300 ease-in-out transform group-hover:scale-110'>
                             <img

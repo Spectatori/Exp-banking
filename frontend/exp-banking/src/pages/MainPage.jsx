@@ -26,7 +26,7 @@ const MainPage = () => {
         <div className='flex flex-col max-xl:'>
             <div className='flex flex-col h-full bg-sky-950 rounded-3xl w-full'>
                 <div className="flex flex-col pl-10 bg-white rounded-b-3xl max-xl:pl-0">
-                    <div className="flex flex-row pt-8 items-start max-xl:flex-col max-xl:items-center">
+                    {/*<div className="flex flex-row pt-8 items-start max-xl:flex-col max-xl:items-center">
                         <img src={BankIcon} className='h-40' alt="Bank Logo"/>
                         <div className='pl-16 flex gap-10 max-xl:flex-col max-xl:pl-0 '>
                             <select 
@@ -40,7 +40,7 @@ const MainPage = () => {
                                 <option>drop</option>
                             </select>
                         </div>
-                    </div>
+                    </div>*/}
                     <div className="flex flex-row pb-32 pt-32 pl-32 justify-between max-xl:pl-0 max-xl:flex-col max-xl:pt-10 max-xl:items-center max-xl:pb-0">
                         <div className="flex flex-col w-1/4 items-start gap-14 max-2xl:w-1/3 max-xl:items-center max-xl:w-full">
                             <h2 className='text-5xl font-bold text-start max-2xl:text-4xl max-xl:text-3xl max-xl:text-center'>Живей без такси, безплатно откриване и поддръжка на сметки, неограничени безплатни преводи</h2>

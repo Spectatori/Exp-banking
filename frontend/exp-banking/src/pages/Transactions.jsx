@@ -26,7 +26,7 @@ const categoryColors = {
     Color: "#32CD32",
   }
 };
-const ProfileDetailsPage  = () => {
+const Transactions  = () => {
   useFetchUser();
   ///Handles the time change for the pie chart
   const [selectedTimeSpan, setSelectedTimeSpan] = useState('daily');
@@ -215,4 +215,4 @@ const ProfileDetailsPage  = () => {
   );
 };
 
-export default ProfileDetailsPage;
+export default Transactions;

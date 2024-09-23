@@ -1,10 +1,10 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import AccessPage from "./pages/AccessPage.jsx";
-import ProfilePage from "./pages/ProfileDetailsPage.jsx";
+import ProfilePage from "./pages/ProfilePagе.jsx";
 import Footer from './components/Footer.jsx'
 import MainPage from './pages/MainPage.jsx'
 import LoanCalcPage from "./pages/LoanCalcPage.jsx";
-import ProfileDetailsPage from "./pages/ProfilePagе.jsx";
+import Transactions from "./pages/Transactions.jsx";
 import AccountOverviewPage from "./pages/AccountOverviewPage.jsx";
 import AIChat from "./components/AIChat.jsx";
 import PrivateRoute from "./components/auth-forms/PrivateRoute.jsx";
@@ -26,8 +26,8 @@ function App() {
                 <Navbar />
                 <Routes>
                     <Route path="/"  element={<PrivateRoute element={<MainPage />} authRequired={false} />} />
-                    <Route path="/profile-details" element={<PrivateRoute element={<ProfilePage />} />} />
-                    <Route path="/profile" element={<PrivateRoute element={<ProfileDetailsPage />} />} />
+                    <Route path="/profile" element={<PrivateRoute element={<ProfilePage />} />} />
+                    <Route path="/transactions" element={<PrivateRoute element={<Transactions />} />} />
                     <Route path="/auth/register" element={<PrivateRoute element={<AccessPage />} authRequired={false} />} />
                     <Route path="/auth/login" element={<PrivateRoute element={<AccessPage />} authRequired={false} />} />
                     <Route path="/account-overview" element={<PrivateRoute element={<AccountOverviewPage />} />} />

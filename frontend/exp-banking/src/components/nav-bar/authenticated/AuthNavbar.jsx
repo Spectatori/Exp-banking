@@ -25,7 +25,7 @@ const AuthNavbar = () => {
                      ${isMenuOpen ? 'block' : 'hidden'}`}
             >
                 <CustomNavLink url='/account-overview' title='НАЧАЛО' />
-                <CustomNavLink url='/profile' title='ДВИЖЕНИЯ ПО СМЕТКИ' />
+                <CustomNavLink url='/transactions' title='ДВИЖЕНИЯ ПО СМЕТКИ' />
                 <CustomNavLink url='/payments' title='ПЛАЩАНИЯ' />
                 <CustomNavLink url='/loans' title='КРЕДИТИ' />
             </ul>

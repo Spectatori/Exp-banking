@@ -86,8 +86,42 @@ public class RiskAssessmentService {
         return summary.getTotalExpenses() / summary.getTotalIncome();
     }
 
-    private double calculateLoanToIncomeRatio(UserFinancialSummary summary,double requestedLoanAmount) {
+    private double calculateLoanToIncomeRatio(UserFinancialSummary summary, double requestedLoanAmount) {
         // Placeholder for real loan value
         return requestedLoanAmount / summary.getTotalIncome();
+    }
+
+    private double calculateMortgageToIncomeRatio(UserFinancialSummary summary, double requestedMortgageAmount) {
+        return  requestedMortgageAmount / summary.getTotalIncome();
+    }
+
+    // Method to calculate the monthly loan payment
+    public double calculateMonthlyPayment(double loanAmount,String typeOfLoan, int loanTermMonths) {
+        double annualInterestRate = 3;
+        if(typeOfLoan.equals("Mortgage")){
+            annualInterestRate = 6;
+        }
+        double monthlyInterestRate = annualInterestRate / 12 / 100;  // Convert annual rate to monthly and percentage
+        //return (loanAmount * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, loanTermMonths)) /
+                //(Math.pow(1 + monthlyInterestRate, loanTermMonths) - 1);
+        return loanAmount * (monthlyInterestRate * Math.pow(1 + monthlyInterestRate, loanTermMonths))
+                / (Math.pow(1 + monthlyInterestRate, loanTermMonths) - 1);
+    }
+
+    // Method to calculate the remaining loan balance after a certain number of payments
+    public double calculateRemainingBalance(double loanAmount, String typeOfLoan, int loanTermMonths, int monthsPaid) {
+        double annualInterestRate = 3;
+        if(typeOfLoan.equals("Mortgage")){
+            annualInterestRate = 6;
+        }
+        double monthlyPayment = calculateMonthlyPayment(loanAmount, typeOfLoan, loanTermMonths);
+        double monthlyInterestRate = annualInterestRate / 12 / 100;
+
+        // Formula to calculate remaining balance after 'monthsPaid' payments
+        //return loanAmount * Math.pow(1 + monthlyInterestRate, monthsPaid) -
+                //monthlyPayment * (Math.pow(1 + monthlyInterestRate, monthsPaid) - 1) / monthlyInterestRate;
+        return loanAmount * Math.pow(1 + monthlyInterestRate, monthsPaid) -
+                (monthlyPayment * (Math.pow(1 + monthlyInterestRate, monthsPaid) - 1) / monthlyInterestRate);
+
     }
 }

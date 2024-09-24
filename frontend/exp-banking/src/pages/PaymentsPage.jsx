@@ -5,7 +5,7 @@ import IconLinkCard from '../components/IconLinkCard'
 
 const PaymentsPage = () => {
     return (
-        <div className='h-full mx-6 mb-5 my-12 flex flex-col items-center space-y-24 md:space-y-0 md:flex-row justify-evenly'>
+        <div className='px-6 py-12 flex flex-col items-center space-y-24 md:space-y-0 md:flex-row justify-evenly'>
             < IconLinkCard
                 title='Нова транзакция'
                 icon={TransactionIcon}

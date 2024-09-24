@@ -5,7 +5,6 @@ import { useState, useRef, useMemo } from 'react';
 import { useFetchUser } from '../hooks/useFetchUser.js';
 
 const LoanCalcPage = () => {
-    useFetchUser();
     const [resultsArray, setResultsArray] = useState([]);
     const calcValue = useRef(null);
     const calcPeriod = useRef(null);

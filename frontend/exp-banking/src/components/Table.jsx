@@ -4,7 +4,10 @@ import { useMaterialReactTable, MRT_Table } from 'material-react-table';
 export const LoanTable = ({ columns, data, enableBottomToolbar = false, enableStickyHeader = true, enablePagination = false }) => {
   const table = useMaterialReactTable({
     columns,
-    data,
+    data: data.map((row) => ({
+      ...row,
+      amount: row.amount > 0 ? `+${row.amount}` : row.amount,
+    })),
     enableBottomToolbar,
     enableStickyHeader,
     enablePagination,

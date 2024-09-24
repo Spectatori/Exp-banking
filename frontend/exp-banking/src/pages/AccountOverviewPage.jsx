@@ -13,7 +13,6 @@ import mortgageIcon from '../assets/account-overview/mortgage.png'
 import transactionHistoryIcon from '../assets/account-overview/transaction.png'
 
 const AccountOverviewPage = () => {
-    useFetchUser();
     const [isAddAccountButtonClicked, setIsAddAccountButtonClicked] = useState(false);
     const { user } = useUserStore();
     const navigate = useNavigate();

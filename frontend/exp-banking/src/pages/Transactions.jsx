@@ -27,7 +27,6 @@ const categoryColors = {
   },
 };
 const Transactions  = () => {
-  useFetchUser();
   ///Handles the time change for the pie chart
   const [selectedTimeSpan, setSelectedTimeSpan] = useState('daily');
 
@@ -95,9 +94,10 @@ const Transactions  = () => {
   }, [filteredTransactions]);
 
   ///this function show the daily, weekly and monthly overall payments above the pie chart
-  const dailyTotal = calculateTotal(filterTransactions(selectedAccount?.transactions, 'daily'));
-  const weeklyTotal = calculateTotal(filterTransactions(selectedAccount?.transactions, 'weekly'));
-  const monthlyTotal = calculateTotal(filterTransactions(selectedAccount?.transactions, 'monthly'));
+  //filters out the transactions with salary
+  const dailyTotal = calculateTotal(filterTransactions(selectedAccount?.transactions.filter(category => category.details !== "Заплата"), 'daily'));
+  const weeklyTotal = calculateTotal(filterTransactions(selectedAccount?.transactions.filter(category => category.details !== "Заплата"), 'weekly'));
+  const monthlyTotal = calculateTotal(filterTransactions(selectedAccount?.transactions.filter(category => category.details !== "Заплата"), 'monthly'));
 
   return (
     <div className="flex flex-col">

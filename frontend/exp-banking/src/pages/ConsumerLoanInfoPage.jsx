@@ -10,7 +10,6 @@ import PiggyIcon from '../assets/consumer-loan-info/piggy-bank.png'
 import { IoCheckmarkSharp } from "react-icons/io5";
 
 const ConsumerLoanInfoPage = () => {
-    useFetchUser();
     return (
         <>
             <section className='mt-5 flex flex-col md:relative'>

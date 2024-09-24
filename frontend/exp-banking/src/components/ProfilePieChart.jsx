@@ -2,21 +2,21 @@
   import { PieChart, Pie, Tooltip, Cell, ResponsiveContainer } from 'recharts';
 
   const categoryColors = {
-    Food: {
+    "Храна": {
       Name: "Храна",
-      Color: "#FF6347",
+      Color: "#a6f791",
     },
-    Entertainment: {
+    "Забавление": {
       Name:"Забавление",
-      Color: "#833EA5",
+      Color: "#8683ce",
     },
-    Travel: {
+    "Пътуване": {
       Name: "Пътуване",
-      Color: "red",
+      Color: "#00c9f4",
     },
-    Groceries: {
+    "Хранителни стоки": {
       Name: "Хранителни стоки",
-      Color: "#32CD32",
+      Color: "#f9f871",
     }
   };
 

@@ -16,6 +16,11 @@ export default {
         'blue-whale': '#15303B',
         'kelly-green': '#52AE30',
         'space-wolves-grey': '#DDE6F0',
+        'category-orange': '#FF6600',
+        'category-purple': '#8683ce',
+        'category-blue': '#00c9f4',
+        'category-yellow': '#f9f871',
+        'category-green': '#a6f791'
       },
     },
   },

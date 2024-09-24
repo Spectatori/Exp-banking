@@ -145,10 +145,11 @@ const NewTransactionPage = () => {
                                 onBlur={handleBlur}
                             >
                                 <option value="">Изберете...</option>
-                                <option value="groceries">Хранителни стоки</option>
-                                <option value="food">Храна</option>
-                                <option value="entertainment">Забавление</option>
-                                <option value="travel">Пътуване</option>
+                                <option value="Хранителни стоки">Хранителни стоки</option>
+                                <option value="Храна">Храна</option>
+                                <option value="Забавление">Забавление</option>
+                                <option value="Пътуване">Пътуване</option>
+                                <option value="Заплата">Заплата</option>
                             </select>
                             {errors.details && touched.details && (
                                 <div className='text-sm font-medium text-wrap text-red-500'>

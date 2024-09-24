@@ -9,22 +9,22 @@ import { useFetchUser } from '../hooks/useFetchUser.js';
 import { Navigate } from 'react-router-dom';
 
 const categoryColors = {
-  Food: {
+  "Храна": {
     Name: "Храна",
-    Color: "#FF6347",
+    Color: "bg-category-green",
   },
-  Entertainment: {
+  "Забавление": {
     Name:"Забавление",
-    Color: "#833EA5",
+    Color: "bg-category-purple",
   },
-  Travel: {
+  "Пътуване": {
     Name: "Пътуване",
-    Color: "red",
+    Color: "bg-category-blue",
   },
-  Groceries: {
+  "Хранителни стоки": {
     Name: "Хранителни стоки",
-    Color: "#32CD32",
-  }
+    Color: "bg-category-yellow",
+  },
 };
 const Transactions  = () => {
   useFetchUser();
@@ -181,7 +181,7 @@ const Transactions  = () => {
               </div>
             </div>
             <hr className='border-t border-gray-300 pl-10 w-5/6 self-center pb-7' />
-            <div className='flex flex-row justify-between max-xl:flex-col'>
+            <div className='flex flex-row justify-between max-xl:flex-col md-xl:justify-center'>
               <div className='flex flex-col'>
                 <div className='flex pl-8'>
                   <select
@@ -198,10 +198,11 @@ const Transactions  = () => {
                 <ProfilePieChart transactions={filteredTransactions} />
                 </div>
               </div>
-              <div className='flex flex-col pr-44 justify-center pl-20 max-xl:pt-5'>
+              <div className='flex flex-col w-fit pr-36 justify-center pl-20 max-xl:pt-5 space-y-5'>
                 {Object.keys(categoryColors).map((category) => (
-                  <div key={category} className='text-2xl font-bold'>
-                    <p style={{ color: categoryColors[category].Color }}>
+                  <div key={category} className='flex flex-row font-medium gap-3 items-center'>
+                    <div className={`${categoryColors[category].Color} min-w-3 min-h-3`}></div>
+                    <p>
                       {categoryColors[category].Name}
                     </p>
                   </div>

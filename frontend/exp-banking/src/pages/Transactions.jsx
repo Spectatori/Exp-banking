@@ -27,7 +27,6 @@ const categoryColors = {
   }
 };
 const Transactions  = () => {
-  useFetchUser();
   ///Handles the time change for the pie chart
   const [selectedTimeSpan, setSelectedTimeSpan] = useState('daily');
 

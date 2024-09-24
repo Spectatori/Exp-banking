@@ -17,7 +17,6 @@ import { employmentType } from '../data/employmentType.jsx'
 
 const ProfilePage = () => {
     const { showErrorToast } = useToastNotification();
-    useFetchUser();
     const user = useUserStore((state) => state.user);
     const [selectedButton, setSelectedButton] = useState('personalInfoSection');
     const [isEditing, setIsEditing] = useState({

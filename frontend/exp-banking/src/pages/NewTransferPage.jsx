@@ -12,7 +12,6 @@ const NewTransferPage = () => {
     const { user } = useUserStore();
     const { isLoading, createTransfer, error } = useCreateTransfer();
     const { showErrorToast, showSuccessToast } = useToastNotification();
-    useFetchUser();
 
     const [isAccountsDropdownClicked, setIsAccountsDropdownClicked] = useState(false);
     const [selectedAccount, setSelectedAccount] = useState(user.accounts[0]);

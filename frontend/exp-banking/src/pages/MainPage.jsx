@@ -12,7 +12,6 @@ import AccountManagement from '../assets/MainPageImages/account_management.png';
 import { useFetchUser } from '../hooks/useFetchUser.js';
 
 const MainPage = () => {
-    useFetchUser();
     const navigate = useNavigate();
 
     const handleNavigation = (event) => {

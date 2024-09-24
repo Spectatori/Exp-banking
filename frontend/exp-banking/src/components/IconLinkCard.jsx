@@ -21,7 +21,7 @@ const IconLinkCard = ({ title, icon, url, bubble }) => {
                         </span>
                     </div>
                 </div>
-                <h3 className='text-2xl font-semibold text-blue-whale leading-5 mt-2 text-wrap'>{title}</h3>
+                <h3 className='text-2xl font-semibold text-blue-whale text-wrap'>{title}</h3>
             </Link>
         </div>
     )

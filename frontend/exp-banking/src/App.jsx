@@ -15,13 +15,17 @@ import ToastConfig from "./config/ToastConfig.jsx";
 import Navbar from "./components/nav-bar/Navbar.jsx";
 import PaymentsPage from "./pages/PaymentsPage.jsx";
 import LoansPage from "./pages/LoansPage.jsx";
+import { useUserStore } from "./stores/AuthStore.js";
+import { useFetchUser } from "./hooks/useFetchUser.js";
+import { useEffect } from "react";
 
 //import { useUserStore } from "./stores/AuthStore.js";
 //import { Navigate } from "react-router-dom";
 
 function App() {
+    useFetchUser();
     return (
-        <div className="flex flex-col min-h-screen justify-between ">
+        <div className="flex flex-col min-h-screen justify-between">
             <Router>
                 <Navbar />
                 <Routes>
@@ -40,8 +44,9 @@ function App() {
                 </Routes>
             </Router>
             <AIChat />
-            <Footer />
             <ToastConfig />
+            <Footer />
+            
         </div>
     );
 }

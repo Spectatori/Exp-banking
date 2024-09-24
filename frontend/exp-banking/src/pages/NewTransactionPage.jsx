@@ -5,10 +5,12 @@ import ShadowBox from '../components/ShadowBox';
 import { useUserStore } from '../stores/AuthStore';
 import useCreateTransaction from '../hooks/useCreateTransaction';
 import { transactionSchema } from '../schemas/transactionSchema';
+import { useToastNotification } from '../hooks/useToastNotification';
 
 const NewTransactionPage = () => {
     const { user } = useUserStore();
     const { createTransaction } = useCreateTransaction();
+    const { showErrorToast, showSuccessToast } = useToastNotification();
     const navigate = useNavigate();
 
     const [isAccountsDropdownClicked, setIsAccountsDropdownClicked] = useState(false);
@@ -25,11 +27,21 @@ const NewTransactionPage = () => {
 
     const onSubmit = (values) => {
         if (selectedAccount.balance < Math.abs(values.amount)) {
-            console.log('Заявката ви не може да бъде обработена, тъй като нямате достатъчна наличност в сметката. Моля, проверете баланса си и опитайте отново.');         
+            showErrorToast(
+                <div className='text-sm'>
+                    <p className='font-semibold'>Заявката не може да бъде обработена</p>
+                    <p>Нямате достатъчна наличност в сметката. Моля, проверете баланса си и опитайте отново.</p>
+                </div>
+            )
         } else {
             createTransaction(values, selectedAccount.accountId);
+            showSuccessToast(
+                <div className='text-sm'>
+                    <p className='font-semibold'>Транзакцията е успешна!</p>
+                </div>
+            )
             navigate('/account-overview')
-        }  
+        }
     }
 
     const { values, handleChange, handleBlur, handleSubmit, errors, touched } = useFormik({

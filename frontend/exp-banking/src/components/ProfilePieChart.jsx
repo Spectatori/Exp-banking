@@ -49,9 +49,11 @@
     const totalsByCategory = calculateTotalByCategory(transactions);
     const [maxCategory, maxAmount] = getMaxSpendingCategory(totalsByCategory);
     
-  const pieData = Object.keys(totalsByCategory).map(category => ({
+  const pieData = Object.keys(totalsByCategory)
+    .filter(category => category !== "Заплата")
+    .map(category => ({
     name: category,
-    value: Math.abs(totalsByCategory[category])
+    value: Math.abs(totalsByCategory[category]),
   }));
 
     return (

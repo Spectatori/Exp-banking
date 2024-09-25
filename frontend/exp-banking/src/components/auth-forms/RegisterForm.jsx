@@ -147,7 +147,7 @@ const RegisterForm = () => {
                             touched={touched}
                         />
                     </div>
-                    <div className='flex flex-col gap-3 w-full px-1'>
+                    <div className='relative input-field max-h-16'>
                         <div className='flex flex-col space-y-2'>
                         <label>Трудова заетост</label>
                         <select
@@ -155,7 +155,7 @@ const RegisterForm = () => {
                             value={values.employmentType}
                             onChange={handleChange}
                             onBlur={handleBlur}
-                            className='border p-2 rounded-md'
+                            className='max-xl:w-72 rounded-lg pl-4 h-8 w-80 border text-sm outline-none'
                         >
                             <option value="">Изберете трудова заетост</option>
                             {employmentType.map((type) => (

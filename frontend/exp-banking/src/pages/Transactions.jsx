@@ -67,7 +67,8 @@ const Transactions = () => {
             accessorKey: 'amount',
             header: 'Сума',
             size: 80,
-        }
+        },
+        
     ], []);
     /// Sets new user data in the local storage after pressing the button
     async function handleRefresh() {

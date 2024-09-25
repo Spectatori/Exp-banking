@@ -87,6 +87,27 @@ public class AdminController {
         return new ResponseEntity<>(loanSummaries, HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/loans/underfive")
+    public ResponseEntity<Integer> getLoansUnderFiveK(){
+        List <Loan> result = loanRepository.findLoansLessThan5000();
+                int loans=result.size();
+         return new ResponseEntity<>(loans,HttpStatus.OK);
+    }
 
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/loans/betweenfiveandtenk")
+    public ResponseEntity<Integer> getLoansBetweenFiveKAndTenK(){
+        List <Loan> result = loanRepository.findLoansBetween5000And10000();
+        int loans=result.size();
+        return new ResponseEntity<>(loans,HttpStatus.OK);
+    }
 
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/loans/overten")
+    public ResponseEntity<Integer> getLoansOverTenK(){
+        List <Loan> result = loanRepository.findLoansLessThan5000();
+        int loans=result.size();
+        return new ResponseEntity<>(loans,HttpStatus.OK);
+    }
 }

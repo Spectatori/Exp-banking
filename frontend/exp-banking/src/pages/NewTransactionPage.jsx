@@ -14,6 +14,7 @@ const NewTransactionPage = () => {
     const navigate = useNavigate();
 
     const [isAccountsDropdownClicked, setIsAccountsDropdownClicked] = useState(false);
+    const [selectedCategory, setSelectedCategory] = useState('');
     const [selectedAccount, setSelectedAccount] = useState(user.accounts[0]);
 
     const handleAccountChange = (account) => {
@@ -26,7 +27,7 @@ const NewTransactionPage = () => {
     }
 
     const onSubmit = (values) => {
-        if (selectedAccount.balance < Math.abs(values.amount)) {
+        if (selectedCategory === 'Разходи' && selectedAccount.balance < Math.abs(values.amount)) {
             showErrorToast(
                 <div className='text-sm'>
                     <p className='font-semibold'>Заявката не може да бъде обработена</p>
@@ -43,6 +44,18 @@ const NewTransactionPage = () => {
             navigate('/account-overview')
         }
     }
+
+    const handleSelectChange = (event) => {
+        const selectElement = event.target;
+        const selectedOption = selectElement.options[selectElement.selectedIndex];
+
+        const optGroupLabel = selectedOption.parentElement.label;
+
+        setSelectedCategory(optGroupLabel);
+
+        handleChange(event);
+    };
+
 
     const { values, handleChange, handleBlur, handleSubmit, errors, touched } = useFormik({
         initialValues: {
@@ -135,7 +148,7 @@ const NewTransactionPage = () => {
                                 onBlur={handleBlur}
                             />
                             {errors.amount && touched.amount && (
-                                <div className='text-sm font-medium text-wrap text-red-500'>
+                                <div className='text-sm font-medium text-wrap text-red-500 max-w-80 text-wrap'>
                                     {errors.amount}
                                 </div>
                             )}
@@ -151,17 +164,22 @@ const NewTransactionPage = () => {
                                 name='details'
                                 className='pl-2 h-9 border rounded-md focus:ring-2 outline-none border-blue-whale'
                                 value={values.details}
-                                onChange={(event) => {
-                                    handleChange(event);
-                                }}
+                                onChange={handleSelectChange}
                                 onBlur={handleBlur}
                             >
                                 <option value="">Изберете...</option>
-                                <option value="Хранителни стоки">Хранителни стоки</option>
-                                <option value="Храна">Храна</option>
-                                <option value="Забавление">Забавление</option>
-                                <option value="Пътуване">Пътуване</option>
-                                <option value="Заплата">Заплата</option>
+                                <optgroup label='Приходи' className='text-black'>
+                                    <option value="Заплата">Заплата</option>
+                                    <option value="Пенсия">Пенсия</option>
+                                    <option value="Стипeндия">Стипендия</option>
+                                </optgroup>
+                                <optgroup label='Разходи'>
+                                    <option value="Хранителни стоки">Хранителни стоки</option>
+                                    <option value="Храна">Храна</option>
+                                    <option value="Забавление">Забавление</option>
+                                    <option value="Пътуване">Пътуване</option>
+                                </optgroup>
+
                             </select>
                             {errors.details && touched.details && (
                                 <div className='text-sm font-medium text-wrap text-red-500'>

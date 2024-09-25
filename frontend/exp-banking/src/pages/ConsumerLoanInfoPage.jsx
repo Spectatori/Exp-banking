@@ -62,13 +62,14 @@ const ConsumerLoanInfoPage = () => {
                 </section>
             </section>
 
-            <section className='w-full mt-5 mb-10'>
-                <div className='flex flex-col lg:flex-row lg:justify-around items-center wrap'>
+            <section className='w-full mt-5'>
+            <h2 className='text-dark-blue font-bold md: text-3xl lg:text-4xl text-center pb-20'>За потребителски кредит</h2>
+                <div className='flex flex-col lg:flex-row lg:justify-around items-start wrap'>
                     <img src={RelocationPic} alt="" className='w-1/2 rounded-lg object-cover hidden md:block' />
 
                     <div className='flex flex-col gap-5'>
-                        <div className='lg:w-full w-fit rounded-xl p-10 mt-3 h-fit bg-dark-blue text-white space-y-5'>
-                            <h3 className='font-bold text-3xl max-w-96'>Кой може да кандидатсва за кредит?</h3>
+                        <div className='lg:w-full w-fit rounded-xl p-10 h-fit bg-dark-blue text-white space-y-5'>
+                            <h3 className='font-bold text-3xl max-w-96'>Кой може да кандидатсва за потребителски кредит?</h3>
                             <p className='font-semibold'>Изисквания за отпускане на кредит:</p>
 
                             <div className='flex flex-row gap-5 max-w-96 text-wrap'>
@@ -85,10 +86,39 @@ const ConsumerLoanInfoPage = () => {
                             </div>
                         </div>
 
-                        <PrimaryButton label='Кандидатстване' className='bg-kelly-green self-end '/>
+                        <PrimaryButton label='Кандидатстване' className='bg-kelly-green self-end    '/>
                     </div>
                 </div>
             </section>
+            <section className='w-full mt-5 pb-36'>
+            <h2 className='text-dark-blue font-bold md: text-3xl lg:text-4xl text-center pb-20 pt-10'>За ипотечен кредит</h2>
+                <div className='flex flex-col lg:flex-row lg:justify-around items-start wrap'>
+                    <div className='flex flex-col gap-5'>
+                        <div className='lg:w-full w-fit rounded-xl p-10 h-fit bg-dark-blue text-white space-y-5'>
+                            <h3 className='font-bold text-3xl max-w-96'>Кой може да  кандидатсва за ипотечен кредит?</h3>
+                            <p className='font-semibold'>Изисквания за отпускане на кредит:</p>
+
+                            <div className='flex flex-row gap-5 max-w-96 text-wrap'>
+                                <IoCheckmarkSharp className='font-bold size-5' />
+                                <p>Трябва да имаш навършени 18 години и да имаш добра кредитна история.</p>
+                            </div>
+                            <div className='flex flex-row gap-5 max-w-96 text-wrap'>
+                                <IoCheckmarkSharp className='font-bold size-7' />
+                                <p>Не е необходимо да работиш на трудов договор, но трябва да имаш доходи, с които да обслужваш кредита си.</p>
+                            </div>
+                            <div className='flex flex-row gap-5 max-w-96 text-wrap'>
+                                <IoCheckmarkSharp className='font-bold size-7' />
+                                <p>Трябва да разполагаш с валиден документ за самоличност, валиден имейл и телефонен номер.</p>
+                            </div>
+                        </div>
+
+                        <PrimaryButton label='Кандидатстване' className='bg-kelly-green self-start '/>
+                    </div>
+
+                    <img src={RelocationPic} alt="" className='w-1/2 rounded-lg object-cover hidden md:block' />
+                </div>
+            </section>
+
 
         </>
     )

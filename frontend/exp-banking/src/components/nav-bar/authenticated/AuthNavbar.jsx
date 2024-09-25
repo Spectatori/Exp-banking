@@ -10,7 +10,7 @@ const AuthNavbar = () => {
     };
 
     return (
-        <nav className='relative flex  justify-end pr-4'>
+        <nav className='relative flex pt-5 justify-end pr-4'>
             <button 
                 className='md:hidden absolute top-0'
                 onClick={toggleMenu}

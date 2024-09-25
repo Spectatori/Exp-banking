@@ -106,7 +106,7 @@ public class AdminController {
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/loans/overten")
     public ResponseEntity<Integer> getLoansOverTenK(){
-        List <Loan> result = loanRepository.findLoansLessThan5000();
+        List <Loan> result = loanRepository.findLoansMoreThan10000();
         int loans=result.size();
         return new ResponseEntity<>(loans,HttpStatus.OK);
     }

@@ -28,6 +28,12 @@ public class Loan {
     @Column(name = "remaining_balance")
     private double remainingBalance; // Remaining loan balance
 
+    @Column(name = "next_date_of_payment")
+    private LocalDate nextDateOfPayment;
+
+    @Column(name = "final_date")
+    private LocalDate finalDate;
+
     @Column(name = "date_of_applying")
     private LocalDate dateOfApplying; // The next due date for the payment
 

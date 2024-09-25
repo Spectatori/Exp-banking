@@ -4,6 +4,7 @@ import com.expbanking.expBanking.model.Loan;
 import com.expbanking.expBanking.model.UserFinancialSummary;
 import com.expbanking.expBanking.repository.AccountsRepository;
 import com.expbanking.expBanking.repository.LoanRepository;
+import com.expbanking.expBanking.service.Impl.AccountsServiceImpl;
 import com.expbanking.expBanking.service.Impl.FinancialSummaryService;
 import com.expbanking.expBanking.service.Impl.LoanService;
 import com.expbanking.expBanking.service.Impl.RiskAssessmentService;
@@ -30,9 +31,11 @@ public class LoanController {
     private LoanService loanService;
     @Autowired
     private LoanRepository loanRepository;
-
+    @Autowired
+    private AccountsServiceImpl accountsService;
     @Autowired
     private RiskAssessmentService riskAssessmentService;
+    private final static String IBAN = "BANK";
 
     @GetMapping("/{userId}")
     public ResponseEntity<Optional<UserFinancialSummary>> getFinancialSummary(@PathVariable Long userId) {
@@ -62,22 +65,16 @@ public class LoanController {
 
         // Evaluate loan approval based on risk score and net income
         if (riskScore >= 30 && netIncome > loanAmount * 0.5) {
-            //double loanAmount = Double.parseDouble(String.valueOf(requestBody.get("loanAmount")));
-
-
-            double monthlyPayment = riskAssessmentService.calculateMonthlyPayment(loanAmount,typeOfLoan, loanTermMonths);
             Optional<Accounts> account = accountsRepository.findAccountByIban(iban);
-            account.get().setBalance(account.get().getBalance().add(BigDecimal.valueOf(loanAmount)));
+            BigDecimal loanAmountForTransfer = BigDecimal.valueOf(loanAmount);
+            accountsService.transfer(IBAN, iban, loanAmountForTransfer);
             loanService.saveLoan(loanAmount, typeOfLoan, loanTermMonths,account.get().getAccountId());
-            accountsRepository.save(account.get());
             return ResponseEntity.ok("Loan Approved");
         } else if (riskScore >= 20) {
-
-            double monthlyPayment = riskAssessmentService.calculateMonthlyPayment(loanAmount,typeOfLoan, loanTermMonths);
             Optional<Accounts> account = accountsRepository.findAccountByIban(iban);
-            account.get().setBalance(account.get().getBalance().add(BigDecimal.valueOf(loanAmount)));
+            BigDecimal loanAmountForTransfer = BigDecimal.valueOf(loanAmount);
+            accountsService.transfer(IBAN, iban, loanAmountForTransfer);
             loanService.saveLoan(loanAmount, typeOfLoan, loanTermMonths,account.get().getAccountId());
-            accountsRepository.save(account.get());
             return ResponseEntity.ok("Loan Approved with higher interest rate.");
         } else {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Loan Denied due to high risk.");

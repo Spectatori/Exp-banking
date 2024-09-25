@@ -1,14 +1,23 @@
 package com.expbanking.expBanking.service.Impl;
+import com.expbanking.expBanking.dto.TransactionsDTO;
 import com.expbanking.expBanking.model.Accounts;
 import com.expbanking.expBanking.model.Loan;
+import com.expbanking.expBanking.model.TransactionType;
 import com.expbanking.expBanking.repository.AccountsRepository;
 import com.expbanking.expBanking.repository.LoanRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 @Service
@@ -16,7 +25,6 @@ public class LoanService {
 
     @Autowired
     private LoanRepository loanRepository;
-
     @Autowired
     private AccountsRepository accountsRepository;
     @Autowired
@@ -42,7 +50,6 @@ public class LoanService {
 
     }
 
-    @Transactional
     public void processLoanPayments() {
         List<Loan> loans = loanRepository.findLoansWithDuePayments(LocalDate.now());
 
@@ -50,17 +57,26 @@ public class LoanService {
             Accounts account = loan.getAccount();
             double monthlyPayment = loan.getMonthlyPayment();
 
+            // Check if the account has enough balance
             if (account.getBalance().compareTo(BigDecimal.valueOf(monthlyPayment)) >= 0) {
+
+                Timestamp dateOfPayment = Timestamp.valueOf(LocalDateTime.now());
+                String details = "Payment for credit.";
+                TransactionType transactionType = new TransactionType();
+                double expenseMonthlyPayment = -monthlyPayment;
+                TransactionsDTO transactionsDTO = new TransactionsDTO(dateOfPayment, expenseMonthlyPayment,details,transactionType);
+                transactionService.createTransaction(transactionsDTO,account.getAccountId());
+
                 // Deduct the monthly payment from the account balance
                 account.setBalance(account.getBalance().subtract(BigDecimal.valueOf(monthlyPayment)));
 
-                // Reduce the loan remaining balance
-                loan.setRemainingBalance(loan.getRemainingBalance()-(monthlyPayment));
+                // Reduce the loan's remaining balance
+                loan.setRemainingBalance(loan.getRemainingBalance() - monthlyPayment);
 
-                // Update the next payment date
-                loan.setDateOfApplying(loan.getDateOfApplying().plusMonths(1));
+                // Update the loan's next payment date
+                loan.setNextDateOfPayment(loan.getNextDateOfPayment().plusMonths(1));
 
-                // Save both account and loan updates
+                // Save the updated account and loan
                 accountsRepository.save(account);
                 loanRepository.save(loan);
             } else {
@@ -69,4 +85,23 @@ public class LoanService {
             }
         }
     }
+    @Component
+    @EnableScheduling
+    public class LoanPaymentScheduler {
+
+        @Autowired
+        private LoanService loanService;
+
+        // Scheduler to trigger the loan payment process every 3 seconds, after an initial delay of 5 seconds
+        @Scheduled(fixedDelay =  30 * 24 * 60 * 60 * 1000L)
+        public void scheduleLoanPayments() {
+            loanService.processLoanPayments();
+
+            // Optional: Log the time the task runs
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss.SSS");
+            String strDate = dateFormat.format(new Date());
+            System.out.println("Scheduled Loan Payment Processing at - " + strDate);
+        }
+    }
 }
+

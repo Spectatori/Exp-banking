@@ -12,6 +12,14 @@ import java.util.List;
 
 @Repository
 public interface LoanRepository extends JpaRepository<Loan, Long> {
+    @Query("SELECT l FROM Loan l WHERE l.totalAmount BETWEEN 5000 AND 10000")
+    List<Loan> findLoansBetween5000And10000();
+
+    @Query("SELECT l FROM Loan l WHERE l.totalAmount < 5000")
+    List<Loan> findLoansLessThan5000();
+
+    @Query("SELECT l FROM Loan l WHERE l.totalAmount > 10000")
+    List<Loan> findLoansMoreThan10000();
 
     @Query("SELECT l FROM Loan l WHERE l.dateOfApplying <= :date AND l.remainingBalance > 0")
     List<Loan> findLoansWithDuePayments(@Param("date") LocalDate date);

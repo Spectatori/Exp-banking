@@ -73,7 +73,7 @@ const RegisterForm = () => {
             <h2 className="text-5xl font-bold text-white mb-5">Регистрация</h2>
             {/*<p className='text-white text-center mt-2'>Моля въвеждайте данните на кирилица </p>*/}
             <div className='flex gap-20 max-xl:flex-col max-xl:gap-0'>
-                <div className=" text-start relative gap-3 flex flex-col gap-1 justify-center items-center w-96 bg-white bg-opacity-70 rounded-2xl my-8 py-10 px-10 h-fit max-h-full max-xl:px-3 max-xl:w-80">
+                <div className=" text-start relative gap-3 flex flex-col justify-center items-center w-96 bg-white bg-opacity-70 rounded-2xl my-8 py-10 px-10 h-fit max-h-full max-xl:px-3 max-xl:w-80">
                     <div className='flex flex-col space-y-2'>
                         <p>Име</p>
                         <InputField

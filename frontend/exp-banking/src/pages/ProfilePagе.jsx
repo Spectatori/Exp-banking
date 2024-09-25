@@ -115,7 +115,7 @@ const ProfilePage = () => {
 
                 <section className='flex flex-row gap-10 mt-7'>
                     <ProfileDetailsNavLink onClick={() => handleButtonClick('personalInfoSection')} isActive={selectedButton === 'personalInfoSection'} icon={editInfoIcon} text='Моите данни' />
-                    <ProfileDetailsNavLink onClick={() => handleButtonClick('changePasswordSection')} isActive={selectedButton === 'changePasswordSection'} icon={changePasswordIcon} text='Смяна на парола' />
+                    {/* <ProfileDetailsNavLink onClick={() => handleButtonClick('changePasswordSection')} isActive={selectedButton === 'changePasswordSection'} icon={changePasswordIcon} text='Смяна на парола' /> */}
                 </section>
 
                 {selectedButton === 'personalInfoSection' && (
@@ -224,7 +224,7 @@ const ProfilePage = () => {
                         </form>
                     </section>
                 )}
-                {selectedButton === 'changePasswordSection' && <PasswordChangeSection />}
+                {/* {selectedButton === 'changePasswordSection' && <PasswordChangeSection />} */}
             </div>
         </div>
     )

@@ -24,10 +24,10 @@ const AuthNavbar = () => {
                      md:items-center md:gap-8 md:text-dark-blue md:text-sm  md:bg-transparent md:border-none 
                      ${isMenuOpen ? 'block' : 'hidden'}`}
             >
-                <CustomNavLink url='/account-overview' title='НАЧАЛО' />
-                <CustomNavLink url='/transactions' title='ДВИЖЕНИЯ ПО СМЕТКИ' />
-                <CustomNavLink url='/payments' title='ПЛАЩАНИЯ' />
-                <CustomNavLink url='/loans' title='КРЕДИТИ' />
+                <CustomNavLink url='/account-overview' title='НАЧАЛО' onClick={() => setIsMenuOpen(false)}/>
+                <CustomNavLink url='/transactions' title='ДВИЖЕНИЯ ПО СМЕТКИ' onClick={() => setIsMenuOpen(false)}/>
+                <CustomNavLink url='/payments' title='ПЛАЩАНИЯ' onClick={() => setIsMenuOpen(false)}/>
+                <CustomNavLink url='/loans' title='КРЕДИТИ' onClick={() => setIsMenuOpen(false)}/>
             </ul>
         </nav>
     );

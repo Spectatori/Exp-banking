@@ -53,8 +53,8 @@ const getMaxSpendingCategory = (totals) => {
 const renderCustomLabel = ({ cx, cy }, maxCategory, maxAmount) => {
   return (
     <text x={cx} y={cy} textAnchor="middle" dominantBaseline="middle">
-      <tspan x={cx} dy="-1em" fontSize="16" fill={categoryColors[maxCategory]?.Color || defaultColor}>{maxCategory}</tspan>
-      <tspan x={cx} dy="1.2em" fontSize="24" fill={categoryColors[maxCategory]?.Name || defaultColor}>{`${maxAmount.toFixed(2)} BGN`}</tspan>
+      <tspan x={cx} dy="-1em" fontSize="16" >{maxCategory}</tspan>
+      <tspan x={cx} dy="1.2em" fontSize="24" >{`${maxAmount.toFixed(2)} BGN`}</tspan>
     </text>
   );
 };

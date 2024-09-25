@@ -103,7 +103,7 @@ const AccountOverviewPage = () => {
                                     </ShadowBox>
                                 ))
                                 : (
-                                    <div className='my-16 text-blue-whale'>
+                                    <div className='text-blue-whale'>
                                         <p className='text-lg font-semibold mb-3'>Изглежда, че все още нямате отворени сметки при нас.</p>
                                         Можете да създадете нова сметка, като натиснете бутона <span className='font-semibold text-kelly-green'>"Добави сметка"</span>
                                     </div>

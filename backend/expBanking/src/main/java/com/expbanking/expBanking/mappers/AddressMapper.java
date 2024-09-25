@@ -11,5 +11,6 @@ public interface AddressMapper {
     @Mapping(target = "postcode", source = "dto.postcode")
     @Mapping(target = "cityName", source = "dto.cityName")
     @Mapping(target = "street", source = "dto.street")
-    Address convertDtoToEntity(AddressDTO dto, long id);
+
+    Address convertDtoToEntity(AddressDTO dto, Long id);
 }

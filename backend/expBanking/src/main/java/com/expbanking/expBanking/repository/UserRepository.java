@@ -3,12 +3,17 @@ package com.expbanking.expBanking.repository;
 import com.expbanking.expBanking.model.Transactions;
 import com.expbanking.expBanking.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
+@Repository
 public interface UserRepository extends JpaRepository<User,Long> {
-    List<Transactions> getAllByTransactionsUserId(Long theId);
-    User getUserByEmail(String email);
-
+//    List<Transactions> getAllTransactionsByUserId(Long theId);
+    Optional<User> getUserByEmail(String email);
+    //User findByIban(String iban);
 
 }

@@ -1,5 +1,6 @@
 package com.expbanking.expBanking.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,19 +27,14 @@ public class Address {
 
     @Column (name = "street")
     private String street;
+    @JsonIgnore
+    @OneToMany(mappedBy = "address")
+    private Set<User> users;
 
-
-   @ManyToOne
-   @JoinColumn(name = "cityid")
-   private City city;
-
-   @OneToMany(mappedBy = "address")
-   private Set<User> users;
-
-    public Address(String postcode, String cityName, String street, City city) {
+    public Address(String postcode, String cityName, String street) {
         this.postcode = postcode;
         this.cityName = cityName;
         this.street = street;
-        this.city = city;
+
     }
 }

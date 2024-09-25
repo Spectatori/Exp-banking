@@ -4,6 +4,7 @@ import com.expbanking.expBanking.dto.IncomeDTO;
 import com.expbanking.expBanking.model.Income;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingConstants;
 
 @Mapper
 public interface IncomeMapper {

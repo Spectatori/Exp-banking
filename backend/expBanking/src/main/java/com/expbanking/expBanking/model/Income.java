@@ -1,5 +1,6 @@
 package com.expbanking.expBanking.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,15 +26,16 @@ public class Income {
 
     @Column(name = "description")
     private String description;
-
+    @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "userId")
-    private User user;
+    @JoinColumn(name = "transactions_id")
+    private Transactions transactions;
 
     public Income() {}
 
-
-
-
-
+    public Income(Double amount, Timestamp dateOfPayment, String description) {
+        this.amount = amount;
+        this.dateOfPayment = dateOfPayment;
+        this.description = description;
+    }
 }

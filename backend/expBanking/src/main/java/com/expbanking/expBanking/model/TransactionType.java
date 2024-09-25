@@ -1,5 +1,6 @@
 package com.expbanking.expBanking.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
@@ -11,8 +12,6 @@ import java.util.List;
 @Entity
 @Table(name = "transaction_type")
 @Data
-@Getter
-@Setter
 @NoArgsConstructor
 public class TransactionType {
     @Id
@@ -21,13 +20,13 @@ public class TransactionType {
     private Long transactionTypeId;
 
     @Column(name = "transaction_type_name")
-    @Enumerated()
-    private TransactionTypeEnum transactionTypeName;
+    private String transactionTypeName;
 
-    @OneToMany(mappedBy = "transactionType")
+    @JsonIgnore
+    @OneToMany(mappedBy = "transactionType",cascade = CascadeType.PERSIST)
     private List<Transactions> transactions;
 
-    public TransactionType(Long transactionTypeId, TransactionTypeEnum transactionTypeName){
+    public TransactionType(Long transactionTypeId, String transactionTypeName){
         this.transactionTypeId = transactionTypeId;
         this.transactionTypeName = transactionTypeName;
     }

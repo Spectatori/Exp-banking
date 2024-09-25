@@ -8,5 +8,6 @@ import org.mapstruct.Mapping;
 @Mapper
 public interface TransactionTypeMapper {
     @Mapping(target = "transactionTypeName", source = "dto.transactionTypeName")
-    TransactionType convertDtoToEntity(TransactionTypeDTO dto, long id);
+    @Mapping(target = "transactionTypeId", source = "dto.transactionTypeId")
+    TransactionType convertDtoToEntity(TransactionTypeDTO dto, Long id);
 }

@@ -1,20 +1,25 @@
 package com.expbanking.expBanking.dto;
 
 import com.expbanking.expBanking.model.EmploymentEnum;
+import com.expbanking.expBanking.model.EmploymentType;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public record UserDTO(
-        Long userId,
-        String firstName,
-        String lastName,
+        String firstname,
+
+        String secondname,
+        String lastname,
         String email,
+        String password,
         String phoneNumber,
         LocalDate dateOfBirth,
-        BigDecimal balance,
-        String currency,
-        EmploymentEnum typeOfEmployment
+        EmploymentType employmentType,
+        String egn,
+        Long idCardNumber,
+        LocalDate expDate
 
 ) {
+
 }

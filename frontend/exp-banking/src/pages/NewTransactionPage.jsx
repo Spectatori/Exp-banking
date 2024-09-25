@@ -6,6 +6,7 @@ import { useUserStore } from '../stores/AuthStore';
 import useCreateTransaction from '../hooks/useCreateTransaction';
 import { transactionSchema } from '../schemas/transactionSchema';
 import { useToastNotification } from '../hooks/useToastNotification';
+import { Navigate } from 'react-router-dom';
 
 const NewTransactionPage = () => {
     const { user } = useUserStore();
@@ -66,6 +67,9 @@ const NewTransactionPage = () => {
         onSubmit
     })
 
+    if (!user || !user.accounts || user.accounts.length === 0) {
+        return <Navigate to="/account-overview"/>;  
+      }
     return (
         <div>
             <div className='mx-6 mb-5 mt-12 flex flex-col'>

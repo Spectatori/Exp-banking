@@ -92,11 +92,6 @@ const ProfilePage = () => {
     const handleButtonClick = (section) => {
         setSelectedButton(section);
     };
-
-      // Make sure there's a user
-  if (!user || !user.accounts || user.accounts.length === 0) {
-    return <Navigate to="/account-overview"/>;  
-  }
     return (
         <div>
             <div className='mx-10 mt-12'>

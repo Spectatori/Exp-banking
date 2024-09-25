@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import ShadowBox from '../components/ShadowBox'
 import { useFormik } from 'formik';
 import { transferSchema } from '../schemas/transferSchema';
-import { useFetchUser } from '../hooks/useFetchUser';
+import { Navigate } from 'react-router-dom';
 import { useUserStore } from '../stores/AuthStore';
 import useCreateTransfer from '../hooks/useCreateTransfer';
 import { useToastNotification } from '../hooks/useToastNotification';
@@ -68,6 +68,9 @@ const NewTransferPage = () => {
         onSubmit
     })
 
+    if (!user || !user.accounts || user.accounts.length === 0) {
+        return <Navigate to="/account-overview"/>;  
+      }
     return (
         <div>
             <div className='mx-6 mb-5 mt-12 flex flex-col'>

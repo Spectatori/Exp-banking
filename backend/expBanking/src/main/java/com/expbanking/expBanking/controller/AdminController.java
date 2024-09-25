@@ -1,7 +1,9 @@
 package com.expbanking.expBanking.controller;
 
 import com.expbanking.expBanking.dto.LoanSummaryDTO;
+import com.expbanking.expBanking.model.Loan;
 import com.expbanking.expBanking.model.User;
+import com.expbanking.expBanking.repository.LoanRepository;
 import com.expbanking.expBanking.repository.ReportingDetailsRepository;
 import com.expbanking.expBanking.service.Impl.TransactionServiceImpl;
 import com.expbanking.expBanking.service.Impl.UserServiceImpl;
@@ -23,12 +25,15 @@ public class AdminController {
     private final TransactionServiceImpl transactionServiceImpl;
 
     private  final ReportingDetailsRepository reportingDetailsRepository;
+    private final LoanRepository loanRepository;
+    
 
-    public AdminController(UserServiceImpl userServiceImpl, TransactionServiceImpl transactionServiceImpl, ReportingDetailsRepository reportingDetailsRepository) {
+    public AdminController(UserServiceImpl userServiceImpl, TransactionServiceImpl transactionServiceImpl, ReportingDetailsRepository reportingDetailsRepository, LoanRepository loanRepository) {
         this.userServiceImpl = userServiceImpl;
         this.transactionServiceImpl = transactionServiceImpl;
 
         this.reportingDetailsRepository = reportingDetailsRepository;
+        this.loanRepository = loanRepository;
     }
 
     @PreAuthorize("hasRole('ADMIN')")

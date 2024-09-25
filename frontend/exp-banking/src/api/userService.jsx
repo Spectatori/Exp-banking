@@ -30,16 +30,14 @@ export const onSave = async (user, updatedData) => {
             egn: user.egn,
             idCardNumber: user.idCardNumber,
             expDate: user.expDate,
-            address: {
-                postcode: user.address.postcode,
-                cityName: user.address.cityName,
-                street: updatedData.address || user.address.street,
-            },
         };
-
+        const addressPayload = {
+            postcode: user.address.postcode,
+            cityName: user.address.cityName,
+            street: updatedData.address || user.address.street,
+        }
         const response = await apiClient.put(`user/update/${decoded.userId}`, payload);
-
-        console.log('User updated successfully:', response.data);
+        const addressResponse = await apiClient.put(`api/address/update/${decoded.userId}`, addressPayload)
     } catch (error) {
         console.error('Error updating user:', error);
     }

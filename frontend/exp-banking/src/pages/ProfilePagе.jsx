@@ -3,13 +3,11 @@ import userPfp from '../../src/assets/profile-page-images/user.png'
 import ShadowBox from '../components/ShadowBox.jsx'
 import ProfileDetailsNavLink from '../components/profile-details/ProfileDetailsNavLink.jsx'
 import editInfoIcon from '../assets/profile-page-images/edit-info.png'
-import changePasswordIcon from '../assets/profile-page-images/padlock.png'
-import PasswordChangeSection from '../components/profile-details/PasswordChangeSection.jsx'
 import { useUserStore } from '../stores/AuthStore.js'
 import {onSave} from '../api/userService.jsx'
 import { useEffect } from 'react'
 import { getUser } from '../api/userService.jsx'
-import { useFetchUser } from '../hooks/useFetchUser.js'
+import { Navigate } from 'react-router-dom'
 import { editUserSchema } from '../schemas/editUserSchema.js'
 import * as Yup from 'yup';
 import { useToastNotification } from '../hooks/useToastNotification.js'
@@ -17,7 +15,6 @@ import { employmentType } from '../data/employmentType.jsx'
 
 const ProfilePage = () => {
     const { showErrorToast } = useToastNotification();
-    useFetchUser();
     const user = useUserStore((state) => state.user);
     const [selectedButton, setSelectedButton] = useState('personalInfoSection');
     const [isEditing, setIsEditing] = useState({
@@ -95,11 +92,6 @@ const ProfilePage = () => {
     const handleButtonClick = (section) => {
         setSelectedButton(section);
     };
-
-      // Make sure there's a user
-  if (!user || !user.accounts || user.accounts.length === 0) {
-    return <Navigate to="/account-overview"/>;  
-  }
     return (
         <div>
             <div className='mx-10 mt-12'>
@@ -116,7 +108,7 @@ const ProfilePage = () => {
 
                 <section className='flex flex-row gap-10 mt-7'>
                     <ProfileDetailsNavLink onClick={() => handleButtonClick('personalInfoSection')} isActive={selectedButton === 'personalInfoSection'} icon={editInfoIcon} text='Моите данни' />
-                    <ProfileDetailsNavLink onClick={() => handleButtonClick('changePasswordSection')} isActive={selectedButton === 'changePasswordSection'} icon={changePasswordIcon} text='Смяна на парола' />
+                    {/* <ProfileDetailsNavLink onClick={() => handleButtonClick('changePasswordSection')} isActive={selectedButton === 'changePasswordSection'} icon={changePasswordIcon} text='Смяна на парола' /> */}
                 </section>
 
                 {selectedButton === 'personalInfoSection' && (
@@ -225,7 +217,7 @@ const ProfilePage = () => {
                         </form>
                     </section>
                 )}
-                {selectedButton === 'changePasswordSection' && <PasswordChangeSection />}
+                {/* {selectedButton === 'changePasswordSection' && <PasswordChangeSection />} */}
             </div>
         </div>
     )

@@ -20,6 +20,17 @@ export const useFetchUser = () => {
                     console.error('Error fetching user:', error);
                 }
             }
+            //if user in local storage and we don't have cookie token
+            else if(user && !cookies.UserToken)
+            {
+                try{
+                    document.cookie = 'UserToken=; Max-Age=0; path=/;';
+                    setUser(undefined);
+                    localStorage.clear();
+                    } catch (error) {
+                    console.error('Error clearing user data:', error);
+                }
+            }
         };
 
         checkUser();

@@ -6,6 +6,8 @@ import AddAccountForm from '../components/account-overview/AddAccountForm'
 import { useUserStore } from '../stores/AuthStore.js';
 import { useNavigate } from 'react-router-dom'
 import { useFetchUser } from '../hooks/useFetchUser.js'
+import { getUser } from '../api/userService.jsx';
+import { IoMdRefresh } from "react-icons/io";
 
 import transactionIcon from '../assets/account-overview/money.png'
 import loanIcon from '../assets/account-overview/loan.png'
@@ -13,13 +15,22 @@ import mortgageIcon from '../assets/account-overview/mortgage.png'
 import transactionHistoryIcon from '../assets/account-overview/transaction.png'
 
 const AccountOverviewPage = () => {
-    useFetchUser();
     const [isAddAccountButtonClicked, setIsAddAccountButtonClicked] = useState(false);
-    const { user } = useUserStore();
+    const { user, setUser } = useUserStore();
     const navigate = useNavigate();
 
     const handleAddAccountButtonClick = (e) => {
         setIsAddAccountButtonClicked(true);
+    }
+
+    const handleRefresh = async () => {
+        const setUser = useUserStore.getState().setUser;
+        try {
+            const user = await getUser();
+            setUser(user);
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     const closeForm = () => {
@@ -33,25 +44,35 @@ const AccountOverviewPage = () => {
             <div className='mx-6 mb-5'>
                 <h1 className='font-semibold text-2xl text-blue-whale mt-12'>Добре дошли, {user.firstname} {user.lastname}</h1>
 
+
                 <section className='md:w-fit'>
                     <div className='flex flex-row justify-between items-center mt-10 relative'>
                         <h2 className='text-xl font-semibold text-blue-whale'>Наличност по сметки</h2>
 
-                        {user.accounts.length < 5 && (
-                            <PrimaryButton
-                                label='Добави сметка'
-                                className='bg-kelly-green'
-                                onClick={handleAddAccountButtonClick}
-                            />
-                        )}
+                        <div className='flex flex-row gap-5 items-center'>
+                            {user.accounts.length < 5 && (
+                                <PrimaryButton
+                                    label='Добави сметка'
+                                    className='bg-kelly-green'
+                                    onClick={handleAddAccountButtonClick}
+                                />
+                            )}
+                        </div>
 
                         {isAddAccountButtonClicked && (
                             <AddAccountForm closeForm={closeForm} />
                         )}
                     </div>
 
+                    <div className='flex justify-end pt-5'>
+                        <IoMdRefresh 
+                            className='size-8 flex self-end hover:rotate-[360deg] transition-transform duration-500 transform' 
+                            onClick={handleRefresh}
+                        />
+                    </div>
+
                     <div>
-                        <div className='mt-5 space-y-7'>
+                        <div className='space-y-7'>
                             {user.accounts.length > 0
                                 ? user.accounts.map((account) => (
                                     <ShadowBox key={account.id} className='h-fit flex-col '>
@@ -82,7 +103,7 @@ const AccountOverviewPage = () => {
                                     </ShadowBox>
                                 ))
                                 : (
-                                    <div className='my-16 text-blue-whale'>
+                                    <div className='text-blue-whale'>
                                         <p className='text-lg font-semibold mb-3'>Изглежда, че все още нямате отворени сметки при нас.</p>
                                         Можете да създадете нова сметка, като натиснете бутона <span className='font-semibold text-kelly-green'>"Добави сметка"</span>
                                     </div>
@@ -94,9 +115,9 @@ const AccountOverviewPage = () => {
             </div>
 
             <section className='flex gap-10 flex-row bg-space-wolves-grey mt-10 p-10 items-center justify-evenly'>
-                <button 
+                <button
                     className='max-w-28 h-40 flex justify-center'
-                    onClick={() => navigate('/payments')}                 
+                    onClick={() => navigate('/payments')}
                 >
                     <div className='flex flex-col items-center gap-2 group'>
                         <div className='flex bg-azure border rounded-full size-28 items-center justify-center transition-transform duration-300 ease-in-out transform group-hover:scale-110'>

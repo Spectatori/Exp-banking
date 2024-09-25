@@ -57,15 +57,15 @@ const MainPage = () => {
                         <div className='flex items-start w-1/3 max-xl:w-full'>
                             <img src={OnlineLoans} alt="Online Loans"/>
                             <div className='flex flex-col text-gray-100 pl-6'>
-                                <h2 className='text-3xl font-bold'>Онлайн Банкиране</h2>
-                                <h3 className='text-2xl pt-6'>Позволява ви да управлявате финансите си отвсякъде и по всяко време</h3>
+                                <h2 className='text-3xl font-bold'>Онлайн заеми</h2>
+                                <h3 className='text-2xl pt-6'>Кандидатсвайте за заеми от вкъщи и получете бързо удобрение.</h3>
                             </div>
                         </div>
                         <div className='flex items-start w-1/3 max-xl:w-full'>
                             <img src={DepositServices} alt="Deposit Services"/>
                             <div className='flex flex-col text-gray-100 pl-6 w-full'>
                                 <h2 className='text-3xl font-bold'>Услуги за депозити</h2>
-                                <h3 className='text-2xl pt-6'>Депозирайте чекове чрез мобилното си устройство или в банкомат.</h3>
+                                <h3 className='text-2xl pt-6'>Депозирайте чекове чрез Вашето устройство.</h3>
                             </div>
                         </div>
                     </div>
@@ -74,15 +74,15 @@ const MainPage = () => {
                         <div className='flex items-start w-1/3 max-xl:w-full'>
                             <img src={Mortgages} alt="Mortgages"/>
                             <div className='flex flex-col text-gray-100 pl-6'>
-                                <h2 className='text-3xl font-bold'>Онлайн Банкиране</h2>
-                                <h3 className='text-2xl pt-6'>Позволява ви да управлявате финансите си отвсякъде и по всяко време</h3>
+                                <h2 className='text-3xl font-bold'>Ипотеки</h2>
+                                <h3 className='text-2xl pt-6'>Подайте заявление за ипотечен кредит и направете първата стъпка към мечтания дом.</h3>
                             </div>
                         </div>
                         <div className='flex items-start w-1/3 max-xl:w-full'>
                             <img src={AccountManagement} alt="Account Management"/>
                             <div className='flex flex-col text-gray-100 pl-6 w-full'>
-                                <h2 className='text-3xl font-bold'>Услуги за депозити</h2>
-                                <h3 className='text-2xl pt-6'>Депозирайте чекове чрез мобилното си устройство или в банкомат.</h3>
+                                <h2 className='text-3xl font-bold'>Управление на клиентски акаунти</h2>
+                                <h3 className='text-2xl pt-6'>Управлявайте лесно акаунтите си с нашата сигурна система.</h3>
                             </div>
                         </div>
                     </div>

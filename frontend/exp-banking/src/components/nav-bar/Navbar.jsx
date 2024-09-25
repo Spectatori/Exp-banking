@@ -20,7 +20,6 @@ const Navbar = () => {
             ? (
                 <nav>
                     <InnerHeader />
-                    <AuthNavbar />
                 </nav>
             )
             : (

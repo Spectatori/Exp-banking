@@ -19,7 +19,8 @@ public class LoanService {
 
     @Autowired
     private AccountsRepository accountsRepository;
-
+    @Autowired
+    private TransactionServiceImpl transactionService;
     @Autowired
     private RiskAssessmentService riskAssessmentService;
 
@@ -32,10 +33,13 @@ public class LoanService {
         double monthlyPayment = riskAssessmentService
                 .calculateMonthlyPayment(totalAmount, typeOfLoan, loanTermMonths);
         approvedLoan.setMonthlyPayment(monthlyPayment);
+        approvedLoan.setFinalDate(approvedLoan.getDateOfApplying().plusMonths(loanTermMonths));
+        approvedLoan.setNextDateOfPayment(approvedLoan.getDateOfApplying().plusMonths(1));
         int monthsPayed = 0;
         double remainingBalance = riskAssessmentService.calculateRemainingBalance(totalAmount,typeOfLoan,loanTermMonths,monthsPayed);
         approvedLoan.setRemainingBalance(remainingBalance);
         loanRepository.save(approvedLoan);
+
     }
 
     @Transactional

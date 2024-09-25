@@ -18,9 +18,11 @@ public class AdminController {
     private final UserServiceImpl userServiceImpl;
     private final TransactionServiceImpl transactionServiceImpl;
 
-    public AdminController(UserServiceImpl userServiceImpl, TransactionServiceImpl transactionServiceImpl) {
+    public AdminController(UserServiceImpl userServiceImpl, TransactionServiceImpl transactionServiceImpl, ReportingDetailsRepository reportingDetailsRepository) {
         this.userServiceImpl = userServiceImpl;
         this.transactionServiceImpl = transactionServiceImpl;
+
+        this.reportingDetailsRepository = reportingDetailsRepository;
     }
 
     @PreAuthorize("hasRole('ADMIN')")

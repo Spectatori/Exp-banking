@@ -17,6 +17,7 @@ import Navbar from "./components/nav-bar/Navbar.jsx";
 import PaymentsPage from "./pages/PaymentsPage.jsx";
 import LoansPage from "./pages/LoansPage.jsx";
 import LoanFormPage from "./pages/LoanFormPage.jsx";
+import AdminPanel from "./pages/AdminPanel.jsx";
 
 import { useFetchUser } from "./hooks/useFetchUser.js";
 
@@ -28,6 +29,7 @@ function App() {
     return (
         <div className="flex flex-col min-h-screen justify-between">
             <Router>
+                {/*TODO: Don't show navbar in '/admin'*/}
                 <Navbar />
                 <Routes>
                     {/* doesn't matter if you're authenticated or not */}
@@ -48,12 +50,14 @@ function App() {
                     <Route path="/"  element={<PrivateRoute element={<MainPage />} authRequired={false} />} />
                     <Route path="/auth/register" element={<PrivateRoute element={<AccessPage />} authRequired={false} />} />
                     <Route path="/auth/login" element={<PrivateRoute element={<AccessPage />} authRequired={false} />} />
+
+                    {/*TODO: Admin panel only for admin*/}
+                    <Route path="/admin"  element={<PrivateRoute element={<AdminPanel />} />} />
                 </Routes>
             </Router>
             <AIChat />
             <ToastConfig />
-            <Footer />
-            
+            <Footer />          
         </div>
     );
 }

@@ -1,6 +1,5 @@
 import React from 'react'
 import PrimaryButton from '../components/PrimaryButton'
-import { useFetchUser } from '../hooks/useFetchUser'
 
 import Banner from '../assets/consumer-loan-info/family-cropped.jpg'
 import RelocationPic from '../assets/consumer-loan-info/relocation.jpg'
@@ -8,8 +7,11 @@ import FormIcon from '../assets/consumer-loan-info/online-education.png'
 import ApprovedIcon from '../assets/consumer-loan-info/quality.png'
 import PiggyIcon from '../assets/consumer-loan-info/piggy-bank.png'
 import { IoCheckmarkSharp } from "react-icons/io5";
+import { useNavigate } from 'react-router-dom';
 
 const ConsumerLoanInfoPage = () => {
+    const navigate = useNavigate();
+
     return (
         <>
             <section className='mt-5 flex flex-col md:relative'>
@@ -86,7 +88,7 @@ const ConsumerLoanInfoPage = () => {
                             </div>
                         </div>
 
-                        <PrimaryButton label='Кандидатстване' className='bg-kelly-green self-end    '/>
+                        <PrimaryButton label='Кандидатстване' onClick={() => navigate('/loans/request')}  className='bg-kelly-green self-end    '/>
                     </div>
                 </div>
             </section>

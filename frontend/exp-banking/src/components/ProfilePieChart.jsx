@@ -33,7 +33,9 @@
   };
 
   const getMaxSpendingCategory = (totals) => {
-    return Object.entries(totals).reduce((max, current) => current[1] < max[1] ? current : max, ['', 0]);
+    return Object.entries(totals).reduce((max, current) => 
+      Math.abs(current[1]) > Math.abs(max[1]) ? current : max, ['', 0]
+    );
   };
 
   const renderCustomLabel = ({ cx, cy }, maxCategory, maxAmount) => {
@@ -50,7 +52,6 @@
     const [maxCategory, maxAmount] = getMaxSpendingCategory(totalsByCategory);
     
   const pieData = Object.keys(totalsByCategory)
-    .filter(category => category !== "Заплата")
     .map(category => ({
     name: category,
     value: Math.abs(totalsByCategory[category]),

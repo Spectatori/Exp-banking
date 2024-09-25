@@ -85,20 +85,37 @@ const Transactions  = () => {
   ///controls which transactions go to the pie chart
   const filteredTransactions = useMemo(() => {
     if (user && user.accounts && user.accounts.length && selectedAccount.transactions.length > 0) {
-      return filterTransactions(selectedAccount.transactions, selectedTimeSpan);
+      return filterTransactions(selectedAccount.transactions.filter(category => category.amount < 0), selectedTimeSpan);
     }
     return [];
   }, [user, selectedTimeSpan, selectedAccount]);
-  const totalForSelectedTimeSpan = useMemo(() => {
-    return calculateTotal(filteredTransactions);
-  }, [filteredTransactions]);
+
+  const incomeFilteredTransactions = useMemo(() => {
+    if (user && user.accounts && user.accounts.length && selectedAccount.transactions.length > 0) {
+      return filterTransactions(selectedAccount.transactions.filter(category => category.amount > 0), selectedTimeSpan);
+    }
+    return [];
+  }, [user, selectedTimeSpan, selectedAccount]);
 
   ///this function show the daily, weekly and monthly overall payments above the pie chart
   //filters out the transactions with salary
-  const dailyTotal = calculateTotal(filterTransactions(selectedAccount?.transactions.filter(category => category.details !== "Заплата"), 'daily'));
-  const weeklyTotal = calculateTotal(filterTransactions(selectedAccount?.transactions.filter(category => category.details !== "Заплата"), 'weekly'));
-  const monthlyTotal = calculateTotal(filterTransactions(selectedAccount?.transactions.filter(category => category.details !== "Заплата"), 'monthly'));
+  const dailyTotal = calculateTotal(filterTransactions(selectedAccount?.transactions.filter(category => category.amount < 0), 'daily'));
+  const weeklyTotal = calculateTotal(filterTransactions(selectedAccount?.transactions.filter(category => category.amount < 0), 'weekly'));
+  const monthlyTotal = calculateTotal(filterTransactions(selectedAccount?.transactions.filter(category => category.amount < 0), 'monthly'));
 
+  const incomeDailyTotal = calculateTotal(filterTransactions(selectedAccount?.transactions.filter(category => category.amount > 0), 'daily'));
+  const incomeWeeklyTotal = calculateTotal(filterTransactions(selectedAccount?.transactions.filter(category => category.amount > 0), 'weekly'));
+  const incomeMonthlyTotal = calculateTotal(filterTransactions(selectedAccount?.transactions.filter(category => category.amount > 0), 'monthly'));
+
+  const [isIncome, setIsIncome] = useState(false);
+
+  function handlePieChart(id) {
+    if (id === "expenses") {
+      setIsIncome(true);
+    } else if (id === "incomes") {
+      setIsIncome(false);
+    }
+  }
   return (
     <div className="flex flex-col">
       <div className="flex flex-col pt-10 pb-10 px-20 gap-10 max-xl:px-4 max-2xl:pb-10">
@@ -143,7 +160,14 @@ const Transactions  = () => {
             boxShadow: 'rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px',
           }}>
             <div className='flex flex-row px-6 justify-between pb-10 max-2xl:pt-5'>
-              <p className='text-2xl font-bold'>Всички разходи</p>
+              <select onChange={(event) => handlePieChart(event.target.value)} className="text-2xl font-bold">
+                <option value="incomes">
+                  Приходи
+                </option>
+                <option value="expenses">
+                  Разходи
+                </option>
+              </select>
               <button onClick={handleRefresh} 
               className='bg-teal-700 w-10 h-10 items-center justify-center flex rounded-lg hover:scale-110 ease-in duration-300'>
                 
@@ -163,6 +187,10 @@ const Transactions  = () => {
 
               </button>
             </div>
+
+            {isIncome ? 
+            <>
+
             <div className='flex flex-row justify-around pb-4 max-xl:flex-col max-xl:items-center max-xl:gap-3'>
               <div className='flex flex-col items-start max-2xl:gap-1'>
                 <p className='font-mono text-gray-400' >Дневно</p>
@@ -181,7 +209,7 @@ const Transactions  = () => {
               </div>
             </div>
             <hr className='border-t border-gray-300 pl-10 w-5/6 self-center pb-7' />
-            <div className='flex flex-row justify-between max-xl:flex-col md-xl:justify-center'>
+              <div className='flex flex-row justify-between max-xl:flex-col md-xl:justify-center'>
               <div className='flex flex-col'>
                 <div className='flex pl-8'>
                   <select
@@ -209,6 +237,59 @@ const Transactions  = () => {
                 ))}
               </div>
             </div>
+            </>
+
+            :
+
+            <>
+              <div className='flex flex-row justify-around pb-4 max-xl:flex-col max-xl:items-center max-xl:gap-3'>
+              <div className='flex flex-col items-start max-2xl:gap-1'>
+                <p className='font-mono text-gray-400' >Дневно</p>
+                <p className=' text-xl font-bold font-mono'></p>
+                <p className=' text-xl font-bold font-mono'>{incomeDailyTotal.toFixed(2)} ЛВ</p>
+              </div>
+              <div className='flex flex-col items-start max-2xl:gap-1'>
+                <p className='font-mono text-gray-400'>Седмично</p>
+                <p className=' text-xl font-bold font-mono'></p>
+                <p className=' text-xl font-bold font-mono'>{incomeWeeklyTotal.toFixed(2)} ЛВ</p>
+              </div>
+              <div className='flex flex-col items-start max-2xl:gap-1'>
+                <p className='font-mono text-gray-400'>Месечно</p>
+                <p className=' text-xl font-bold font-mono'></p>
+                <p className=' text-xl font-bold font-mono'>{incomeMonthlyTotal.toFixed(2)} ЛВ</p>
+              </div>
+            </div>
+            <hr className='border-t border-gray-300 pl-10 w-5/6 self-center pb-7' />
+              <div className='flex flex-row justify-between max-xl:flex-col md-xl:justify-center'>
+              <div className='flex flex-col'>
+                <div className='flex pl-8'>
+                  <select
+                    value={selectedTimeSpan}
+                    onChange={handleTimeSpanChange}
+                    className="border-gray-300 text-lg p-2 rounded-md font-bold border-none outline-none"
+                  >
+                    <option value="daily">Дневно</option>
+                    <option value="weekly">Седмично</option>
+                    <option value="monthly">Месечно</option>
+                  </select>
+                </div>
+                <div className='pl-20 pt-10 max-xl:pl-0 max-xl:self-center'>
+                <ProfilePieChart transactions={incomeFilteredTransactions} />
+                </div>
+              </div>
+              <div className='flex flex-col w-fit pr-36 justify-center pl-20 max-xl:pt-5 space-y-5'>
+                {Object.keys(categoryColors).map((category) => (
+                  <div key={category} className='flex flex-row font-medium gap-3 items-center'>
+                    <div className={`${categoryColors[category].Color} min-w-3 min-h-3`}></div>
+                    <p>
+                      {categoryColors[category].Name}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            </>}
+
           </div>
         </div>
       </div>

@@ -3,6 +3,7 @@ import PrimaryButton from '../components/PrimaryButton'
 
 import Banner from '../assets/consumer-loan-info/family-cropped.jpg'
 import RelocationPic from '../assets/consumer-loan-info/relocation.jpg'
+import LoanFamily from '../assets/loans/loan-family.jfif'
 import FormIcon from '../assets/consumer-loan-info/online-education.png'
 import ApprovedIcon from '../assets/consumer-loan-info/quality.png'
 import PiggyIcon from '../assets/consumer-loan-info/piggy-bank.png'
@@ -114,10 +115,10 @@ const ConsumerLoanInfoPage = () => {
                             </div>
                         </div>
 
-                        <PrimaryButton label='Кандидатстване' className='bg-kelly-green self-start '/>
+                        <PrimaryButton label='Кандидатстване' onClick={() => navigate('/mortgage/request')} className='bg-kelly-green self-start '/>
                     </div>
 
-                    <img src={RelocationPic} alt="" className='w-1/2 rounded-lg object-cover hidden md:block' />
+                    <img src={LoanFamily} alt="" className='w-1/2 rounded-lg object-cover hidden md:block' />
                 </div>
             </section>
 

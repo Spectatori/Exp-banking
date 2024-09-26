@@ -17,8 +17,10 @@ import Navbar from "./components/nav-bar/Navbar.jsx";
 import PaymentsPage from "./pages/PaymentsPage.jsx";
 import LoansPage from "./pages/LoansPage.jsx";
 import LoanFormPage from "./pages/LoanFormPage.jsx";
+import MortgageFormPage from "./pages/MortgageFormPage.jsx";
 
 import { useFetchUser } from "./hooks/useFetchUser.js";
+
 
 //import { useUserStore } from "./stores/AuthStore.js";
 //import { Navigate } from "react-router-dom";
@@ -43,6 +45,7 @@ function App() {
                     <Route path="/payments" element={<PrivateRoute element={<PaymentsPage />} />} />
                     <Route path="/loans" element={<PrivateRoute element={<LoansPage />} />} />
                     <Route path="/loans/request" element={<PrivateRoute element={<LoanFormPage />} />} />
+                    <Route path="/mortgage/request" element={<PrivateRoute element={<MortgageFormPage />} />} />
 
                     {/* pages only accessible before logging in */}
                     <Route path="/"  element={<PrivateRoute element={<MainPage />} authRequired={false} />} />

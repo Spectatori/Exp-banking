@@ -55,7 +55,7 @@ const Navbar = () => {
 
                             <Link
                                 to='/auth/login'
-                                className="bg-dark-blue rounded-xl px-5 py-3 text-white w-fit self-center"
+                                className="bg-dark-blue rounded-xl px-5 py-1 text-white w-fit self-center"
                                 onClick={() => setIsMenuOpen(false)}
                             >
                                 Вход

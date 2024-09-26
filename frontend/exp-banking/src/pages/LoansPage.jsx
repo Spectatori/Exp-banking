@@ -14,12 +14,6 @@ const LoansPage = () => {
                 url='/loans/consumer-loan'
             />
             < IconLinkCard
-                title='Ипотечен кредит'
-                icon={MortgageIcon}
-                bubble='info'
-                //url=''
-            />
-            < IconLinkCard
                 title='Калкулатор'
                 icon={CalculatorIcon}
                 bubble='calculate'

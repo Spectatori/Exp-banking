@@ -32,7 +32,6 @@ const RegisterForm = () => {
             const token = await registerUser(restructuredValues);
             setCookie('UserToken', token, { path: '/' });
             console.log('Registration successful!');
-            navigate('/profile');
         } catch (error) {
             console.error('Registration failed:', error);
             showErrorToast(

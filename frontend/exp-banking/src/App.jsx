@@ -19,6 +19,7 @@ import LoansPage from "./pages/LoansPage.jsx";
 import LoanFormPage from "./pages/LoanFormPage.jsx";
 import MortgageFormPage from "./pages/MortgageFormPage.jsx";
 import AdminPanel from "./pages/AdminPanel.jsx";
+import AdminChecker from "./components/auth-forms/AdminChecker.jsx";
 
 import { useFetchUser } from "./hooks/useFetchUser.js";
 

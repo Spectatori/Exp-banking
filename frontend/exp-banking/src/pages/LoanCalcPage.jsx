@@ -53,11 +53,11 @@ const LoanCalcPage = () => {
     ], []);
 
     return (
-        <div className='flex flex-col '>
+        <div className='flex flex-col pb-16 '>
             <div className="flex flex-row justify-between max-2xl:flex-col max-2xl:items-center">
                 <div className='flex flex-col w-2/6 pl-28 max-2xl:w-full max-2xl:pl-0'>
                     <h1 className='text-5xl font-bold font-mono pt-16 max-2xl:text-3xl max-2xl:text-center'>Калкулатор за заеми</h1>
-                    <h2 className='text-2xl pt-10 font-mono pb-16 max-2xl:text-center max-2xl:text-xl'>
+                    <h2 className='text-2xl pt-10 pb-16 max-2xl:text-center max-2xl:text-xl'>
                         Изчислете лесно месечните си вноски с нашия удобен калкулатор, като просто въведете сумата на заема.
                         Независимо дали обмисляте ипотека, автомобилен заем или потребителски заем, този инструмент ви 
                         помага да разберете финансовия ангажимент, преди да вземете назаем. Използвайте калкулатора за заеми,
@@ -171,7 +171,7 @@ const LoanCalcPage = () => {
                         
                     </div>
                 </div>
-                <div className="pt-40 pr-60 w-2/5 max-2xl:pr-0 max-2xl:pt-10 max-2xl:w-full  ">
+                <div className="pt-40 pr-60 w-2/5 max-2xl:pr-0 max-2xl:pt-10 max-2xl:w-full ">
                     <div className="overflow-y-auto max-h-96 w-full">
                         <LoanTable columns={columns} data={resultsArray} />
                     </div>

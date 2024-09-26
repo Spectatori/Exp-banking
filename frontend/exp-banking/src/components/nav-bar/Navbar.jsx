@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
     const { user } = useUserStore();
+    const admin = import.meta.env.VITE_ADMIN_EMAIL;
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const toggleMenu = () => {
@@ -16,6 +17,11 @@ const Navbar = () => {
     };
 
     return (
+        user && user.email === admin ? (
+            <nav>
+              <InnerHeader />
+            </nav>
+          ) : (
         user
             ? (
                 <nav>
@@ -64,7 +70,7 @@ const Navbar = () => {
                     </nav>
                 </nav>
             )
-    );
+    ));
 };
 
 export default Navbar;

@@ -5,8 +5,11 @@ import useGetLoansUnderFive from '../hooks/useGetLoansUnderFive';
 import useGetLoansBetweenFiveAndTen from '../hooks/useGetLoansBetweenFiveAndTen';
 import LoanTable from '../components/Table';
 import LoansPieChart from '../components/LoansPieChart';
+import { useUserStore } from '../stores/AuthStore';
+import { Navigate } from 'react-router-dom';
 
 const AdminPanel = () => {
+    const user = useUserStore((state) => state.user);
     const { loans, error, isLoading } = useGetAllLoans();
     const { loansOverTen } = useGetLoansOverTen();
     const { loansUnderFive } = useGetLoansUnderFive();
@@ -40,6 +43,10 @@ const AdminPanel = () => {
             header: 'Общ размер на кредита',
         }
     ], []);
+    const admin = import.meta.env.VITE_ADMIN_EMAIL;
+    if (admin != user.email) {
+        return <Navigate to="/account-overview"/>;  
+      }
 
     return (
         <div className='mx-6 mb-5'>

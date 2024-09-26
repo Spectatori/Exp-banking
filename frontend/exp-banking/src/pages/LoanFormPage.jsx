@@ -26,7 +26,6 @@ const LoanFormPage = () => {
               iban: values.iban,
               period: values.period,
             });
-            alert('Loan request submitted successfully');
           } catch (error) {
             console.error('Error submitting loan request:', error);
           }

@@ -7,7 +7,9 @@ import InputField from '../components/auth-forms/AuthInputField'
 import { useUserStore } from '../stores/AuthStore'
 import mortgageSchema from '../schemas/mortgageSchema'
 import { mortgageRequest } from '../api/loanServices'
+
 const MortgageFormPage = () => {
+    
     const user = useUserStore((state) => state.user);
     const { values, handleChange, handleBlur, handleSubmit, errors, touched } = useFormik({
         initialValues: {
@@ -19,13 +21,12 @@ const MortgageFormPage = () => {
         validationSchema: mortgageSchema,
         onSubmit: async (values) => {
           try {
-            console.log(values)
-            await mortgageRequest({
+            const response = await mortgageRequest({
               amount: values.amount,
               iban: values.iban,
               period: values.period,
             });
-            alert('Loan request submitted successfully');
+            console.log(response);
           } catch (error) {
             console.error('Error submitting loan request:', error);
           }
@@ -92,7 +93,6 @@ const MortgageFormPage = () => {
                       </button>
                     </div>
                   </form>
-                    
                 </div>
             </ShadowBox>
         </div>

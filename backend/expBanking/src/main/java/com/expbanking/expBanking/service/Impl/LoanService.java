@@ -61,7 +61,7 @@ public class LoanService {
             if (account.getBalance().compareTo(BigDecimal.valueOf(monthlyPayment)) >= 0) {
 
                 Timestamp dateOfPayment = Timestamp.valueOf(LocalDateTime.now());
-                String details = "Payment for credit.";
+                String details = "Вноска по кредит";
                 TransactionType transactionType = new TransactionType();
                 double expenseMonthlyPayment = -monthlyPayment;
                 TransactionsDTO transactionsDTO = new TransactionsDTO(dateOfPayment, expenseMonthlyPayment,details,transactionType);

@@ -26,6 +26,10 @@ const categoryColors = {
             Name: "Хранителни стоки",
             Color: "bg-category-yellow",
         },
+        "Вноска по кредит": {
+            Name: "Вноска по кредит",
+            Color: "bg-category-orange",
+        },
     },
     incomes: {
         "Заплата": {

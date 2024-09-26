@@ -30,6 +30,10 @@ const categoryColors = {
     Name: "Стипeндия",
     Color: "#f9f871",
   },
+  "Вноска по кредит": {
+    Name: "Вноска по кредит",
+    Color: "#FF8533",
+  },
 };
 
 const defaultColor = "#D3D3D3";

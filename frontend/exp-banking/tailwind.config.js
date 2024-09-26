@@ -20,7 +20,8 @@ export default {
         'category-purple': '#8683ce',
         'category-blue': '#00c9f4',
         'category-yellow': '#f9f871',
-        'category-green': '#a6f791'
+        'category-green': '#a6f791',
+        'category-orange': '#FF8533'
       },
     },
   },

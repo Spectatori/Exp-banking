@@ -54,11 +54,11 @@ const AdminPanel = () => {
                 {loans.length > 0
                     ? (
                         <>
-                            <div className='flex flex-col items-center gap-24'>
+                            <div className='flex flex-col items-center gap-12 md:gap-16 w-screen'>
 
                             <LoansPieChart loansOverTen={loansOverTen} loansUnderFive={loansUnderFive} loansBetweenFiveAndTen={loansBetweenFiveAndTen} />
 
-                                <div className='overflow-y-auto h-96 max-h-96 w-full'>
+                                <div className='overflow-x-auto overflow-y-auto h-96 max-h-96 max-w-full'>
                                     <LoanTable columns={columns} data={loans} />
                                 </div>
                             </div>

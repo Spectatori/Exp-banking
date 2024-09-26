@@ -52,12 +52,12 @@ public class LoanController {
 
         Optional<UserFinancialSummary> summary = financialSummaryService.getFinancialSummary(userId);
         if (!summary.isPresent()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No financial summary available for user");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Заемът е отказан поради липса на кредитна история");
         }
 
         double netIncome = summary.get().getTotalIncome() - summary.get().getTotalExpenses();
         if (netIncome <= 0) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Loan Denied due to insufficient income.");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Заемът е отказан поради недостатъчен баланс по сметката.");
         }
 
         // Calculate risk score
@@ -69,15 +69,15 @@ public class LoanController {
             BigDecimal loanAmountForTransfer = BigDecimal.valueOf(loanAmount);
             accountsService.transfer(IBAN, iban, loanAmountForTransfer);
             loanService.saveLoan(loanAmount, typeOfLoan, loanTermMonths,account.get().getAccountId());
-            return ResponseEntity.ok("Loan Approved");
+            return ResponseEntity.ok("Заемът е одобрен.");
         } else if (riskScore >= 20) {
             Optional<Accounts> account = accountsRepository.findAccountByIban(iban);
             BigDecimal loanAmountForTransfer = BigDecimal.valueOf(loanAmount);
             accountsService.transfer(IBAN, iban, loanAmountForTransfer);
             loanService.saveLoan(loanAmount, typeOfLoan, loanTermMonths,account.get().getAccountId());
-            return ResponseEntity.ok("Loan Approved with higher interest rate.");
+            return ResponseEntity.ok("Заемът е одобрен,с повишен риск.");
         } else {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Loan Denied due to high risk.");
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Заемът е отказан, поради висок риск.");
         }
     }
 

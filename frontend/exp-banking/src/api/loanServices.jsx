@@ -16,8 +16,8 @@ export const loanRequest = async (loanInfo) => {
             typeOfLoan: 'User',
             loanTermMonths:loanInfo.period
         };
-        await apiClient.post(`api/loan/apply/${decoded.userId}`, payload);
-
+        let response = await apiClient.post(`api/loan/apply/${decoded.userId}`, payload);
+        console.log(response)
         const setUser = useUserStore.getState().setUser;
         try {
             const user = await getUser();
@@ -28,14 +28,14 @@ export const loanRequest = async (loanInfo) => {
 
         showSuccessToast(
             <div className='text-sm'>
-                <p className='font-semibold'>Заемът бе удобрен!</p>
+                <p className='font-semibold'>{response.data}</p>
             </div>
         )
     } catch (error) {
         console.error('Error updating user:', error);
         showErrorToast(
             <div className='text-sm'>
-                <p className='font-semibold'>Заемът не бе удобрен!</p>
+                <p className='font-semibold'>Заемът не бе одобрен!</p>
             </div>
         )
     }
@@ -53,7 +53,7 @@ export const mortgageRequest = async (loanInfo) => {
             loanTermMonths:loanInfo.period
         };
         await apiClient.post(`api/loan/apply/${decoded.userId}`, payload);
-
+        let response = await apiClient.post(`api/loan/apply/${decoded.userId}`, payload)
         const setUser = useUserStore.getState().setUser;
         try {
             const user = await getUser();
@@ -63,14 +63,14 @@ export const mortgageRequest = async (loanInfo) => {
         }
         showSuccessToast(
             <div className='text-sm'>
-                <p className='font-semibold'>Ипотеката бе удобрена!</p>
+                <p className='font-semibold'>{response.data}</p>
             </div>
         )
     } catch (error) {
         console.error('Error updating user:', error);
         showErrorToast(
             <div className='text-sm'>
-                <p className='font-semibold'>Ипотеката не бе удобрена!</p>
+                <p className='font-semibold'>Ипотеката не бе одобрена!</p>
             </div>
         )
     }

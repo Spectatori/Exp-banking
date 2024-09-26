@@ -20,7 +20,6 @@ const LoanFormPage = () => {
         validationSchema: loanSchema,
         onSubmit: async (values) => {
           try {
-            console.log(values)
             await loanRequest({
               amount: values.amount,
               iban: values.iban,

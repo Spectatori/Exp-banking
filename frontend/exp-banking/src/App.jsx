@@ -19,7 +19,6 @@ import LoansPage from "./pages/LoansPage.jsx";
 import LoanFormPage from "./pages/LoanFormPage.jsx";
 import MortgageFormPage from "./pages/MortgageFormPage.jsx";
 import AdminPanel from "./pages/AdminPanel.jsx";
-import AdminChecker from "./components/auth-forms/AdminChecker.jsx";
 
 import { useFetchUser } from "./hooks/useFetchUser.js";
 
@@ -56,7 +55,11 @@ function App() {
                     <Route path="/auth/login" element={<PrivateRoute element={<AccessPage />} authRequired={false} />} />
 
                     {/*TODO: Admin panel only for admin*/}
+<<<<<<< HEAD
                     <Route path="/admin"  element={<AdminChecker element={<AdminPanel />} />} />
+=======
+                    <Route path="/admin" element={<AdminPanel />} />
+>>>>>>> 64655212390a655da9c387a365cf1a2fa6242fc2
                 </Routes>
             </Router>
             <AIChat />

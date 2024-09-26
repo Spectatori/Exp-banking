@@ -20,7 +20,7 @@ const LoginForm = () => {
             const token = await loginUser(values);
             setCookie('UserToken', token, { path: '/' });
             console.log('Login successful!');
-            navigate('/account-overview');
+            
         } catch (error) {
             console.error('Login failed:', error);
             showErrorToast(

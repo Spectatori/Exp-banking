@@ -33,6 +33,7 @@ const AdminPanel = () => {
         {
             accessorKey: 'remainingBalance',
             header: 'Оставаща сума за погасяване',
+            Cell: ({ cell }) => Number(cell.getValue()).toFixed(2)
         },
         {
             accessorKey: 'totalAmount',

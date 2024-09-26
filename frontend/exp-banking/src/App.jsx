@@ -56,7 +56,7 @@ function App() {
                     <Route path="/auth/login" element={<PrivateRoute element={<AccessPage />} authRequired={false} />} />
 
                     {/*TODO: Admin panel only for admin*/}
-                    <Route path="/admin"  element={<PrivateRoute element={<AdminPanel />} />} />
+                    <Route path="/admin"  element={<AdminChecker element={<AdminPanel />} />} />
                 </Routes>
             </Router>
             <AIChat />

@@ -1,14 +1,22 @@
 import React, { useMemo } from 'react'
 import useGetAllLoans from '../hooks/useGetAllLoans';
+import useGetLoansOverTen from '../hooks/useGetLoansOverTen';
+import useGetLoansUnderFive from '../hooks/useGetLoansUnderFive';
+import useGetLoansBetweenFiveAndTen from '../hooks/useGetLoansBetweenFiveAndTen';
 import LoanTable from '../components/Table';
+import LoansPieChart from '../components/LoansPieChart';
 
 const AdminPanel = () => {
     const { loans, error, isLoading } = useGetAllLoans();
+    const { loansOverTen } = useGetLoansOverTen();
+    const { loansUnderFive } = useGetLoansUnderFive();
+    const { loansBetweenFiveAndTen } = useGetLoansBetweenFiveAndTen();
 
     const columns = useMemo(() => [
         {
             accessorKey: 'dateOfApplying',
             header: 'Дата на кандидатстване',
+            size: 30
         },
         {
             accessorKey: 'firstName',
@@ -34,19 +42,28 @@ const AdminPanel = () => {
 
     return (
         <div className='mx-6 mb-5'>
-            {loans.length > 0
-                ? (
-                    <div className='flex flex-col md:flex-row'>
-                        <LoanTable columns={columns} data={loans} />
-                    </div>
-                )
-                : (
-                    <div className='flex w-full items-center justify-center gap-7 text-center'>
+            <div className='flex flex-row justify-evenly'>
+                {loans.length > 0
+                    ? (
+                        <>
+                            <div className='flex flex-col items-center gap-24'>
+
+                            <LoansPieChart loansOverTen={loansOverTen} loansUnderFive={loansUnderFive} loansBetweenFiveAndTen={loansBetweenFiveAndTen} />
+
+                                <div className='overflow-y-auto h-96 max-h-96 w-full'>
+                                    <LoanTable columns={columns} data={loans} />
+                                </div>
+                            </div>
+                        </>
+                    )
+                    : (
+                        <div className='flex w-full items-center justify-center gap-7 text-center'>
                             <p className='md:text-3xl text-2xl font-semibold text-blue-whale'>
                                 Няма информация за показване.
                             </p>
                         </div>
-                )}
+                    )}
+            </div>
         </div>
     )
 }

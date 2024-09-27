@@ -10,19 +10,19 @@ const Footer = () => {
                 <div className="flex flex-col pt-5 ">
                     <div className="font-mono text-gray-400 text-sm">
                         <p className="text-xl text-gray-500">Полезни Връзки</p>
-                        <p>Валутна информация</p>
-                        <p>Документи и архив</p>
-                        <p>Обратна връзка</p>
-                        <p>Често задавани въпроси</p>
+                        <p className='cursor-pointer hover:text-blue-600'>Валутна информация</p>
+                        <p className='cursor-pointer hover:text-blue-600'>Документи и архив</p>
+                        <p className='cursor-pointer hover:text-blue-600'>Обратна връзка</p>
+                        <p className='cursor-pointer hover:text-blue-600'>Често задавани въпроси</p>
                     </div>
                 </div>
                 <div className="flex flex-col pt-5 max-xl:pl-0">
                     <div className="font-mono text-gray-400 text-sm">
                         <p className="text-xl text-gray-500">За нас</p>
-                        <p>За Банка Exp</p>
-                        <p>Кариери</p>
-                        <p>Медиен Център</p>
-                        <p>Правила и условия за ползване</p>
+                        <p className='cursor-pointer hover:text-blue-600'>За Банка Exp</p>
+                        <p className='cursor-pointer hover:text-blue-600'>Кариери</p>
+                        <p className='cursor-pointer hover:text-blue-600'>Медиен Център</p>
+                        <p className='cursor-pointer hover:text-blue-600'>Правила и условия за ползване</p>
                     </div>
                 </div>
                 <div className="flex flex-col pt-5 pl-10 max-xl:pl-0">

@@ -134,7 +134,7 @@ const ProfilePage = () => {
                                         onClick={() => handleEditClick('email')}
                                         className='self-start underline text-azure'
                                     >
-                                        {isEditing.email ? 'Save' : 'Edit'}
+                                        {isEditing.email ? 'Запази' : 'Промени'}
                                     </button>
                                 </ShadowBox>
 
@@ -157,7 +157,7 @@ const ProfilePage = () => {
                                         onClick={() => handleEditClick('phoneNumber')}
                                         className='self-start underline text-azure'
                                     >
-                                        {isEditing.phoneNumber ? 'Save' : 'Edit'}
+                                        {isEditing.phoneNumber ? 'Запази' : 'Промени'}
                                     </button>
                                 </ShadowBox>
                             </div>
@@ -181,7 +181,7 @@ const ProfilePage = () => {
                                         onClick={() => handleEditClick('address')}
                                         className='self-start underline text-azure'
                                     >
-                                        {isEditing.address ? 'Save' : 'Edit'}
+                                        {isEditing.address ? 'Запази' : 'Промени'}
                                     </button>
                                 </ShadowBox>
 
@@ -210,7 +210,7 @@ const ProfilePage = () => {
                                         onClick={() => handleEditClick('employment')}
                                         className='self-start underline text-azure'
                                     >
-                                        {isEditing.employment ? 'Save' : 'Edit'}
+                                        {isEditing.employment ? 'Запази' : 'Промени'}
                                     </button>
                                 </ShadowBox>
                             </div>

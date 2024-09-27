@@ -1,10 +1,29 @@
-const calculateLoan = (principal, period, interestRate) => {
-  const overallPayment = principal * (1 + interestRate / 100* period); // Total payment after all months
-  const monthlyPayment = overallPayment / period; // Monthly payment
+const calculateLoan = (principal, interestRate, loanTermMonths) => {
+  const monthlyInterestRate = interestRate / 100 / 12;
+
+  const monthlyPayment = principal * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, loanTermMonths) / (Math.pow(1 + monthlyInterestRate, loanTermMonths) - 1);
+
+  const overallPayment = monthlyPayment * loanTermMonths;
+
+  const amortizationSchedule = [];
+  let remainingBalance = principal;
+  for (let i = 1; i <= loanTermMonths; i++) {
+    const interestPayment = remainingBalance * monthlyInterestRate;
+    const principalPayment = monthlyPayment - interestPayment;
+    remainingBalance -= principalPayment;
+
+    amortizationSchedule.push({
+      month: i,
+      monthlyPayment: monthlyPayment.toFixed(2),
+      interestPayment: interestPayment.toFixed(2),
+      principalPayment: principalPayment.toFixed(2),
+      remainingBalance: remainingBalance.toFixed(2),
+    });
+  }
 
   return [{
       overallPayment: overallPayment.toFixed(2),
-      period,
+      period: loanTermMonths,
       monthlyPayment: monthlyPayment.toFixed(2),
   }];
 };

@@ -1,5 +1,6 @@
 import React from 'react'
-import PrimaryButton from '../components/PrimaryButton'
+import { IoCheckmarkSharp } from "react-icons/io5";
+import { useNavigate } from 'react-router-dom';
 
 import Banner from '../assets/consumer-loan-info/family-cropped.jpg'
 import RelocationPic from '../assets/consumer-loan-info/relocation.jpg'
@@ -7,8 +8,7 @@ import LoanFamily from '../assets/loans/loan-family.jfif'
 import FormIcon from '../assets/consumer-loan-info/online-education.png'
 import ApprovedIcon from '../assets/consumer-loan-info/quality.png'
 import PiggyIcon from '../assets/consumer-loan-info/piggy-bank.png'
-import { IoCheckmarkSharp } from "react-icons/io5";
-import { useNavigate } from 'react-router-dom';
+import ShadowBox from '../components/ShadowBox'
 
 const ConsumerLoanInfoPage = () => {
     const navigate = useNavigate();
@@ -17,10 +17,13 @@ const ConsumerLoanInfoPage = () => {
         <>
             <section className='mt-5 flex flex-col md:relative'>
                 <img src={Banner} alt="" className='max-h-["180px"] w-full object-cover  object-center ' />
-                <h1 className='text-dark-blue font-bold text-5xl md:text-4xl lg:text-5xl md:absolute top-20 mt-10 ml-16 max-w-32'>Потребителски кредит</h1>
+
+                <h1 className='pointer-events-none text-dark-blue font-bold md:text-4xl lg:text-7xl md:absolute lg:w-2/6 top-20 pt-20 pl-16'>
+                    Избери своя кредит
+                </h1>
             </section>
 
-            <section className='flex flex-col w-full self-center p-10 items-center'>
+            <section className='flex flex-col pointer-events-none w-full self-center p-10 items-center'>
                 <h2 className='text-dark-blue font-bold md: text-3xl lg:text-4xl text-center'>Кандидатствайте лесно онлайн</h2>
 
                 <section className='w-full flex flex-row flex-wrap gap-10 mt-10 p-10 justify-evenly'>
@@ -57,15 +60,64 @@ const ConsumerLoanInfoPage = () => {
                                 <span className='font-bold text-4xl text-white'>3</span>
                             </div>
                         </div>
-                        <div className='space-y-5'>
+                        <div className='space-y-5 '>
                             <h3 className='text-xl font-semibold text-blue-whale leading-5 mt-2 text-wrap'>Взимате парите по най-удобния за Вас начин</h3>
                             <h3 >Получавате желаното финансиране по вашата банкова сметка в рамките на деня.</h3>
                         </div>
                     </div>
                 </section>
             </section>
+            <section className='flex'>
+                <div className='flex flex-col w-1/2 items-center pt-10 pb-40'>
+                    <div className='w-1/2'>
+                        <ShadowBox>
+                            <div className='flex flex-col items-center'>
+                                <img src={RelocationPic} alt="" className='rounded-lg object-cover hidden md:block' />
+                                <p className='pt-4 text-2xl pointer-events-none'>Потребителски кредит</p>
+                            </div>
+                        </ShadowBox>
+                    </div>
+                    <div className='pt-6'>
+                        <button className='flex bg-sky-700 rounded-md p-2 text-white' onClick={() => navigate('/loans/request')}>
+                            Кандидатствай сега!
+                        </button>
+                    </div>
+                </div>
+                <div className='pointer-events-none w-2/6 rounded-xl p-10 h-fit bg-dark-blue text-white space-y-5'>
+                    <h3 className='font-bold text-3xl max-w-96'>Кой може да кандидатсва за потребителски кредит?</h3>
+                    <p className='font-semibold'>Изисквания за отпускане на кредит:</p>
 
-            <section className='w-full mt-5'>
+                    <div className='flex flex-row gap-5 max-w-96 text-wrap'>
+                        <IoCheckmarkSharp className='font-bold size-5' />
+                        <p>Трябва да имаш навършени 18 години и да имаш добра кредитна история.</p>
+                    </div>
+                    <div className='flex flex-row gap-5 max-w-96 text-wrap'>
+                        <IoCheckmarkSharp className='font-bold size-7' />
+                        <p>Не е необходимо да работиш на трудов договор, но трябва да имаш доходи, с които да обслужваш кредита си.</p>
+                    </div>
+                    <div className='flex flex-row gap-5 max-w-96 text-wrap'>
+                        <IoCheckmarkSharp className='font-bold size-7' />
+                        <p>Трябва да разполагаш с валиден документ за самоличност, валиден имейл и телефонен номер.</p>
+                    </div>
+                </div>
+
+                <div className='flex flex-col w-1/2 items-center pt-10 pb-40'>
+                    <div className='w-1/2'>
+                        <ShadowBox>
+                            <div className='flex flex-col items-center'>
+                                <img src={LoanFamily} alt="" className='rounded-lg object-cover hidden md:block' />
+                                <p className='pt-4 text-2xl pointer-events-none'>Ипотечен кредит</p>
+                            </div>
+                        </ShadowBox>
+                    </div>
+                    <div className='pt-6'>
+                        <button className='flex bg-sky-700 rounded-md p-2 text-white' onClick={() => navigate('/mortgage/request')}>
+                            Кандидатствай сега!
+                        </button>
+                    </div>
+                </div>
+            </section>
+            {/* <section className='w-full mt-5'>
             <h2 className='text-dark-blue font-bold md: text-3xl lg:text-4xl text-center pb-20'>За потребителски кредит</h2>
                 <div className='flex flex-col lg:flex-row lg:justify-around items-start wrap'>
                     <img src={RelocationPic} alt="" className='w-1/2 rounded-lg object-cover hidden md:block' />
@@ -120,7 +172,7 @@ const ConsumerLoanInfoPage = () => {
 
                     <img src={LoanFamily} alt="" className='w-1/2 rounded-lg object-cover hidden md:block' />
                 </div>
-            </section>
+            </section> */}
 
 
         </>

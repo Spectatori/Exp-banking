@@ -48,7 +48,7 @@ const LoanFormPage = () => {
                         <h2>Форма за Кандидатстване</h2>
                     </div>
                     <div className='pt-10 flex flex-col items-center gap-2 pb-4'>
-                      <label className='text-xl'>Сума на кедита в ЛВ</label>
+                      <label className='text-xl'>Сума на кредита в ЛВ</label>
                       <InputField
                           type="number"
                           name="amount"

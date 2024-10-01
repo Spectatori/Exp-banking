@@ -24,4 +24,6 @@ public class FinancialSummaryServiceImpl implements FinancialSummaryService{
     public List<Double> getMonthlyIncomes(Long userId, int i) {
         return financialSummaryRepository.findMonthlyIncomes(userId);
     }
+
+
 }

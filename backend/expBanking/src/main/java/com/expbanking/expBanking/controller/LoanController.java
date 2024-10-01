@@ -55,22 +55,26 @@ public class LoanController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Заемът е отказан поради липса на кредитна история");
         }
 
-        double netIncome = summary.get().getTotalIncome() - summary.get().getTotalExpenses();
+        double netIncome = summary.get().getTotalIncome() - Math.abs(summary.get().getTotalExpenses());
         if (netIncome <= 0) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Заемът е отказан поради недостатъчен баланс по сметката.");
         }
+        double monthlyIncome = (summary.get().getTotalIncome() - Math.abs(summary.get().getTotalExpenses()))/6;
+        if(monthlyIncome<(loanAmount/loanTermMonths)){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Заемът е отказан поради недостатъчен баланс по сметката.");
 
+        }
         // Calculate risk score
         int riskScore = riskAssessmentService.calculateRiskScore(userId, loanAmount);
 
         // Evaluate loan approval based on risk score and net income
-        if (riskScore >= 30 && netIncome > loanAmount * 0.5) {
+        if (riskScore >= 35 && netIncome > loanAmount * 0.5) {
             Optional<Accounts> account = accountsRepository.findAccountByIban(iban);
             BigDecimal loanAmountForTransfer = BigDecimal.valueOf(loanAmount);
             accountsService.transfer(IBAN, iban, loanAmountForTransfer);
             loanService.saveLoan(loanAmount, typeOfLoan, loanTermMonths,account.get().getAccountId());
             return ResponseEntity.ok("Заемът е одобрен.");
-        } else if (riskScore >= 20) {
+        } else if (riskScore >= 25 && riskScore < 35) {
             Optional<Accounts> account = accountsRepository.findAccountByIban(iban);
             BigDecimal loanAmountForTransfer = BigDecimal.valueOf(loanAmount);
             accountsService.transfer(IBAN, iban, loanAmountForTransfer);

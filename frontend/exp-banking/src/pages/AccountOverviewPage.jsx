@@ -133,7 +133,7 @@ const AccountOverviewPage = () => {
 
                 <button
                     className='max-w-28 h-40 flex justify-center'
-                    onClick={() => navigate('/loans/consumer-loan')}
+                    onClick={() => navigate('/loans/request')}
                 >
                     <div className='flex flex-col items-center gap-2  group'>
                         <div className='flex bg-kelly-green border rounded-full size-28 items-center justify-center transition-transform duration-300 ease-in-out transform group-hover:scale-110'>
@@ -147,7 +147,8 @@ const AccountOverviewPage = () => {
                     </div>
                 </button>
 
-                <button className='max-w-28 h-40 flex justify-center'>
+                <button className='max-w-28 h-40 flex justify-center'
+                onClick={() => navigate('/mortgage/request')}>
                     <div className='flex flex-col items-center gap-2 group'>
                         <div className='flex bg-azure border rounded-full size-28 items-center justify-center transition-transform duration-300 ease-in-out transform group-hover:scale-110'>
                             <img

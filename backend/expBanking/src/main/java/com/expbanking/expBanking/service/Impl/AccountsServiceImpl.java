@@ -124,7 +124,7 @@ public class AccountsServiceImpl implements AccountsService{
             accountsRepository.save(receiver);
 
         Transactions transaction = new Transactions();
-        transaction.setAmount(amount.doubleValue());
+        transaction.setAmount(-amount.doubleValue());
         transaction.setDateOfTransaction(new Timestamp(System.currentTimeMillis()));
         transaction.setDetails("Transfer from " + senderIban + " to " + receiverIban);
         transaction.setAccount(sender);
@@ -134,6 +134,16 @@ public class AccountsServiceImpl implements AccountsService{
         transaction.setTransactionType(transactionType);
         transactionsRepository.save(transaction);
 
+        Transactions transactionReceived = new Transactions();
+        transactionReceived.setAmount(amount.doubleValue());
+        transactionReceived.setDateOfTransaction(new Timestamp(System.currentTimeMillis()));
+        transactionReceived.setDetails("Transfer from " + senderIban + " to " + receiverIban);
+        transactionReceived.setAccount(receiver);
+        TransactionType transactionTypeReceiver = new TransactionType();
+        transactionTypeReceiver.setTransactionTypeName("Internal");
+        transactionTypeRepository.save(transactionType);
+        transactionReceived.setTransactionType(transactionType);
+        transactionsRepository.save(transactionReceived);
         return transaction;
     }
 

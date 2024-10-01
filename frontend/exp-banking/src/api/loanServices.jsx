@@ -52,7 +52,6 @@ export const mortgageRequest = async (loanInfo) => {
             typeOfLoan: 'Mortgage',
             loanTermMonths:loanInfo.period
         };
-        await apiClient.post(`api/loan/apply/${decoded.userId}`, payload);
         let response = await apiClient.post(`api/loan/apply/${decoded.userId}`, payload)
         const setUser = useUserStore.getState().setUser;
         try {

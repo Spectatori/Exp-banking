@@ -26,7 +26,7 @@ public class RiskAssessmentService {
         int riskScore = 0;
 
         // Step 1: Check if expenses exceed income, if yes, deny loan immediately
-        if (financialSummary.getTotalExpenses() >= financialSummary.getTotalIncome()) {
+        if (Math.abs(financialSummary.getTotalExpenses()) >= financialSummary.getTotalIncome()) {
             // Automatically reject loan if expenses are greater than or equal to income
             return -1; // Use -1 or any other flag to denote automatic rejection
         }
@@ -40,18 +40,18 @@ public class RiskAssessmentService {
 
         // Debt-to-Income Ratio (Example: below 30% is good)
         double debtToIncomeRatio = calculateDebtToIncomeRatio(financialSummary);
-        if (debtToIncomeRatio < 0.3) {
+        if (debtToIncomeRatio < 0.5) {
             riskScore += 15;
         }
 
         // Loan-to-Income Ratio (Smaller loan size compared to income)
         double loanToIncomeRatio = calculateLoanToIncomeRatio(financialSummary, requestedLoanAmount);
-        if (loanToIncomeRatio < 0.5) {
+        if (loanToIncomeRatio < 0.9) {
             riskScore += 10;
         }
 
         // Check high expenses relative to income
-        if (financialSummary.getTotalExpenses() / financialSummary.getTotalIncome() > 0.5) {
+        if (Math.abs(financialSummary.getTotalExpenses()) / financialSummary.getTotalIncome() > 0.5) {
             riskScore -= 20;  // Deduct points for high expenses
         }
 
@@ -83,7 +83,7 @@ public class RiskAssessmentService {
 
     private double calculateDebtToIncomeRatio(UserFinancialSummary summary) {
         // Assume expenses are debts for simplicity
-        return summary.getTotalExpenses() / summary.getTotalIncome();
+        return Math.abs(summary.getTotalExpenses()) / summary.getTotalIncome();
     }
 
     private double calculateLoanToIncomeRatio(UserFinancialSummary summary, double requestedLoanAmount) {

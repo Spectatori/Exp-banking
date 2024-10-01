@@ -1,4 +1,4 @@
-const calculateLoan = (principal, interestRate, loanTermMonths) => {
+const calculateLoan = (principal, loanTermMonths, interestRate) => {
   const monthlyInterestRate = interestRate / 100 / 12;
 
   const monthlyPayment = principal * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, loanTermMonths) / (Math.pow(1 + monthlyInterestRate, loanTermMonths) - 1);

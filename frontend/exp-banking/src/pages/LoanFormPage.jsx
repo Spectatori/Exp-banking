@@ -1,12 +1,12 @@
-import React from 'react'
-import { useFormik } from 'formik'
+import React from 'react';
+import { useFormik } from 'formik';
 
-import loanPig from '../assets/loans/loanPig.png'
-import ShadowBox from '../components/ShadowBox'
-import InputField from '../components/auth-forms/AuthInputField'
-import { useUserStore } from '../stores/AuthStore'
-import { loanRequest } from '../api/loanServices'
-import loanSchema from '../schemas/loanSchema'
+import loanPig from '../assets/loans/LoanPig.png';
+import ShadowBox from '../components/ShadowBox';
+import InputField from '../components/auth-forms/AuthInputField';
+import { useUserStore } from '../stores/AuthStore';
+import { loanRequest } from '../api/loanServices';
+import loanSchema from '../schemas/loanSchema';
 
 const LoanFormPage = () => {
   const user = useUserStore((state) => state.user);

@@ -13,7 +13,3 @@ services:
     env: docker
     dockerfilePath: ./frontend/exp-banking/Dockerfile
     dockerContext: ./frontend/exp-banking
-
-  - type: postgres
-    name: expbanking
-    ipAllowList: []

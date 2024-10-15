@@ -22,6 +22,9 @@ services:
       dockerfile: Dockerfile
     ports:
       - "5173:80"  # Adjust this port if your frontend uses a different port
+    environment:
+      - VITE_DB_API_KEY=http://backend:8080/
+      - VITE_ADMIN_EMAIL=admin@gmail.com
     depends_on:
       - backend
     networks:

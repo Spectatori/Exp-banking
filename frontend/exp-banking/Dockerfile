@@ -1,14 +1,14 @@
 # Stage 1 - Build the Vite project
 FROM node:alpine AS build
-WORKDIR /src
+WORKDIR /app
 
 # Copy the necessary files for the build
 COPY package.json .
 COPY package-lock.json .
 COPY vite.config.js .  
-COPY .env .            
-COPY ./src /src       
-COPY ./public /public 
+COPY .env .
+COPY ./src ./src
+COPY ./public ./public 
 COPY index.html .      
 COPY tailwind.config.js .
 COPY postcss.config.js .
@@ -21,7 +21,7 @@ RUN npm run build
 FROM nginx:alpine
 
 # Copy built files to Nginx
-COPY --from=build /src/dist /usr/share/nginx/html
+COPY --from=build /app/dist /usr/share/nginx/html
 
 # Expose port 80 for Nginx
 EXPOSE 80

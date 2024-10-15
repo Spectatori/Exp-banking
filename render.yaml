@@ -1,17 +1,19 @@
 services:
   - type: web
-    name: exp-banking
+    name: exp-banking-backend
     env: docker
     dockerfilePath: ./backend/expBanking/Dockerfile
     dockerContext: ./backend/expBanking
     envVars:
-      - key: postgresql://postgresql_expbanking_user:XAJXGKdSHPo1a37N63USeAYsTewxEbwT@dpg-cs78rit6l47c7393ptfg-a/postgresql_expbanking
-        value: postgres://your-postgres-internal-url
-    - type: web
-      name: exp-banking
-      env: docker
-      dockerfilePath: ./frontend/exp-banking/Dockerfile
-      dockerContext: ./frontend/exp-banking
-    - type: postgres
-      name: expbanking
-      ipAllowList: []
+      - key: SPRING_DATASOURCE_URL
+        value: postgresql://postgresql_expbanking_user:XAJXGKdSHPo1a37N63USeAYsTewxEbwT@dpg-cs78rit6l47c7393ptfg-a/postgresql_expbanking
+
+  - type: web
+    name: exp-banking-frontend
+    env: docker
+    dockerfilePath: ./frontend/exp-banking/Dockerfile
+    dockerContext: ./frontend/exp-banking
+
+  - type: postgres
+    name: expbanking
+    ipAllowList: []

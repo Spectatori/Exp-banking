@@ -10,4 +10,8 @@ export default defineConfig({
   server: {
     port: 5173, // Adjust the port if needed
   },
+  define: {
+    'process.env.VITE_DB_API_KEY': JSON.stringify('VITE_DB_API_KEY_PLACEHOLDER'),
+    'process.env.VITE_ADMIN_EMAIL': JSON.stringify('VITE_ADMIN_EMAIL_PLACEHOLDER')
+  }
 });
